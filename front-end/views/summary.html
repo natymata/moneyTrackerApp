@@ -1,0 +1,72 @@
+<div class="center-block col-md-12 col-lg-12 floatNone">
+	<section class="accountDetail gray-border">
+		<h2>{{welcome}}</h2>
+
+		<div ng-show="showTable" class="center-block floatNone div-info">
+			<h4>Estos son sus últimos movimientos en su cuenta  {{type}}</h4>
+		</div>
+		
+		<div ng-hide="showTable" class="center-block floatNone text-center div-info">
+			<h3>No hay movimientos en su cuenta</h3>
+			<a ng-href="#/add/0" class="btn app-btn gradient btn50 btn-mrg">Agregar Movimientos</a>
+		</div>
+
+		<table class="table table-striped" ng-if="showTable">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Fecha</th>
+					<th>Tipo</th>
+					<th>Monto</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="transact in transatList | limitTo:10 | orderBy:transact.date track by $index">
+					<td>{{transact.id}}</td>
+					<td>{{transact.date | date: 'd/MMM/yy'}}</td>
+					<td>{{transact.type}}</td>
+					<td ng-show="money=='colon'">{{transact.amount | currency: '¢'}}</td>
+					<td ng-show="money=='euro'">{{transact.amount | currency: '€'}}</td>
+					<td ng-show="money=='dolar'">{{transact.amount | currency: '$'}}</td>
+					<td><a href="#/detail/{{loggedUserId}}/{{transact.id}}">Detalles <span class="glyphicon glyphicon-chevron-right"></span></a></td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="3">Saldo</td>
+					<td colspan="2"> {{balance}}</td>
+				</tr>	
+			</tfoot>
+		</table>
+
+		<div>
+			<ul ng-repeat="user in users">
+				<li>{{user | json}}</li>
+			</ul>
+		</div>
+
+	
+
+		<!-- <form ng-show="showTable" name="search-Form" ng-submit="search-Form.$valid && search()" novalidate>
+			<h4>Filtrar resultados</h4>
+				<div class="form-group">
+					<label>Fecha inicio:</label>
+					<input type="date" name="from" ng-model="dateFrom" placeholder="fecha inicio" required class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Fecha inicio:</label>
+					<input type="date" name="to" ng-model="dateTo" placeholder="fecha final" required class="form-control">
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+				</div>
+				<!-- select name="">
+					<option value="">--Seleccione--</option>
+					<option value="credito">Créditos</option>
+					<option value="debito">Débitos</option>
+				</select> -->
+			<!-- </form>  -->
+
+	</section>
+</div> <!-- main-col -->

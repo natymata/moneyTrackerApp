@@ -1,0 +1,53 @@
+<div class="col-lg-10 col-md-9 col-sm-12 center-block floatNone">
+	<section class="add-trans gray-border">
+
+	<div class="detail-header cf">
+			<h2 ng-show="tId==0" class="float"><a ng-href="#/summary/userId"><span class="glyphicon glyphicon-chevron-left"></span></a></h2>
+			<h2 ng-show="tId>0" class="float"><a ng-href="#/detail/{{userId}}/{{tId}}"><span class="glyphicon glyphicon-chevron-left"></span></a></h2>
+
+			<h2 ng-show="tId==0">Agregar Movimiento</h2>
+			<h2 ng-show="tId>0">Actualizar Movimiento</h2>
+		</div>
+
+		<div class="newTransat-add">
+			<form name="addTransactForm" ng-submit="addTransactForm.$valid && addTransact()" novalidate>
+				<div class="form-group">
+					<sub ng-show="addTransactForm.name.$invalid && addTransactForm.name.$touched">Fecha requerifa</sub>
+					<label>Fecha:</label><input type="date" name="date" ng-model= "newTransat.date" required ng-model-options="{ updateOn:'blur'}" class="form-control">
+				</div>
+				<div class="form-group">
+					<sub ng-show="addTransactForm.amount.$invalid && addTransactForm.amount.$touched">Monto es requerido</sub>
+					<label>Monto:</label><input type="number" name="amount" ng-model= "newTransat.amount" required ng-model-options="{ updateOn:'blur'}" class="form-control">
+				</div>
+				<div class="form-group">
+					<sub ng-show="addTransactForm.detail.$invalid && addTransactForm.detail.$touched">Detalle es requerido</sub>
+					<label>Detalle:</label><input type="text" name="detail" ng-model= "newTransat.detail" required ng-model-options="{ updateOn:'blur'}" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Comercio:</label><input type="text" name="shop" ng-model= "newTransat.shop" ng-model-options="{ updateOn:'blur'}" class="form-control">
+				</div>
+				<div class="form-group">
+					<sub ng-show="addTransactForm.type.$invalid && addTransactForm.type.$touched">Escoja un tipo de transacción</sub>
+					<label>Tipo:</label>
+					<select name="type" id="sltTypeTrans" ng-model="newTransat.type" required ng-model-options="{ updateOn:'blur'}" class="form-control control50">
+						<option value="">--Seleccione--</option>
+						<option value="Débito">Débito</option>
+						<option value="Crédito">Crédito</option>
+					</select>
+				</div>
+
+				<button type="submit" class="btn app-btn gradient btn50 btn-mrg" ng-show="tId==0"><span class="glyphicon glyphicon-ok"></span> Crear</button>
+
+				<button type="button" class="btn app-btn gradient btn50 btn-mrg" ng-show="tId>0" ng-click="edit()"><span class="glyphicon glyphicon-ok"></span> Actualizar</button>
+
+				<a ng-href="#/summary/userId" ng-show="tId==0" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
+
+				<a ng-href="#/detail/{{userId}}/{{tId}}" ng-show="tId>0" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
+
+			</form>
+			
+		</div> <!-- addHeader -->
+	</section> <!-- main-list -->
+</div> <!-- main-col -->
+
+

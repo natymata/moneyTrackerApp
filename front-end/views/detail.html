@@ -1,0 +1,39 @@
+<div class="center-block col-md-12 col-lg-12 floatNone">
+	<section class="transDetail gray-border">
+		<div class="detail-header cf">
+			<h2 class="float"><a ng-href="#/summary/0"><span class="glyphicon glyphicon-chevron-left"></span></a></h2>
+			<h2 class="float detail-h2">Detalle de la transacción</h2>
+		</div>
+
+		<h4>A continuación el detalle de la transacción realizada el día {{transact.date | date: 'EEE - d/MMM/yy'}}</h4>
+
+		<table class="table table-striped tdetail">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Tipo</th>
+					<th>Comercio</th>
+					<th>Detalle</th>
+					<th>Monto</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{transact.id}}</td>
+					<td>{{transact.type}}</td>
+					<td>{{transact.shop}}</td>
+					<td>{{transact.detail}}</td>
+					<td ng-show="money=='colon'">{{transact.amount | currency: '¢'}}</td>
+					<td ng-show="money=='euro'">{{transact.amount | currency: '€'}}</td>
+					<td ng-show="money=='dolar'">{{transact.amount | currency: '$'}}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a ng-href="#/add/{{transact.id}}" class="btn app-btn gradient btn50 btn-mrg">Editar <span class="glyphicon glyphicon-edit"></span></a>
+
+		<a ng-href="#/summary/{{userId}}" ng-click="deleteTransact()" class="btn btn-warning btn50 btn-mrg">Eliminar <span class="glyphicon glyphicon-trash"></span></a>
+
+	</section>
+</div> <!-- main-col -->
+

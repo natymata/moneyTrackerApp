@@ -1,0 +1,29 @@
+<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+	<div class="logIn gray-border">
+		<h2>Ingresar</h2>
+		
+		<form name="logInForm" ng-submit="logInForm.$valid && canLogIn()" class="cf" novalidate>
+		<h4 class="text-center error">{{userError}}</h4>
+			<div class="form-group">
+				<sub ng-show="logInForm.user.$invalid && logInForm.user.$touched">Usuario requerido</sub>
+				<label>Usuario:</label>
+				<input type="text" name="user" ng-model="username" required ng-model-options="{ updateOn:'blur'}">
+			</div>
+			<div class="form-group">
+				<sub ng-show="logInForm.pass.$invalid && logInForm.pass.$touched">Contraseña requerida</sub>
+				<label>Contraseña</label>
+				<input type="password" name="pass" ng-model="pass" required ng-model-options="{ updateOn:'blur'}">
+			</div>
+			<div class="form-group has-feedback">
+				<button type="submit" class="btn btn-log-in gradient"><span class="glyphicon glyphicon-log-in"></span>  Ingresar</button>
+			</div>
+			<div class="text-center">			
+				<p >ó</p>
+				<a ng-href="#/newaccount/0">Registrar una cuenta</a>
+			</div>
+		</form>
+	</div>
+</div> <!-- main-col -->
+
+
+
