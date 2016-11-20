@@ -17,7 +17,7 @@
     <![endif]-->
 
 </head>
-<body ng-app="bankAccount" ng-controller="refreshController">
+<body ng-app="bankAccount" ng-controller="appController as appCtrl">
   <div class="container-fluid"> <!-- main-container -->
 	  <div class="row main-row"> <!-- main-row -->
 		<header>
@@ -27,24 +27,26 @@
 		    </div> <!-- header-col -->
 
 			<div class="nav-background gradient">
-		    <div class="center-block col-md-12 col-lg-12 floatNone"> <!-- nav-col -->
-			<nav class="navbar navbar-default gradient">
-			  <div class="container-fluid">
-			  	<div class="col-lg-10 center-block floatNone">
-				<ul class="nav navbar-nav">
-					<li><a ng-href="#/home" class="active">Home</a></li>
-					<li><a ng-href="#/summary/0">Resumen</a></li> 
-					<li><a ng-href="#/add/0">Agregar Movimiento</a></li> 
-					
-				</ul>
-				<ul class="nav navbar-nav navbar-right" ng-controller="logOutController">
-					<li><a ng-href="#/newaccount/0"><span class="glyphicon glyphicon-user"></span> Registrar Cuenta</a></li>
-					<li><a ng-href="#/home" ng-click="logOut()"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
-				</ul>
-				</div>
-			  	</div>
-			</nav>
-		    </div> <!-- nav-col -->
+			    <div class="center-block col-md-12 col-lg-12 floatNone"> <!-- col-md-12 col-lg-12 -->
+					<nav ng-controller="navbarController as navbar" class="navbar navbar-default gradient">
+					  	<div class="container-fluid">
+						  	<div class="col-lg-10 center-block floatNone">
+
+								<ul class="nav navbar-nav">
+									<li ng-hide="navbar.isLoggedIn"><a ng-href="#/home" class="active">Inicio</a></li>
+									<li ng-show="navbar.isLoggedIn"><a ng-href="#/summary/0">Resumen</a></li> 
+									<li ng-show="navbar.isLoggedIn"><a ng-href="#/add/0">Agregar Movimiento</a></li> 
+								</ul>
+
+								<ul class="nav navbar-nav navbar-right" ng-controller="logOutController">
+									<li ng-show="navbar.isLoggedIn"><a ng-href="#/"><span class="glyphicon glyphicon-user"></span> Mi Perfil</a></li>
+									<li ng-hide="navbar.isLoggedIn"><a ng-href="#/newaccount/0"><span class="glyphicon glyphicon-user"></span> Registrar Cuenta</a></li>
+									<li ng-show="navbar.isLoggedIn"><a ng-href="#" ng-click="navbar.logOut()"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+								</ul>
+							</div>
+					  	</div>
+					</nav>
+			   	</div> <!-- col-md-12 col-lg-12 -->
 			</div> <!-- nav-background -->
 		</header>
 
@@ -59,20 +61,30 @@
 
 	<script src="front-end/lib/angular.min.js"></script>
 	<script src="front-end/lib/angular-route.min.js"></script>
+	<script src="front-end/lib/angular-cookies.min.js"></script>
+	<script src="front-end/lib/angular-resource.min.js"></script>
 
 	<script src="front-end/logic/appRoute.js"></script>
-
-	<script src="front-end/logic/controllers/home.js"></script>
-	<script src="front-end/logic/controllers/newAccount.js"></script>
-	<script src="front-end/logic/controllers/summary.js"></script>
-	<script src="front-end/logic/controllers/detail.js"></script>
-	<script src="front-end/logic/controllers/add.js"></script>
+	
+	<script src="front-end/logic/controllers/appController.js"></script>
+	<script src="front-end/logic/controllers/navbarController.js"></script>
+	<script src="front-end/logic/controllers/homeController.js"></script>
+	<script src="front-end/logic/controllers/newAccountController.js"></script>
+	<script src="front-end/logic/controllers/summaryController.js"></script>
+	<script src="front-end/logic/controllers/detailController.js"></script>
+	<script src="front-end/logic/controllers/addController.js"></script>
 	<script src="front-end/logic/controllers/logOut.js"></script>
 	<script src="front-end/logic/controllers/refreshController.js"></script>
 	
-	<script src="front-end/logic/dataBaseModule.js"></script>
 	<script src="front-end/logic/services/BDServices.js"></script>
-
+	<script src="front-end/logic/services/formService.js"></script>
+	<script src="front-end/logic/services/localStorageService.js"></script>
+	<script src="front-end/logic/services/transactService.js"></script>
+	<script src="front-end/logic/services/userService.js"></script>
+	<script src="front-end/logic/services/idService.js"></script>
+	
 	<script src="front-end/logic/directives/compareTo.js"></script>
 </body>
 </html>
+
+

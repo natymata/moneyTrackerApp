@@ -1,4 +1,4 @@
-angular.module('bankAccount')
+angular.module('bankAccount.directives')
 .directive('compareTo', function () {
   return {
     require: 'ngModel',

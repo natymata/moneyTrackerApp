@@ -1,4 +1,4 @@
-angular.module('OGTicketsApp.services')
+angular.module('bankAccount.services')
 .service('formService', ['localStorageService', function(localStorageService) {
 
 	var clearForm= function (formName, $scope) {

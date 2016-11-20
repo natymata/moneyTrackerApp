@@ -1,4 +1,4 @@
-angular.module('BDServices')
+angular.module('bankAccount.services')
 	.service("BDService", function(){
 
 		//todas las cuentas existentes en el local storage

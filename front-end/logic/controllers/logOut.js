@@ -1,8 +1,7 @@
 angular.module('bankAccount.controllers')
-	.controller("logOutController", ['$scope', 'BDService', '$routeParams', function ($scope, BDService, $routeParams){
+.controller("logOutController", ['$scope', 'BDService', '$routeParams', function ($scope, BDService, $routeParams){
 
-		var emptyUser={};
+	var emptyUser={};
 
-		$scope.logOut= BDService.userLogIn(emptyUser);
-
+	$scope.logOut= BDService.userLogIn(emptyUser);
 }]);

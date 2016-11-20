@@ -1,4 +1,3 @@
-
 angular.module('bankAccount.controllers') 
 .controller("homeController", ['$scope', '$window', 'BDService', '$routeParams', function ($scope, $window, BDService, $routeParams) {
 
