@@ -3,18 +3,9 @@ angular.module('bankAccount.controllers')
 	var appCtrl= this;
 
 	appCtrl.init= function() {
-		//init appLoggedUser
-		// appCtrl.ntAppLoggedUser={
-		// 	userId: "",
-		// 	userType: "",
-		// 	name:"",
-		// 	lastName:"",
-		// 	username:"",
-		// 	money:"", 
-		// 	accountType:"",
-		// 	isConnected: false
-		// };
+		isLoggedIn();
 
+//////////////////////////delete/////////////////////////////
 		// var user={
 		// 	userId: 1,
 		// 	name:"Naty",
@@ -29,7 +20,8 @@ angular.module('bankAccount.controllers')
 		
 		 // setCookie(user);
 		// printCookie();
-		isLoggedIn();
+//////////////////////////delete/////////////////////////////
+		
 	};
 
 	var isLoggedIn= function() {
@@ -44,7 +36,7 @@ angular.module('bankAccount.controllers')
 		}
 	};
 
-
+//////////////////////////delete/////////////////////////////
 	var remove= function() {
 		$cookies.remove('ntLoggedUser');
 	};
@@ -58,7 +50,7 @@ angular.module('bankAccount.controllers')
 		var print= angular.fromJson($cookies.get('ntLoggedUser'));
 		console.log(print);
 	};
-
+//////////////////////////delete/////////////////////////////
 	
 	appCtrl.init();
 });

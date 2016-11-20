@@ -9,7 +9,7 @@ angular.module("bankAccount", ['ngRoute', 'ngResource', 'ngCookies', 'bankAccoun
             .when('/newaccount', {
                 templateUrl: 'front-end/views/newAccount.html',
                 controller: 'newAccountController',
-                controllerAs: 'new'
+                controllerAs: 'newAcc'
             })
             .when('/summary/:accountId', {
                 templateUrl: 'front-end/views/summary.html',

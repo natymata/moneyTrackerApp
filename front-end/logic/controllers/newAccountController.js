@@ -1,21 +1,41 @@
 angular.module('bankAccount.controllers')
-.controller("newAccountController", ['$scope', 'BDService', '$routeParams', function ($scope, BDService, $routeParams) {
+.controller("newAccountController", ['$location', 'userService', function ($location, userService) {
+	var newAcc= this;
 
-	$scope.accounts= BDService.getAll();
+	newAcc.init= function() {
+		newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
+		newAcc.info="";
 
-	$scope.newAccount={};
-		/*account= {
-			id: 1,
-			name: 'Antony',
-			lastName:'Perez',
-			username: 'aperez',
-			pass: 'jkl',
-			repeatpass: 'jkl',
-			money:'colones',
-			type: 'Ahorros'
-		};
-	*/
+	};	//end, init function
+	
+	newAcc.validateCreate= function() {
+		newAcc.info="";
+		var newUser= newAcc.newAccount;
+		var result= userService.createNewAccount(newUser);
+		console.log(result);
+		if(!result.error){//se creo el usuario con éxito
+			newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
+			newAcc.info="Usuario creado con éxito";
+			$location.path("/");
+			newAcc.info="";
+		}else{//error, nombre de usuario ya existía o passwords no coinciden
+			newAcc.info= result.string;
+		}
+	};
 
+	newAcc.cancel= function() {
+
+	};
+
+	
+
+	
+			
+
+	newAcc.init();
+
+///////////////////////////////////delete///////////////////////////////////
+/*
 	$scope.accountExists= function () {
 		$scope.exists= BDService.getAll().filter(function (item) {
 			return item.username== $scope.newAccount.username;
@@ -64,6 +84,7 @@ angular.module('bankAccount.controllers')
 		})
 		return $scope.contact[0];
 	};
-
+*/
+///////////////////////////////////delete///////////////////////////////////
 
 }]);

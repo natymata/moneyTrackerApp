@@ -1,34 +1,35 @@
 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12">
 	<section class="add-acount gray-border gray-bg">
 		<h2>Registar Cuenta</h2>
-		<h4 class="text-center">{{userError}}</h4>
+		<h4 class="text-center">{{newAcc.info}}</h4>
 		<div class="newAcc-add">
-			<form name="newAccForm" ng-submit="newAccForm.$valid && validate()" novalidate>
+			<form name="newAccForm" ng-submit="newAccForm.$valid && newAcc.validateCreate()" novalidate>
 				<div class="form-group display-inline div50">
 					<sub ng-show="newAccForm.name.$invalid && newAccForm.name.$touched">El nombre es requerido</sub>
-					<label>Nombre:</label><input type="text" name="name" ng-model= "newAccount.name" required ng-model-options="{ updateOn:'blur'}" class="form-control">
+					<label>Nombre:</label><input type="text" name="name" ng-model= "newAcc.newAccount.name" required ng-model-options="{debounce:200}" class="form-control">
 				</div>
 				<div class="form-group display-inline div50">
 					<sub ng-show="newAccForm.lastName.$invalid && newAccForm.lastName.$touched">El apellido es requerido</sub>
-					<label>Apellido:</label><input type="text" name="lastName" ng-model= "newAccount.lastName" required ng-model-options="{ updateOn:'blur'}" class="form-control">
+					<label>Apellido:</label><input type="text" name="lastName" ng-model= "newAcc.newAccount.lastName" required ng-model-options="{debounce:200}" class="form-control">
 				</div>
 				<div class="form-group">
 					<sub ng-show="newAccForm.username.$invalid && newAccForm.username.$touched">El usuario es requerido</sub>
-					<label>Usuario:</label><input type="text" name="username" ng-model="newAccount.username" required ng-model-options="{ updateOn:'blur'}" class="form-control" placeholder="nickname">
+					<label>Nombre de usuario:</label><input type="text" name="username" ng-model="newAcc.newAccount.username" required ng-model-options="{debounce:200}" class="form-control" placeholder="nickname">
 				</div>
 				<div class="form-group display-inline div50">
-					<sub ng-show="newAccForm.pass.$invalid && newAccForm.pass.$touched">Contraseña requerida</sub>
-					<label>Contraseña:</label><input type="password" name="pass" ng-model= "newAccount.pass" required ng-model-options="{ updateOn:'blur'}" placeholder="Minimo 6 caracteres" class="form-control">
+					<sub ng-show="newAccForm.pass.$error.required && newAccForm.pass.$touched">Contraseña requerida</sub>
+					<sub ng-show="newAccForm.pass.$error.minlength && newAccForm.pass.$touched">Mínimo 6 caracteres</sub>
+					<label for="password">Contraseña:</label><input type="password" id="password" name="pass" ng-model= "newAcc.newAccount.pass" ng-minlength="6" required placeholder="Minimo 6 caracteres" class="form-control">
 				</div>
 				<div class="form-group display-inline div50">
-					<sub ng-show="newAccForm.repeatpass.$invalid && newAccForm.repeatpass.$touched">Contraseñas deben coincidir</sub>
-					<label>Repetir contraseña:</label><input type="password" name="repeatpass" ng-model= "newAccount.repeatpass" ng-minlength="6" required ng-model-options="{ updateOn:'blur'}" class="form-control" compare-to="newAccount.repeatpass != newAccount.pass ? 'Passwords don\'t match' : ''">
-				</div>
+					<sub ng-show="newAccForm.repeatPass.$invalid && newAccForm.repeatPass.$touched">Contraseñas deben coincidir</sub>
+					<label>Repetir contraseña:</label><input type="password" name="repeatPass" ng-model= "newAcc.newAccount.repeatPass" ng-minlength="6" required compare-to="newAccount.repeatPass != newAccount.pass ? 'Passwords don\'t match' : ''" class="form-control">
+				</div> 
 
 				<div class="form-group display-inline div50">
 					<sub ng-show="newAccForm.money.$invalid && newAccForm.money.$touched">Escoja un tipo de moneda</sub>
 					<label>Moneda:</label>
-					<select name="money" id="sltMoney" ng-model="newAccount.money" required class="form-control control50">
+					<select name="money" id="sltMoney" ng-model="newAcc.newAccount.money" required class="form-control control50">
 						<option value="">--Seleccione--</option>
 						<option value="colon">Colones</option>
 						<option value="dolar">Dólares</option>
@@ -38,7 +39,7 @@
 				<div class="form-group display-inline div50">
 					<sub ng-show="newAccForm.type.$invalid && newAccForm.type.$touched">Escoja un tipo de cuenta</sub>
 					<label>Tipo:</label>
-					<select name="type" id="sltType" ng-model="newAccount.type" required class="form-control control50">
+					<select name="accountType" id="sltType" ng-model="newAcc.newAccount.accountType" required class="form-control control50">
 						<option value="">--Seleccione--</option>
 						<option value="corriente">Corriente</option>
 						<option value="ahorros">Ahorros</option>
@@ -47,7 +48,7 @@
 
 				<button type="submit" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-ok"></span> Crear</button>
 
-				<a ng-href="#/home" class="btn btn-warning btn50 btn-mrg" ng-show="1==1" ><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
+				<a ng-click="newAcc.cancel()" ng-href="#/home" class="btn btn-warning btn50 btn-mrg" ng-show="1==1" ><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
 			</form>
 			
 		</div> <!-- addHeader -->

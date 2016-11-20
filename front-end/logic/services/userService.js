@@ -89,15 +89,20 @@ angular.module('bankAccount.services')
 	
 	//verify by username if a account exists
 	var accountExists= function(username) {
-		var accountExists= getUsersLoginData().filter(function(item){
-			return item.username== username;
-		});
-
-		if(accountExists!=[]){ //username si esta registrado
-			return true;
+		var accounts= getUsersLoginData();
+		if(accounts.length==0){
+			return false;  //ni existe ninguna cuenta previamente
 		}else{
-			return false; //username no registrado
-		}
+			var exists= accounts.filter(function(item) {
+				return item.username==username;
+			});
+
+			if(exists.length==0){
+				return false; // la cuenta no existe
+			}else{
+				return true; // la cuenta si existe
+			}
+		};
 	}; //end, accountExists
 
 	var createNewAccount= function(user) {
@@ -110,13 +115,13 @@ angular.module('bankAccount.services')
 			};
 		var newUser={};
 
-		if(accountExists){
-			response.string="Username ya registrado, escriba otro";
+		if(accountExists(username)){
+			response.string="Nombre de usuario ya registrado, escriba otro";
 			response.error= true;
 			return response;
 		}else{
 			if(pass==repeatPass){
-				var newUser= setUserInfo(user);
+				newUser= setUserInfo(user);
 				saveNewUser(newUser);
 				saveUserPass(newUser.userId, newUser.username, pass);
 				response.string="Usuario registrado con éxito";
