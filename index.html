@@ -33,15 +33,15 @@
 						  	<div class="col-lg-10 center-block floatNone">
 
 								<ul class="nav navbar-nav">
-									<li ng-hide="navbar.isLoggedIn"><a ng-href="#/home" class="active">Inicio</a></li>
-									<li ng-show="navbar.isLoggedIn"><a ng-href="#/summary/0">Resumen</a></li> 
-									<li ng-show="navbar.isLoggedIn"><a ng-href="#/add/0">Agregar Movimiento</a></li> 
+									<li ng-hide="isSignedIn"><a ng-href="#/home" class="active">Inicio</a></li>
+									<li ng-show="isSignedIn"><a ng-href="#/summary/0">Resumen</a></li> 
+									<li ng-show="isSignedIn"><a ng-href="#/add/0">Agregar Movimiento</a></li> 
 								</ul>
 
-								<ul class="nav navbar-nav navbar-right" ng-controller="logOutController">
-									<li ng-show="navbar.isLoggedIn"><a ng-href="#/"><span class="glyphicon glyphicon-user"></span> Mi Perfil</a></li>
-									<li ng-hide="navbar.isLoggedIn"><a ng-href="#/newaccount"><span class="glyphicon glyphicon-user"></span> Registrar Cuenta</a></li>
-									<li ng-show="navbar.isLoggedIn"><a href="#/" ng-click="navbar.logout()"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+								<ul class="nav navbar-nav navbar-right">
+									<li ng-show="isSignedIn"><a ng-href="#/"><span class="glyphicon glyphicon-user"></span> Mi Perfil</a></li>
+									<li ng-hide="isSignedIn"><a ng-href="#/newaccount"><span class="glyphicon glyphicon-user"></span> Registrar Cuenta</a></li>
+									<li ng-show="isSignedIn"><a href="#/" ng-click="navbar.logout()"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
 								</ul>
 							</div>
 					  	</div>
@@ -73,7 +73,6 @@
 	<script src="front-end/logic/controllers/summaryController.js"></script>
 	<script src="front-end/logic/controllers/detailController.js"></script>
 	<script src="front-end/logic/controllers/addController.js"></script>
-	<script src="front-end/logic/controllers/logOut.js"></script>
 	<script src="front-end/logic/controllers/refreshController.js"></script>
 	
 	<script src="front-end/logic/services/BDServices.js"></script>

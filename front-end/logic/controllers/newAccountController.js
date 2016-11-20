@@ -6,13 +6,13 @@ angular.module('bankAccount.controllers')
 		newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
 		newAcc.info="";
 
-	};	//end, init function
+	};//end, init function
 	
 	newAcc.validateCreate= function() {
 		newAcc.info="";
 		var newUser= newAcc.newAccount;
 		var result= userService.createNewAccount(newUser);
-		if(!result.error){//se creo el usuario con éxito
+		if(!result.error){//user created
 			newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
 			newAcc.info="Usuario creado con éxito";
 			$location.path("/");
@@ -27,11 +27,6 @@ angular.module('bankAccount.controllers')
 		newAcc.info="";
 		$location.path("/");
 	};
-
-	
-
-	
-			
 
 	newAcc.init();
 
