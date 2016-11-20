@@ -12,7 +12,6 @@ angular.module('bankAccount.controllers')
 		newAcc.info="";
 		var newUser= newAcc.newAccount;
 		var result= userService.createNewAccount(newUser);
-		console.log(result);
 		if(!result.error){//se creo el usuario con éxito
 			newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
 			newAcc.info="Usuario creado con éxito";
@@ -24,7 +23,9 @@ angular.module('bankAccount.controllers')
 	};
 
 	newAcc.cancel= function() {
-
+		newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
+		newAcc.info="";
+		$location.path("/");
 	};
 
 	
@@ -36,37 +37,8 @@ angular.module('bankAccount.controllers')
 
 ///////////////////////////////////delete///////////////////////////////////
 /*
-	$scope.accountExists= function () {
-		$scope.exists= BDService.getAll().filter(function (item) {
-			return item.username== $scope.newAccount.username;
-		});
-		return $scope.exists;
-	}; //fin function
 
-	$scope.validate= function () {
-		var exists= $scope.accountExists();
-		if(exists.length==0){
-			$scope.addAccount();
-			$scope.clearForm();
-			$scope.userError="Cuenta Registrada exitosamente, ahora puede ingresar al sistema";
-		}else{
-			$scope.userError= "El nombre de usuario ya existe, agregue otro";
-		}
 
-	};//fin function
-	
-	$scope.addAccount= function () {
-		BDService.saveAccount($scope.newAccount);
-		$scope.newAccount={};
-		$scope.clearForm();
-	};//fin function
-
-	$scope.clearForm= function () {
-		if ($scope.newAccForm) {
-                $scope.newAccForm.$setPristine();
-                $scope.newAccForm.$setUntouched();
-        }
-	}; //fin function
 
 	$scope.edit= function () {
 

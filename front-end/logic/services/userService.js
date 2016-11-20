@@ -182,7 +182,12 @@ angular.module('bankAccount.services')
 	//verify user data, when trying to log in
 	var canLogin= function(username, pass) {
 		if(accountExists(username)){ //username si esta registrado
-			if(userExists[0].pass==pass){ //password es correcto
+
+			var account= getUsersLoginData().filter(function(item) {
+				return item.username==username;
+			});
+
+			if(account[0].pass==pass){ //password es correcto
 				return true;
 			}else{
 				return false; //password incorrecto
@@ -287,7 +292,7 @@ angular.module('bankAccount.services')
 		getLoggedUser:getLoggedUser, //no se si esta en uso****
 		createNewAccount:createNewAccount, //full uso
 		canLogin:canLogin,  //full uso
-		getUserByUserName:getUserByUserName, //no se si esta en uso****
+		getUserByUserName:getUserByUserName, //full uso
 		deleteAccount:deleteAccount,  //full uso
 		editAccount:editAccount, //full uso
 		logout:logout  //full uso
