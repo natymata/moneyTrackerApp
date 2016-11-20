@@ -41,7 +41,7 @@
 								<ul class="nav navbar-nav navbar-right" ng-controller="logOutController">
 									<li ng-show="navbar.isLoggedIn"><a ng-href="#/"><span class="glyphicon glyphicon-user"></span> Mi Perfil</a></li>
 									<li ng-hide="navbar.isLoggedIn"><a ng-href="#/newaccount/0"><span class="glyphicon glyphicon-user"></span> Registrar Cuenta</a></li>
-									<li ng-show="navbar.isLoggedIn"><a ng-href="#" ng-click="navbar.logOut()"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
+									<li ng-show="navbar.isLoggedIn"><a href="#/" ng-click="navbar.logout()"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
 								</ul>
 							</div>
 					  	</div>

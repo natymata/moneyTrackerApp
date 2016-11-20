@@ -1,6 +1,17 @@
 angular.module('bankAccount.services')
 .factory('userService', function($cookies, localStorageService, idService) {
 	
+	var ntAppLoggedUser={
+		userId: "",
+		userType: "",
+		name:"",
+		lastName:"",
+		username:"",
+		money:"", 
+		accountType:"",
+		isConnected: false
+	};
+			
 	//Checks if there's a logged user after page refresh
 	var isLoggedIn= function() {
 		var user= $cookies.get('ntLoggedUser');
@@ -12,7 +23,11 @@ angular.module('bankAccount.services')
 	};
 
 	//logs in a user
-	var login= function(ntAppLoggedUser, objUser) {
+	var login= function(objUser) {
+		var response={
+			msj:"",
+			error:""
+		};
 		//set global app user
 		ntAppLoggedUser.userId= objUser.userId,
 		ntAppLoggedUser.userType= objUser.userType,
@@ -36,7 +51,15 @@ angular.module('bankAccount.services')
 		//set user cookie
 		$cookies.put('ntLoggedUser', angular.toJson(objUser));
 
-		console.log("login successfull");
+		if(isLoggedIn()){
+			response.error= false;
+			response.mjs="Usuario logeado con éxito";
+			return response;
+		}else{
+			response.error= true;
+			response.mjs="No se ha podido logear el usuario";
+			return response;
+		};
 	}; //end, login function
 
 	
@@ -44,6 +67,19 @@ angular.module('bankAccount.services')
 	var getLoggedUser= function() {
 		return angular.fromJson($cookies.get('ntLoggedUser'));
 	}; //end, getUser function
+
+	//returns var ntAppLoggedUser
+	var getCurrentUser= function() {  
+		return ntAppLoggedUser;
+	};
+
+	//returns a specific account identified by username
+	var getUserByUserName= function(username) {
+		var accounts= getAllUsersAccounts().filter(function(user) {
+			return user.username== username;
+		});
+		return accounts[0];
+	};//end, getUserByUserName
 
 	
 	
@@ -151,7 +187,13 @@ angular.module('bankAccount.services')
 		}
 	};//end, canLoging function
 
-	var logout= function(ntAppLoggedUser) {
+
+	var logout= function() {
+		var response={
+			msj:"",
+			error:""
+		};
+
 		ntAppLoggedUser.userId=  "";
 		ntAppLoggedUser.userType= "";
 		ntAppLoggedUser.name= "";
@@ -165,16 +207,16 @@ angular.module('bankAccount.services')
 		localStorageService.remove('ntAppLoggedUser');
 		$cookies.remove('ntLoggedUser');
 
-		return "Logout Successfull";
+		if(isLoggedIn()){
+			response.error= true;
+			response.mjs="Error, no se ha podido deslogear el usuario";
+			return response;
+		}else{
+			response.error= false;
+			response.mjs="Usuario deslogeado con éxito";
+			return response;
+		};
 	};
-
-	//returns a specific account identified by username
-	var getUserByUserName= function(username) {
-		var accounts= getAllUsersAccounts().filter(function(user) {
-			return user.username== username;
-		});
-		return accounts[0];
-	};//end, getUserByUserName
 
 	var deleteAccount= function(userId, username) {
 		var accounts,accountLogginData;
@@ -234,13 +276,15 @@ angular.module('bankAccount.services')
 
 //access
 	return{
-		isLoggedIn:isLoggedIn,
-		login:login,
-		getLoggedUser:getLoggedUser,
-		createNewAccount:createNewAccount,
-		canLogin:canLogin,
-		getUserByUserName:getUserByUserName,
-		deleteAccount:deleteAccount,
-		editAccount:editAccount
+		getCurrentUser:getCurrentUser,  //no se si esta en uso****
+		isLoggedIn:isLoggedIn, //full uso
+		login:login,  //full uso
+		getLoggedUser:getLoggedUser, //no se si esta en uso****
+		createNewAccount:createNewAccount, //full uso
+		canLogin:canLogin,  //full uso
+		getUserByUserName:getUserByUserName, //no se si esta en uso****
+		deleteAccount:deleteAccount,  //full uso
+		editAccount:editAccount, //full uso
+		logout:logout  //full uso
 	};
 });

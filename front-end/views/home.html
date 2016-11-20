@@ -2,7 +2,7 @@
 	<div class="logIn gray-border">
 		<h2>Ingresar</h2>
 		
-		<form name="logInForm" ng-submit="logInForm.$valid && canLogIn()" class="cf" novalidate>
+		<form name="logInForm" ng-submit="logInForm.$valid && canLogIn()" class="cf" novalidate autocomplete="false">
 		<h4 class="text-center error">{{userError}}</h4>
 			<div class="form-group">
 				<sub ng-show="logInForm.user.$invalid && logInForm.user.$touched">Usuario requerido</sub>
