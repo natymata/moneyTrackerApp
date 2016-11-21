@@ -1,6 +1,6 @@
 <div class="center-block col-md-12 col-lg-12 floatNone">
 	<section class="accountDetail gray-border">
-		<h2>{{welcome}}</h2>
+		<h2>{{summary.welcome}}</h2>
 
 		<div ng-show="showTable" class="center-block floatNone div-info">
 			<h4>Estos son sus últimos movimientos en su cuenta  {{type}}</h4>
@@ -8,7 +8,7 @@
 		
 		<div ng-hide="showTable" class="center-block floatNone text-center div-info">
 			<h3>No hay movimientos en su cuenta</h3>
-			<a ng-href="#/add/0" class="btn app-btn gradient btn50 btn-mrg">Agregar Movimientos</a>
+			<a ng-href="#/add/{{summary.userId}}" class="btn app-btn gradient btn50 btn-mrg">Agregar Movimientos</a>
 		</div>
 
 		<table class="table table-striped" ng-if="showTable">

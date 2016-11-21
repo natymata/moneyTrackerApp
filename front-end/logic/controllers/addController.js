@@ -1,20 +1,58 @@
 angular.module('bankAccount.controllers')
-.controller("addController", ['$scope', '$window', 'BDService', '$routeParams', function ($scope, $window, BDService, $routeParams) {
+.controller("addController", ['$location', '$routeParams', 'transactService', function ($location, $routeParams, transactService) {
+	var add= this;
 
-	var loggedUser= BDService.getloggedUser();
+	add.init= function() {
+		add.userId= $routeParams.userId;	
+		add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""
+		};
+		add.tId= 0; //0 indicates this movement is being created, 1 means it's being edited
+		add.info="";
+
+	};
+
+	add.addTransact= function() {
+		add.info="";
+		var newTrnst= add.newTransat;
+		var userId= add.userId;
+		var result= transactService.addNew(newTrnst, userId);
+		if(!result.error){//transaction created
+			add.info="Transacción creada con éxito";
+			add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""
+			};
+
+		}else{ //error, couldn't create transaction	
+			add.info= result.string;
+		};
+	};
+
+
+
+
+
+//userId
+
+
+
+
+	add.init();
+
+	//add/:userId
+
+	/*var loggedUser= BDService.getloggedUser();
 
 	$scope.userId= loggedUser.id;
 
 	$scope.newTransat={};
-	/*transact= {
-			id: 1,
-			date: 'Antony',
-			amount:'5000',
-			detail: 'compra de chunches',
-			shop: 'pequeño mundo',
-			type: 'debito',
-		};
-	*/
+	// transact= {
+	// 		id: 1,
+	// 		date: 'Antony',
+	// 		amount:'5000',
+	// 		detail: 'compra de chunches',
+	// 		shop: 'pequeño mundo',
+	// 		type: 'debito',
+	// 	};
+	
 
 	$scope.addTransact= function () {
 		var transacIds= BDService.getTransactCount();
@@ -77,5 +115,6 @@ angular.module('bankAccount.controllers')
 		$scope.newTransat={};
 		$window.location.href = ('#/detail/' + $scope.userId+'/' + $scope.tId );
 	};
+	*/
 
 }]);

@@ -1,6 +1,15 @@
 angular.module('bankAccount.controllers') 
-.controller("detailController", ['$scope', 'BDService', '$routeParams', function ($scope, BDService, $routeParams) {
+.controller("detailController", ['$routeParams', function ($routeParams) {
+	var detail= this;
 
+	detail.init= function() {
+		detail.userId= userService.getCurrentUser().userId;
+	};
+
+
+
+	detail.init();
+	/*
 	//obtener desde el local storage el usuario logeado
 	var loggedUser= BDService.getloggedUser();
 	var transactId= Number($routeParams.trsId);
@@ -40,7 +49,7 @@ angular.module('bankAccount.controllers')
 		transactList.splice(index,1);
 		BDService.updateLoggedUser();
 	};
-
+*/
 
 }]);
 

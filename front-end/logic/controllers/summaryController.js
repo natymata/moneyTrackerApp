@@ -1,9 +1,17 @@
 angular.module('bankAccount.controllers') 
-.controller("summaryController", ['$scope', 'BDService', '$routeParams', function ($scope, BDService, $routeParams) {
+.controller("summaryController", ['userService', '$routeParams', function (userService, $routeParams) {
+	var summary= this;
 
-	//obtener desde el local storage el usuario logeado
-	/*var loggedUser= BDService.getloggedUser();
+	summary.init= function() {
+		summary.userId= $routeParams.userId;
+		summary.userName= userService.getCurrentUser().name;
+		summary.welcome= "Bienvenid@" + " " + summary.userName;
+	};
 
+
+	summary.init();
+
+	/*
 	$scope.loggedUserId= loggedUser.id;
 	$scope.money= loggedUser.money;
 	$scope.type= loggedUser.type;

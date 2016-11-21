@@ -11,17 +11,27 @@ angular.module("bankAccount", ['ngRoute', 'ngResource', 'ngCookies', 'bankAccoun
                 controller: 'newAccountController',
                 controllerAs: 'newAcc'
             })
-            .when('/summary/:accountId', {
+            .when('/newaccount-edit/:userId', {
+                templateUrl: 'front-end/views/newAccount.html',
+                controller: 'newAccountController',
+                controllerAs: 'newAcc'
+            })
+            .when('/summary/:userId', {
                 templateUrl: 'front-end/views/summary.html',
                 controller: 'summaryController',
                 controllerAs:'summary'
             })
-            .when('/detail/trsId', {
+            .when('/detail/transactId', {
                 templateUrl: 'front-end/views/detail.html',
                 controller: 'detailController',
                 controllerAs: 'detail'
             })
-            .when('/add/:accountId', {
+            .when('/add/:userId', {
+                templateUrl: 'front-end/views/add.html',
+                controller: 'addController',
+                controllerAs:'add'
+            })
+            .when('/transact-edit/:userId/:transactId', {
                 templateUrl: 'front-end/views/add.html',
                 controller: 'addController',
                 controllerAs:'add'

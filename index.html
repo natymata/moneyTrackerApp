@@ -33,9 +33,9 @@
 						  	<div class="col-lg-10 center-block floatNone">
 
 								<ul class="nav navbar-nav">
-									<li ng-hide="isSignedIn"><a ng-href="#/home" class="active">Inicio</a></li>
-									<li ng-show="isSignedIn"><a ng-href="#/summary/0">Resumen</a></li> 
-									<li ng-show="isSignedIn"><a ng-href="#/add/0">Agregar Movimiento</a></li> 
+									<li ng-hide="isSignedIn"><a ng-href="#/" class="active">Inicio</a></li>
+									<li ng-show="isSignedIn"><a ng-href="#/summary/{{navbar.userId}}">Resumen</a></li> 
+									<li ng-show="isSignedIn"><a ng-href="#/add/{{navbar.userId}}">Agregar Movimiento</a></li> 
 								</ul>
 
 								<ul class="nav navbar-nav navbar-right">

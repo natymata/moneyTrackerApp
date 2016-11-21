@@ -1,7 +1,7 @@
 <div class="center-block col-md-12 col-lg-12 floatNone">
 	<section class="transDetail gray-border">
 		<div class="detail-header cf">
-			<h2 class="float"><a ng-href="#/summary/0"><span class="glyphicon glyphicon-chevron-left"></span></a></h2>
+			<h2 class="float"><a ng-href="#/summary/{{detail.userId}}"><span class="glyphicon glyphicon-chevron-left"></span></a></h2>
 			<h2 class="float detail-h2">Detalle de la transacción</h2>
 		</div>
 
@@ -29,10 +29,10 @@
 				</tr>
 			</tbody>
 		</table>
+		<!-- add/{{transact.id}} -->
+		<a ng-href="#/" class="btn app-btn gradient btn50 btn-mrg">Editar <span class="glyphicon glyphicon-edit"></span></a>
 
-		<a ng-href="#/add/{{transact.id}}" class="btn app-btn gradient btn50 btn-mrg">Editar <span class="glyphicon glyphicon-edit"></span></a>
-
-		<a ng-href="#/summary/{{userId}}" ng-click="deleteTransact()" class="btn btn-warning btn50 btn-mrg">Eliminar <span class="glyphicon glyphicon-trash"></span></a>
+		<a ng-href="#/summary/{{detail.userId}}" ng-click="deleteTransact()" class="btn btn-warning btn50 btn-mrg">Eliminar <span class="glyphicon glyphicon-trash"></span></a>
 
 	</section>
 </div> <!-- main-col -->
