@@ -2,16 +2,16 @@
 	<section class="accountDetail gray-border">
 		<h2>{{summary.welcome}}</h2>
 
-		<div ng-show="showTable" class="center-block floatNone div-info">
-			<h4>Estos son sus últimos movimientos en su cuenta  {{type}}</h4>
+		<div class="center-block floatNone">
+			<h4 class="marginbotton40" ng-show="summary.showElements">Estos son sus últimos movimientos en su cuenta {{summary.accountType}}</h4>
 		</div>
 		
-		<div ng-hide="showTable" class="center-block floatNone text-center div-info">
+		<div ng-hide="summary.showElements" class="center-block floatNone text-center div-info">
 			<h3>No hay movimientos en su cuenta</h3>
 			<a ng-href="#/add/{{summary.userId}}" class="btn app-btn gradient btn50 btn-mrg">Agregar Movimientos</a>
 		</div>
 
-		<table class="table table-striped" ng-if="showTable">
+		<table class="table table-striped" ng-if="summary.showElements">
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -21,21 +21,23 @@
 					<th>Acciones</th>
 				</tr>
 			</thead>
-			<tbody>
-				<tr ng-repeat="transact in transatList | limitTo:10 | orderBy:transact.date track by $index">
-					<td>{{transact.id}}</td>
+			<tbody>	
+				<tr ng-repeat="transact in summary.userTransacts | orderBy:transact.date track by $index">
+					<td class="overfhidden tiny">{{transact.transactId}}</td>
 					<td>{{transact.date | date: 'd/MMM/yy'}}</td>
 					<td>{{transact.type}}</td>
-					<td ng-show="money=='colon'">{{transact.amount | currency: '¢'}}</td>
-					<td ng-show="money=='euro'">{{transact.amount | currency: '€'}}</td>
-					<td ng-show="money=='dolar'">{{transact.amount | currency: '$'}}</td>
+					<td ng-show="summary.money=='colon'">{{transact.amount | currency: '¢'}}</td>
+					<td ng-show="summary.money=='euro'">{{transact.amount | currency: '€'}}</td>
+					<td ng-show="summary.money=='dolar'">{{transact.amount | currency: '$'}}</td>
 					<td><a href="#/detail/{{loggedUserId}}/{{transact.id}}">Detalles <span class="glyphicon glyphicon-chevron-right"></span></a></td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="3">Saldo</td>
-					<td colspan="2"> {{balance}}</td>
+					<td colspan="3">Saldo disponible</td>
+					<td ng-show="summary.money=='colon'">{{summary.balance | currency: '¢'}}</td>
+					<td ng-show="summary.money=='euro'">{{summary.balance | currency: '€'}}</td>
+					<td ng-show="summary.money=='dolar'">{{summary.balance | currency: '$'}}</td>
 				</tr>	
 			</tfoot>
 		</table>

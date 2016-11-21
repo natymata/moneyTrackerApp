@@ -31,9 +31,9 @@ angular.module('bankAccount.services')
 		var id= idService.setId("transact");
 		var typeId=0;
 
-		if(transact.type=="credit"){
+		if(transact.type=="Crédito"){
 			typeId= 1;
-		}else if(transact.type=="debit"){
+		}else if(transact.type=="Débito"){
 			typeId= 0;
 		}else{
 			typeId="unknown";
