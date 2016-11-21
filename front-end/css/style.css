@@ -277,5 +277,28 @@ h4.success{
 	padding: 3px 20px 15px;
 }
 
+.posit-rel{
+	position: relative;
+}
 
+.post-abs{
+	position: absolute;
+}
 
+.addModal{
+	background-color: #fff;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.width70{
+	width: 70%;
+	margin: 0 auto;
+}
+
+.margin-modal{
+	margin-top: 2em;
+	margin-bottom: 2em;
+}

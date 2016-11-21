@@ -4,8 +4,6 @@ angular.module('bankAccount.controllers')
 
 	navbar.init=function() {
 		navbar.userId= userService.getCurrentUser().userId;
-		console.log(navbar.userId);
-		console.log("navbar initin");
 	};
 
 	navbar.logout= function() {

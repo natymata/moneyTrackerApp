@@ -10,7 +10,7 @@
 			<h2 ng-show="tId>0">Actualizar Movimiento</h2>
 		</div>
 
-		<div class="newTransat-add">
+		<div class="newTransat-add posit-rel">
 			<p>{{add.info}}</p>
 			<form name="addTransactForm" ng-submit="addTransactForm.$valid && add.addTransact()" novalidate>
 				<div class="form-group">
@@ -48,8 +48,17 @@
 				<button type="button" class="btn app-btn gradient btn50 btn-mrg" ng-show="tId>0" ng-click="edit()"><span class="glyphicon glyphicon-ok"></span> Actualizar</button>
 				<!-- detail/{{userId}}/{{tId}} -->
 				<a ng-href="#/" ng-show="tId>0" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
-
 			</form>
+			
+			<div class="addModal post-abs" ng-show="add.showModal">
+				<div class="width70">
+					<h3 class="text-center margin-modal">Transacción creada con éxito</h3>
+					<div class="margin-modal">
+						<button type="button" class="btn app-btn gradient btn50 btn-mrg" ng-click="add.addMore()">Seguir agregando</button>
+						<button type="button" class="btn btn-warning btn50 btn-mrg" ng-click="add.back()">Volver</button>
+					</div>
+				</div>
+			</div><!-- addModal post-abs -->
 			
 		</div> <!-- addHeader -->
 	</section> <!-- main-list -->
