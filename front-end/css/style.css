@@ -194,8 +194,7 @@ sub{
 /*SUMMARY*/
 
 .accountDetail th, .accountDetail td{
-	width: 20%;
-	margin-left: 20px;
+	width: 25%;
 }
 
 .accountDetail td a{
@@ -248,12 +247,12 @@ h4.success{
 
 /*detalle*/
 
-.tdetail tr, .tdetail th{
-	width: 20%;
-}
 
 .tdetail{
-	margin:35px 0;
+	width: 65%;
+	margin:0 auto;
+	margin-top:35px;
+	margin-bottom:35px;
 	font-size: 18px;
 }
 
@@ -309,4 +308,8 @@ h4.success{
 
 .tiny{
 	font-size: .8em;
+}
+
+.margin-modal2{
+	margin-top: 4em;
 }

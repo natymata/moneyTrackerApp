@@ -21,7 +21,7 @@ angular.module("bankAccount", ['ngRoute', 'ngResource', 'ngCookies', 'bankAccoun
                 controller: 'summaryController',
                 controllerAs:'summary'
             })
-            .when('/detail/transactId', {
+            .when('/detail/:transactId', {
                 templateUrl: 'front-end/views/detail.html',
                 controller: 'detailController',
                 controllerAs: 'detail'

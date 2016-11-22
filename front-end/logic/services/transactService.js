@@ -69,6 +69,13 @@ angular.module('bankAccount.services')
 		return allTransact;
 	};// end getTransactByUserId
 
+	var getTransactById= function(transactId) {
+		var transaction= getAllTransact().filter(function(transact) {
+			return transact.transactId == transactId;
+		});
+		return transaction[0];
+	};
+
 	var deleteTransact= function(transactId) {
 		var response={
 			error:"",
@@ -142,6 +149,7 @@ angular.module('bankAccount.services')
 	return{
 		addNew: addNew,
 		getTransactByUserId: getTransactByUserId,
+		getTransactById:getTransactById,
 		deleteTransact: deleteTransact,
 		editTransact: editTransact
 	};
