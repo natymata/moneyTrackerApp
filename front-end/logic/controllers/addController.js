@@ -1,14 +1,16 @@
 angular.module('bankAccount.controllers')
-.controller("addController", function ($location, $routeParams, transactService, $scope) {
+.controller("addController", function ($location, $routeParams, transactService, $scope, $timeout) {
 	var add= this;
 
 	add.init= function() {
 		add.userId= $routeParams.userId;	
-		add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""
-		};
-		add.tId= 0; //0 indicates this movement is being created, 1 means it's being edited
+		add.transactId= $routeParams.transactId;
+		add.tId= checkTid(add.transactId); //0 indicates this movement is being created, 1 means it's being edited.
+		add.newTransat= bindTransact(add.tId, add.transactId);
 		add.info="";
+		add.editInfo="";
 		add.showModal= false;
+		add.editModal= false;
 	};
 
 	add.addTransact= function() {
@@ -25,6 +27,52 @@ angular.module('bankAccount.controllers')
 
 		}else{ //error, couldn't create transaction	
 			add.info= result.string;
+		};
+	};
+
+	add.edit= function() {
+		add.info="";
+		var transact= add.newTransat;
+		var userId= add.userId;
+		var result= transactService.editTransact(transact, userId);
+		if(!result.error){
+			add.editInfo= "Edición realizada con éxito";
+			add.editModal= true;
+			modal(true);
+			add.clear($scope.addTransactForm);
+			add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""
+			};
+		}else{
+			editInfo= "No se ha podido editar el elemento";
+			add.editModal= true;
+			modal(false);
+		};
+	};
+
+	var modal= function(result) {
+		$timeout(function(){
+			add.editModal= false;
+			if(result){
+				$location.path("detail/" + add.transactId);
+			};
+		}, 2000);	
+	};
+
+	var checkTid= function(transactId) {
+		if(transactId==undefined){
+			return 0;
+		}else{
+			return 1;
+		}
+	};
+
+	var bindTransact= function(tId, transactId) {
+		if(tId==1){
+			var transact= transactService.getTransactById(transactId);
+			transact.date= new Date(transact.date);
+			return transact;
+		}else{
+			return {date: "", amount: "", detail: "", shop: "", type: ""};
 		};
 	};
 
@@ -45,23 +93,5 @@ angular.module('bankAccount.controllers')
 	};
 
 	add.init();
-
-
-/*
-		var currentTransact= getNewTransat();
-
-	$scope.newTransat = getNewTransat();
-
-	$scope.edit= function () {
-		var index= transactList.indexOf(currentTransact);
-		transactList.splice(index, 1);
-		transactList[index]=currentTransact;
-		objeto.transac=[];
-		objeto.transac=transactList;
-		BDService.updateLoggedUser();
-		$scope.newTransat={};
-		$window.location.href = ('#/detail/' + $scope.userId+'/' + $scope.tId );
-	};
-	*/
 
 });

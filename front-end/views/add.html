@@ -4,10 +4,10 @@
 	<div class="detail-header cf">
 			<h2 ng-show="add.tId==0" class="float"><a ng-href="#/summary/{{add.userId}}"><span class="glyphicon glyphicon-chevron-left"></span></a></h2>
 			<!-- detail/{{userId}}/{{tId}} -->
-			<h2 ng-show="tId>0" class="float"><a ng-href="#/"><span class="glyphicon glyphicon-chevron-left"></span></a></h2>
+			<h2 ng-show="add.tId==1" class="float"><a ng-href="#/detail/{{add.transactId}}"><span class="glyphicon glyphicon-chevron-left"></span></a></h2>
 
 			<h2 ng-show="add.tId==0">Agregar Movimiento</h2>
-			<h2 ng-show="tId>0">Actualizar Movimiento</h2>
+			<h2 ng-show="add.tId==1">Actualizar Movimiento</h2>
 		</div>
 
 		<div class="newTransat-add posit-rel">
@@ -41,13 +41,12 @@
 				<!-- botones de la vista crear -->
 				<button type="submit" class="btn app-btn gradient btn50 btn-mrg" ng-show="add.tId==0"><span class="glyphicon glyphicon-ok"></span> Crear</button>
 				
-				<!-- summary/userId -->
 				<a ng-href="#/summary/{{add.userId}}" ng-show="add.tId==0" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
 		
 				<!-- botones de la vista editar -->
-				<button type="button" class="btn app-btn gradient btn50 btn-mrg" ng-show="tId>0" ng-click="edit()"><span class="glyphicon glyphicon-ok"></span> Actualizar</button>
-				<!-- detail/{{userId}}/{{tId}} -->
-				<a ng-href="#/" ng-show="tId>0" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
+				<button type="button" class="btn app-btn gradient btn50 btn-mrg" ng-show="add.tId==1" ng-click="add.edit()"><span class="glyphicon glyphicon-ok"></span> Actualizar</button>
+
+				<a ng-href="#/detail/{{add.transactId}}" ng-show="add.tId==1" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
 			</form>
 			
 			<div class="addModal post-abs" ng-show="add.showModal">
@@ -59,6 +58,10 @@
 					</div>
 				</div>
 			</div><!-- addModal post-abs -->
+
+			<div class="addModal post-abs" ng-show= "add.editModal">
+				<h3 class="text-center margin-modal2">{{add.editInfo}}</h3>
+			</div>
 			
 		</div> <!-- addHeader -->
 	</section> <!-- main-list -->

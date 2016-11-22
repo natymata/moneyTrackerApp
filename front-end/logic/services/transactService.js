@@ -28,8 +28,14 @@ angular.module('bankAccount.services')
 	};//end, transact function
 
 	var setTransactInfo= function(transact, userId) {
-		var id= idService.setId("transact");
+		var id;
 		var typeId=0;
+
+		if(!transact.transactId){
+			id= idService.setId("transact");
+		}else{
+			id= transact.transactId;
+		};
 
 		if(transact.type=="Crédito"){
 			typeId= 1;
