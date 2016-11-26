@@ -1,5 +1,5 @@
 angular.module('bankAccount.controllers')
-.controller("newAccountController", function ($location, userService, $routeParams) {
+.controller("newAccountController", function ($location, userService, $routeParams, $scope, formService) {
 	var newAcc= this;
 
 	newAcc.init= function() {
@@ -22,6 +22,7 @@ angular.module('bankAccount.controllers')
 		if(tId==1){
 			return userService.getCurrentUser();
 		}else{
+			formService.clearForm(newAccForm, $scope);
 			return {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
 		};
 	};
@@ -52,23 +53,23 @@ angular.module('bankAccount.controllers')
 		user.userId= newAcc.userId;
 		var result= userService.editAccount(user);
 		if(!result.error){
-			newAcc.info= result.string;
-			console.log(result.string);
-			console.log(user);
+			newAcc.updateInfo= result.string;
 			userService.login(user);
 			newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
+			formService.clearForm(newAccForm, $scope);
 			$location.path("profile/" + user.userId);
-			newAcc.info="";
+			newAcc.updateInfo="";
 		}else{
-			console.log(result);
 			newAcc.updateInfo= result.string;
-			console.log("error");	
 		};
 	};
 
 
-	cancelEdit= function() {
 
+
+	newAcc.cancelEdit= function() {
+		formService.clearForm(newAccForm, $scope);
+		$location.path("/profile/" + newAcc.userId);
 	};
 
 	newAcc.init();

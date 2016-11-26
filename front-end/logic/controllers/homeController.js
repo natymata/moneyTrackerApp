@@ -1,5 +1,5 @@
 angular.module('bankAccount.controllers') 
-.controller("homeController", function ($location, userService, $scope) {
+.controller("homeController", function ($location, userService, $scope, formService) {
 	var home= this;
 
 	home.init=function() {
@@ -14,6 +14,7 @@ angular.module('bankAccount.controllers')
 			currentUser= userService.getUserByUserName(home.user.username);
 			result= userService.login(currentUser);
 			if(!result.error){
+				formService.clearForm(logInForm, $scope);
 				home.info="Datos correctos, Bienvenido";
 				home.user= {username:"", pass:""};
 				$scope.sigInTrue();

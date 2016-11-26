@@ -2,10 +2,6 @@ angular.module('bankAccount.controllers')
 .controller('navbarController', function(userService, $location, $scope) {
 	var navbar= this;
 
-	// navbar.init=function() {
-		
-	// };
-
 	navbar.logout= function() {
 		var res= userService.logout();
 		if(!res.error){ //user log out successfully
@@ -20,8 +16,15 @@ angular.module('bankAccount.controllers')
 		var userId= userService.getCurrentUser().userId;
 		$location.path("/profile/"+userId);
 	};
-	
 
-	// navbar.init();
+	navbar.toAdd= function() {
+		var userId= userService.getCurrentUser().userId;
+		$location.path("/add/"+userId);
+	};
+
+	navbar.toSummary= function() {
+		var userId= userService.getCurrentUser().userId;
+		$location.path("/summary/"+userId);
+	};
 	
 });

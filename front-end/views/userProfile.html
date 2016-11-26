@@ -1,5 +1,5 @@
 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12">
-	<section class="add-acount gray-border gray-bg">
+	<section class="add-acount gray-border gray-bg posit-rel">
 		<h2>Mi Cuenta</h2>
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -27,7 +27,20 @@
 
 		<button ng-click="profile.delete()" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-trash"></span>  Eliminar cuenta</button>
 
-		</div> <!-- addHeader -->
+		<div class="addModal post-abs" ng-show= "profile.confirmModal">
+			<div class="width70">
+					<h3 class="text-center margin-modal">Está seguro de que desea eliminar la cuenta?</h3>
+					<div class="margin-modal">
+						<button type="button" class="btn app-btn gradient btn50 btn-mrg" ng-click="profile.cancelDelete()">Cancelar</button>
+						<button type="button" class="btn btn-warning btn50 btn-mrg" ng-click="profile.deleteAccount()">Eliminar</button>
+					</div>
+				</div>
+		</div> <!-- modal -->
+
+		<div class="addModal post-abs" ng-show= "profile.deleteModal">
+			<h3 class="text-center margin-modal2">{{profile.deleteInfo}}</h3>
+		</div>
+
 	</section> <!-- main-list -->
 </div> <!-- main-col -->
 

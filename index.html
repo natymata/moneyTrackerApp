@@ -34,8 +34,8 @@
 
 								<ul class="nav navbar-nav">
 									<li ng-hide="isSignedIn"><a ng-href="#/" class="active">Inicio</a></li>
-									<li ng-show="isSignedIn"><a ng-href="#/summary/{{navbar.userId}}">Resumen</a></li> 
-									<li ng-show="isSignedIn"><a ng-href="#/add/{{navbar.userId}}">Agregar Movimiento</a></li> 
+									<li ng-show="isSignedIn"><a ng-href ng-click="navbar.toSummary()">Resumen</a></li> 
+									<li ng-show="isSignedIn"><a ng-href ng-click="navbar.toAdd()">Agregar Movimiento</a></li> 
 								</ul>
 
 								<ul class="nav navbar-nav navbar-right">
