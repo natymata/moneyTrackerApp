@@ -11,6 +11,11 @@ angular.module("bankAccount", ['ngRoute', 'ngResource', 'ngCookies', 'bankAccoun
                 controller: 'newAccountController',
                 controllerAs: 'newAcc'
             })
+            .when('/profile/:userId', {
+                templateUrl: 'front-end/views/userProfile.html',
+                controller: 'userProfileController',
+                controllerAs: 'profile'
+            })
             .when('/newaccount-edit/:userId', {
                 templateUrl: 'front-end/views/newAccount.html',
                 controller: 'newAccountController',
@@ -37,11 +42,14 @@ angular.module("bankAccount", ['ngRoute', 'ngResource', 'ngCookies', 'bankAccoun
                 controllerAs:'add'
             })
             .otherwise({redirectTo: '/'});
-}]);
+}])
+.run(function($rootScope, $templateCache) {
+   $rootScope.$on('$viewContentLoaded', function() {
+      $templateCache.removeAll();
+   });
+});
 
 angular.module('bankAccount.controllers', []);
 angular.module('bankAccount.services', []);
 angular.module('bankAccount.directives', []);
 angular.module('bankAccount.filters', []);
-
-

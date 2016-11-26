@@ -1,0 +1,34 @@
+<div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12">
+	<section class="add-acount gray-border gray-bg">
+		<h2>Mi Cuenta</h2>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<p class="paddingLeft10">{{profile.name}}</p>
+			</div>
+			<div class="panel-body panel-profile">
+				<table class="table tbProfile">
+					<tr>
+						<td class="borderTopNone width40">Nombre de usuario</td>
+						<td class="borderTopNone paddingLeft5">{{profile.username}}</td>
+					</tr>
+					<tr>
+						<td class="width40 padding14">Moneda</td>
+						<td class="paddingLeft5 padding14">{{profile.money}}</</td>
+					</tr>
+					<tr>
+						<td class="borderBottonNone width40">Tipo de cuenta</td>
+						<td class="borderBottonNone paddingLeft5">{{profile.accountType}}</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- panel panel-default -->
+		
+		<button ng-click="profile.edit()" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+
+		<button ng-click="profile.delete()" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-trash"></span>  Eliminar cuenta</button>
+
+		</div> <!-- addHeader -->
+	</section> <!-- main-list -->
+</div> <!-- main-col -->
+
+

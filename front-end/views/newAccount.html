@@ -1,7 +1,11 @@
 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12">
 	<section class="add-acount gray-border gray-bg">
-		<h2>Registar Cuenta</h2>
-		<h4 class="text-center">{{newAcc.info}}</h4>
+		<h2 ng-show="newAcc.tId==0">Registar Cuenta</h2>
+		<h2 ng-show="newAcc.tId==1">Editar Cuenta</h2>
+
+		<h4 ng-show="newAcc.tId==0" class="text-center">{{newAcc.info}}</h4>
+		<h4 ng-show="newAcc.tId==1" class="text-center">{{newAcc.updateInfo}}</h4>
+
 		<div class="newAcc-add">
 			<form name="newAccForm" ng-submit="newAccForm.$valid && newAcc.validateCreate()" novalidate>
 				<div class="form-group display-inline div50">
@@ -45,10 +49,16 @@
 						<option value="ahorros">Ahorros</option>
 					</select>
 				</div>
+				
+				<!-- botones para crear la cuenta -->
+				<button ng-show="newAcc.tId==0" type="submit" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-ok"></span> Crear</button>
 
-				<button type="submit" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-ok"></span> Crear</button>
+				<a ng-show="newAcc.tId==0" ng-click="newAcc.cancel()" ng-href="#/" class="btn btn-warning btn50 btn-mrg" ng-show="1==1" ><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
 
-				<a ng-click="newAcc.cancel()" ng-href="#/" class="btn btn-warning btn50 btn-mrg" ng-show="1==1" ><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
+				<!-- botones para editar la cuenta -->
+				<button ng-show="newAcc.tId==1" ng-click="newAcc.edit()" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+
+				<button ng-show="newAcc.tId==1" ng-click="newAcc.cancelEdit()" class="btn btn-warning btn50 btn-mrg" ng-show="1==1" ><span class="glyphicon glyphicon-remove"></span>  Cancelar</button>
 			</form>
 			
 		</div> <!-- addHeader -->

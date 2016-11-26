@@ -1,5 +1,5 @@
 angular.module('bankAccount.controllers')
-.controller('appController', function($scope, userService, $cookies, $location) {
+.controller('appController', function($scope, userService, $location) {
 	var appCtrl= this;
 
 	appCtrl.init= function() {
@@ -10,7 +10,7 @@ angular.module('bankAccount.controllers')
 	var isLoggedIn= function() {
 		var userId, cookieUser;
 		if(userService.isLoggedIn()){
-			cookieUser= angular.fromJson($cookies.get('ntLoggedUser'));
+			cookieUser= userService.getLoggedUser();
 			userService.login(cookieUser);
 			userId= cookieUser.userId;
 			$scope.sigInTrue();

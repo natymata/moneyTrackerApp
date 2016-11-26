@@ -1,16 +1,8 @@
 angular.module('bankAccount.services')
 .factory('userService', function($cookies, localStorageService, idService) {
 	
-	var ntAppLoggedUser={
-		userId: "",
-		userType: "",
-		name:"",
-		lastName:"",
-		username:"",
-		money:"", 
-		accountType:"",
-		isConnected: false
-	};
+	//saves logged user
+	var ntAppLoggedUser={ userId: "", userType: "", name:"", lastName:"", username:"", money:"", accountType:"", isConnected: false };
 			
 	//Checks if there's a logged user after page refresh
 	var isLoggedIn= function() {
@@ -105,6 +97,23 @@ angular.module('bankAccount.services')
 		};
 	}; //end, accountExists
 
+	var canUseUsername= function(username, userId) {
+		if(accountExists(username)){
+			var accounts= getUsersLoginData().filter(function(item) {
+				return item.userId== userId;
+			});
+			if(accounts[0].username== username){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return true;
+		}
+
+	};//end, canUseUsername
+
+
 	var createNewAccount= function(user) {
 		var username= user.username,
 			pass= user.pass;
@@ -116,7 +125,7 @@ angular.module('bankAccount.services')
 		var newUser={};
 
 		if(accountExists(username)){
-			response.string="Nombre de usuario ya registrado, escriba otro";
+			response.string="Nombre de usuario ya registrado";
 			response.error= true;
 			return response;
 		}else{
@@ -138,7 +147,14 @@ angular.module('bankAccount.services')
 	}; //end, createNewAccount
 
 	var setUserInfo= function(user) {
-		var id= idService.setId("user");
+		var id;
+
+		if(!user.userId){
+			id= idService.setId("user");
+		}else{
+			id= user.userId;
+		};
+
 		var accountInfo= {
 			userId: id,
 			userType: 2,
@@ -166,7 +182,7 @@ angular.module('bankAccount.services')
 	var saveUserPass= function(id, username, pass) {
 		var allUsers= getUsersLoginData();
 		var newUser= {
-			id: id,
+			userId: id,
 			username: username,
 			pass: pass
 		};
@@ -197,10 +213,10 @@ angular.module('bankAccount.services')
 		}
 	};//end, canLoging function
 
-
+	//logout user
 	var logout= function() {
 		var response={
-			msj:"",
+			msg:"",
 			error:""
 		};
 
@@ -219,24 +235,24 @@ angular.module('bankAccount.services')
 
 		if(isLoggedIn()){
 			response.error= true;
-			response.mjs="Error, no se ha podido deslogear el usuario";
+			response.msg="Error, no se ha podido deslogear el usuario";
 			return response;
 		}else{
 			response.error= false;
-			response.mjs="Usuario deslogeado con éxito";
+			response.msg="Usuario deslogeado con éxito";
 			return response;
 		};
 	};
 
 	var deleteAccount= function(userId, username) {
-		var accounts,accountLogginData;
+		var accounts, accountLogginData;
 		var response={
 			error:"",
 			string:""
 		};
 
 		accounts= getAllUsersAccounts().filter(function(item) {
-			return item.userId!=userId;
+			return item.userId != userId;
 		});
 		localStorageService.set('ntAllAccounts', accounts);
 
@@ -265,36 +281,53 @@ angular.module('bankAccount.services')
 			string:""
 		};
 
-		deleteMsj= deleteAccount(userId, username);
-		if(deleteMsj.error){
-			response.string= "Error, la cuenta no ha sido editada";
-			response.error= true;
-			return response;
-		}else{
-			createNewMsj= createNewAccount(user);
-			if(createNewMsj.error){
-				response.string= "Error, la cuenta no ha sido editada";
-				response.error= true;
-				return response;	
+		if(user.pass==user.repeatPass){
+			if(canUseUsername(username, userId)){
+				deleteMsj= deleteAccount(userId, username);
+				response.deleteRes= deleteMsj.string;
+				if(deleteMsj.error){
+					response.string= "Error, la cuenta no ha sido eliminada";
+					response.error= true;
+					response.deleteRes= deleteMsj.string;
+					return response;
+				}else{
+					createNewMsj= createNewAccount(user);
+					response.createRes= createNewMsj.string;
+					if(createNewMsj.error){
+						response.string= "Error, la cuenta no ha sido editada";
+						response.error= true;
+						response.createRes= createNewMsj.string;
+						return response;	
+					}else{
+						response.string= "Cuenta editada exitosamente";
+						response.error= false;
+						return response;
+					}
+				}
 			}else{
-				response.string= "Cuenta editada exitosamente";
-				response.error= false;
+				response.string= "Error, Nombre de usuario ya registrado, escriba otro";
+				response.error= true;
 				return response;
 			}
+		}else{
+			response.string= "Error, passwords no coinciden";
+			response.error= true;
+			return response;
 		}
+
 	};
 
 //access
 	return{
-		getCurrentUser:getCurrentUser,  //no se si esta en uso****
-		isLoggedIn:isLoggedIn, //full uso
-		login:login,  //full uso
-		getLoggedUser:getLoggedUser, //no se si esta en uso****
-		createNewAccount:createNewAccount, //full uso
-		canLogin:canLogin,  //full uso
-		getUserByUserName:getUserByUserName, //full uso
-		deleteAccount:deleteAccount,  //full uso
-		editAccount:editAccount, //full uso
-		logout:logout  //full uso
+		getCurrentUser:getCurrentUser, 
+		isLoggedIn:isLoggedIn, 
+		login:login,  
+		getLoggedUser:getLoggedUser, 
+		createNewAccount:createNewAccount,
+		canLogin:canLogin, 
+		getUserByUserName:getUserByUserName,
+		deleteAccount:deleteAccount,
+		editAccount:editAccount,
+		logout:logout
 	};
 });

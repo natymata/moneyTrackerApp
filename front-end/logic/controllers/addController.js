@@ -24,7 +24,6 @@ angular.module('bankAccount.controllers')
 			add.info="Transacción creada con éxito";
 			add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""
 			};
-
 		}else{ //error, couldn't create transaction	
 			add.info= result.string;
 		};

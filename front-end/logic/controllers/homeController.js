@@ -1,5 +1,5 @@
 angular.module('bankAccount.controllers') 
-.controller("homeController", ['$location','$routeParams', 'userService', '$scope', function ($location, $routeParams, userService, $scope) {
+.controller("homeController", function ($location, userService, $scope) {
 	var home= this;
 
 	home.init=function() {
@@ -31,5 +31,4 @@ angular.module('bankAccount.controllers')
 
 	home.init();
 
-}]);
-
+});

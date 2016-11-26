@@ -1,5 +1,5 @@
 angular.module('bankAccount.services')
-.service('formService', ['localStorageService', function(localStorageService) {
+.service('formService', function(localStorageService) {
 
 	var clearForm= function (formName, $scope) {
 		if ($scope.formName) {
@@ -15,6 +15,6 @@ angular.module('bankAccount.services')
 	return{
 		clearForm:clearForm
 	};
-}]);//end -service-
+});//end -service-
 
 

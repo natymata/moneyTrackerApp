@@ -2,16 +2,26 @@ angular.module('bankAccount.controllers')
 .controller('navbarController', function(userService, $location, $scope) {
 	var navbar= this;
 
-	navbar.init=function() {
-		navbar.userId= userService.getCurrentUser().userId;
-	};
+	// navbar.init=function() {
+		
+	// };
 
 	navbar.logout= function() {
-		userService.logout();
-		$scope.sigInFalse();
-		$location.path("/");
+		var res= userService.logout();
+		if(!res.error){ //user log out successfully
+			$scope.sigInFalse();
+			$location.path("/");
+		}else{  //could'n log out user
+			alert("No se ha podido deslogear el usuario, intente de nuevo");
+		};
 	};
 
-	navbar.init();
+	navbar.toProfile= function() {
+		var userId= userService.getCurrentUser().userId;
+		$location.path("/profile/"+userId);
+	};
+	
+
+	// navbar.init();
 	
 });

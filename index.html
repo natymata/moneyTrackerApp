@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>My Account 2.0</title>
-	
+	<link rel="shortcut icon" href="">
 	<link rel="stylesheet" type="text/css" href="front-end/lib/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="front-end/css/style.css">
 
@@ -39,7 +39,7 @@
 								</ul>
 
 								<ul class="nav navbar-nav navbar-right">
-									<li ng-show="isSignedIn"><a ng-href="#/"><span class="glyphicon glyphicon-user"></span> Mi Perfil</a></li>
+									<li ng-show="isSignedIn" ng-click="navbar.toProfile()"><a href><span class="glyphicon glyphicon-user"></span> Mi Perfil</a></li>
 									<li ng-hide="isSignedIn"><a ng-href="#/newaccount"><span class="glyphicon glyphicon-user"></span> Registrar Cuenta</a></li>
 									<li ng-show="isSignedIn"><a href="#/" ng-click="navbar.logout()"><span class="glyphicon glyphicon-log-out"></span> Salir</a></li>
 								</ul>
@@ -73,9 +73,9 @@
 	<script src="front-end/logic/controllers/summaryController.js"></script>
 	<script src="front-end/logic/controllers/detailController.js"></script>
 	<script src="front-end/logic/controllers/addController.js"></script>
+	<script src="front-end/logic/controllers/userProfileController.js"></script>
 	<script src="front-end/logic/controllers/refreshController.js"></script>
 	
-	<script src="front-end/logic/services/BDServices.js"></script>
 	<script src="front-end/logic/services/formService.js"></script>
 	<script src="front-end/logic/services/localStorageService.js"></script>
 	<script src="front-end/logic/services/transactService.js"></script>

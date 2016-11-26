@@ -1,12 +1,30 @@
 angular.module('bankAccount.controllers')
-.controller("newAccountController", ['$location', 'userService', function ($location, userService) {
+.controller("newAccountController", function ($location, userService, $routeParams) {
 	var newAcc= this;
 
 	newAcc.init= function() {
-		newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
+		newAcc.userId= $routeParams.userId;
+		newAcc.tId= checktId(newAcc.userId);
+		newAcc.newAccount= bindTransact(newAcc.tId);
 		newAcc.info="";
-
+		newAcc.updateInfo="";
 	};//end, init function
+
+	var checktId= function(userId) {
+		if(userId==undefined){ //undefined Id= create account
+			return 0;
+		}else{ //defined id,edit account
+			return 1;
+		};
+	};
+
+	var bindTransact= function(tId) {
+		if(tId==1){
+			return userService.getCurrentUser();
+		}else{
+			return {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
+		};
+	};
 	
 	newAcc.validateCreate= function() {
 		newAcc.info="";
@@ -17,15 +35,40 @@ angular.module('bankAccount.controllers')
 			newAcc.info="Usuario creado con éxito";
 			$location.path("/");
 			newAcc.info="";
-		}else{//error, nombre de usuario ya existía o passwords no coinciden
+		}else{//error, user name already exists or passwords don't match.
 			newAcc.info= result.string;
-		}
+		};
 	};
 
+	//cancel create a new account
 	newAcc.cancel= function() {
 		newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
 		newAcc.info="";
 		$location.path("/");
+	};
+
+	newAcc.edit= function() {
+		var user= newAcc.newAccount;
+		user.userId= newAcc.userId;
+		var result= userService.editAccount(user);
+		if(!result.error){
+			newAcc.info= result.string;
+			console.log(result.string);
+			console.log(user);
+			userService.login(user);
+			newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
+			$location.path("profile/" + user.userId);
+			newAcc.info="";
+		}else{
+			console.log(result);
+			newAcc.updateInfo= result.string;
+			console.log("error");	
+		};
+	};
+
+
+	cancelEdit= function() {
+
 	};
 
 	newAcc.init();
@@ -54,4 +97,5 @@ angular.module('bankAccount.controllers')
 */
 ///////////////////////////////////delete///////////////////////////////////
 
-}]);
+});
+
