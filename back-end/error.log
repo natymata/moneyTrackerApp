@@ -1,0 +1,310 @@
+---- 
+14/04/16 15:47:35 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [name] => Juana
+    [lastname] => De Arco
+    [email] => juana@dearco.com
+    [password] => 123
+)
+---- 
+14/04/16 15:52:48 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [name] => 
+    [lastname] => de arco
+    [email] => juana@juna.com
+    [password] => 111
+    [firstName] => juana
+)
+---- 
+14/04/16 15:53:49 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [name] => 
+    [lastname] => mata
+    [email] => naty@mata.com
+    [password] => 111
+    [firstName] => naty
+)
+---- 
+14/04/16 15:54:35 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [name] => 
+    [lastname] => mata
+    [email] => NATY@MATA.COM
+    [password] => 111
+    [firstName] => naty
+)
+---- 
+14/04/16 15:55:28 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [name] => 
+    [lastname] => mata
+    [email] => naty@mata
+    [password] => 111
+    [firstName] => nay
+)
+---- 
+14/04/16 15:56:25 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => naty
+    [lastname] => mata
+    [email] => naty@mata.com
+    [password] => 111
+)
+---- 
+14/04/16 15:57:19 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => naty
+    [lastName] => mata
+    [email] => naty@mata.com
+    [password] => 111
+)
+---- 
+14/04/16 16:24:46 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => Juana
+    [lastName] => De Arco
+    [email] => juana@dearco.com
+    [password] => 123
+)
+---- 
+14/04/16 16:24:46 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[42S02]: Base table or view not found: 1146 Table 'practica.usuarios' doesn't exist
+)
+---- 
+14/04/16 16:24:46 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[HY000]: General error
+)
+---- 
+14/04/16 16:34:04 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => Han
+    [lastName] => Solo
+    [email] => hansolo@starwars.com
+    [password] => 222
+)
+---- 
+14/04/16 16:34:04 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[42S02]: Base table or view not found: 1146 Table 'practica.usuarios' doesn't exist
+)
+---- 
+14/04/16 16:34:04 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[HY000]: General error
+)
+---- 
+14/04/16 16:44:55 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => Paquita
+    [lastName] => La del Barrio
+    [email] => paquita@paquita.com
+    [password] => 123
+)
+---- 
+14/04/16 16:44:55 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[42S02]: Base table or view not found: 1146 Table 'practica.usuarios' doesn't exist
+)
+---- 
+14/04/16 16:44:56 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[HY000]: General error
+)
+---- 
+14/04/16 16:46:30 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => Pedro
+    [lastName] => El Escmoso
+    [email] => pedro@gamil.com
+    [password] => 123
+)
+---- 
+14/04/16 16:46:30 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[42S02]: Base table or view not found: 1146 Table 'practica.usuarios' doesn't exist
+)
+---- 
+14/04/16 16:46:31 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[HY000]: General error
+)
+---- 
+14/04/16 16:49:13 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => Maria
+    [lastName] => Mercedes
+    [email] => maria@yahoo.com
+    [password] => 123
+)
+---- 
+14/04/16 16:49:13 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[42S02]: Base table or view not found: 1146 Table 'practica.usuarios' doesn't exist
+)
+---- 
+14/04/16 16:49:13 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[HY000]: General error
+)
+---- 
+14/04/16 17:05:32 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => Juan
+    [lastName] => Perez
+    [email] => juanperez@gmail.com
+    [password] => 123
+)
+---- 
+14/04/16 17:05:32 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[42S02]: Base table or view not found: 1146 Table 'practica.usuarios' doesn't exist
+)
+---- 
+15/04/16 18:07:13 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => Paquita
+    [lastName] => La del Barrio
+    [email] => paquita@gmail.com
+    [password] => admin
+)
+---- 
+15/04/16 18:07:13 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[42S02]: Base table or view not found: 1146 Table 'practica.usuarios' doesn't exist
+)
+---- 
+15/04/16 18:09:57 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => Pedrito
+    [lastName] => El del Barrio
+    [email] => pedrito@barrio
+    [password] => 123
+)
+---- 
+15/04/16 18:10:35 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => Pedrito
+    [lastName] => El del Barrio
+    [email] => pedrito@barrio
+    [password] => 123
+)
+---- 
+15/04/16 18:11:25 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => Pedrito
+    [lastName] => El del Barrio
+    [email] => pedrito@barrio.com
+    [password] => 1234
+)
+---- 
+15/04/16 18:11:25 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[42S02]: Base table or view not found: 1146 Table 'practica.usuarios' doesn't exist
+)
+---- 
+15/04/16 19:21:53 
+C:\xampp\htdocs\NATY\natyPracticaExamen\back-end\app\src\controllers\UserController.php: 117
+Array
+(
+    [firstName] => prueba
+    [lastName] => El del Barrio
+    [email] => prueba@prueba.com
+    [password] => 123
+)
+---- 
+15/04/16 19:21:53 
+: 
+Array
+(
+    [data] => 
+    [error] => 1
+    [message] => SQLSTATE[42S02]: Base table or view not found: 1146 Table 'practica.usuarios' doesn't exist
+)
