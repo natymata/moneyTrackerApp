@@ -1,5 +1,5 @@
 angular.module('bankAccount.services')
-.factory('userService', function($cookies, localStorageService, idService) {
+.factory('userService', function($cookies, localStorageService, idService, $q, $http) {
 	
 	//saves logged user
 	var ntAppLoggedUser={ userId: "", userType: "", name:"", lastName:"", username:"", money:"", accountType:"", isConnected: false };
@@ -13,6 +13,14 @@ angular.module('bankAccount.services')
 			return false;
 		};
 	};
+
+	//verify user data, when trying to log in
+	var canLogin= function(username, pass) {
+		var user= {"username": username, "pass": pass};
+		var url= 'back-end/index.php/user/login';
+		result= $http.post(url, user);
+		return result;
+	};//end, canLoging function
 
 	//logs in a user
 	var login= function(objUser) {
@@ -65,6 +73,12 @@ angular.module('bankAccount.services')
 		return ntAppLoggedUser;
 	};
 
+
+	/*
+	TEMP FUNCTIONS
+	 */
+	
+
 	//returns a specific account identified by username
 	var getUserByUserName= function(username) {
 		var accounts= getAllUsersAccounts().filter(function(user) {
@@ -73,11 +87,6 @@ angular.module('bankAccount.services')
 		return accounts[0];
 	};//end, getUserByUserName
 
-	
-	
-	/*
-	TEMP FUNCTIONS
-	 */
 	
 	//verify by username if a account exists
 	var accountExists= function(username) {
@@ -162,7 +171,9 @@ angular.module('bankAccount.services')
 			lastName:user.lastName,
 			username:user.username,
 			money:user.money, 
-			accountType:user.accountType
+			accountType:user.accountType,
+			repeatPass: user.repeatPass,
+			pass: user.pass
 		};
 		return accountInfo;
 	};//end, setUserInfo
@@ -195,7 +206,10 @@ angular.module('bankAccount.services')
 		return localStorageService.getOrInit('ntUserPass');
 	};
 
-	//verify user data, when trying to log in
+	
+
+
+	/*
 	var canLogin= function(username, pass) {
 		if(accountExists(username)){ //username si esta registrado
 
@@ -212,6 +226,7 @@ angular.module('bankAccount.services')
 			return false; //username no registrado
 		}
 	};//end, canLoging function
+	 */
 
 	//logout user
 	var logout= function() {

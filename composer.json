@@ -1,6 +1,6 @@
 {
-    "name": "leopic/practica-php-01",
-    "description": "Primera practica de PHP",
+    "name": "natymata/moneyTracker",
+    "description": "Money tracking appp",
     "config": {
       "vendor-dir": "back-end/vendor"
     }, 
@@ -13,8 +13,8 @@
     },
     "authors": [
       {
-        "name": "Leo Picado",
-        "email": "lpicadoo@ucenfotec.ac.cr"
+        "name": "Naty Mata",
+        "email": "natymata@gmail.com"
       }
     ]
 }

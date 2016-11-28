@@ -10,7 +10,8 @@ class UserService {
 
     private $storage;
     private $validation;
-    private $isDBReady = true;
+    //private $isDBReady = true;
+
     /**
      * UserService constructor.
      */
@@ -19,243 +20,255 @@ class UserService {
         $this->validation = new ValidationService();
     }
 
+
     /**
      * Encargado de iniciar la sesión del usuario.
      *
-     * @param string $email
-     * @param string $password
+     * @param string $username
+     * @param string $pass
      *
      * @return array
      */
-       /* public function login($email, $password) {
+    public function login($username, $pass) {
         $result = [];
 
-        // Verificamos que el email, sin espacios, tenga por lo menos 1 caracter
-        if (strlen(trim($email)) > 0) {
-            // Verificamos que el email tenga formato de email
-            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                // Verificamos que el password, sin espacios, tenga por lo menos 1 caracter
-                if (strlen(trim($password)) > 0) {
-                    // Si todo lo anterior tuvo éxito, iniciamos el query
-                    // El query que vamos a ejecutar en la BD
-                    // $query = "SELECT id, email, firstName FROM users WHERE email = :email AND password = :password LIMIT 1";
-                    $query = "SELECT id, email, firstName FROM users WHERE email = :email AND password = :password LIMIT 1";
-                    // Los parámetros de ese query
-                    $params = [":email" => $email, ":password" => $password];
+        // Verificamos que el username sea válido
+        if ($this->validation->isValidString($username)) {
+            // Verificamos que el pass, sin espacios, tenga por lo menos 1 caracter
+            if ($this->validation->isValidString($pass)) {
+                // Si lo anterior tuvo éxito, se inicia el query.
+                $query = "SELECT userId, name, lastName, username, password, money, accountType, tbUserType_idUserType FROM tbuser WHERE username = :username AND active=1 LIMIT 1";
 
-                    // Una vez que se cree la base de datos esté lista ésto se puede remover
-                    if ($this->isDBReady) {
-                        // El resultado de de ejecutar la sentencia se almacena en la variable `result`
-                        $result = $this->storage->query($query, $params);
+                    //Parámetros del query
+                    $params = [":username" => $username];
 
-                        // Si la setencia tiene por lo menos una fila, quiere decir que encontramos a nuestro usuario
-                        if (count($result['data']) > 0) {
-                            // Almacenamos el usuario en la variable `user`
-                            $user = $result['data'][0];
-
-                            // Definimos nuestro mensaje de éxito
-                            $result["message"] = "User found.";
-
-                            // Enviamos de vuelta a quien consumió el servicio datos sobre el usuario solicitado
-                            $result["user"] = [
-                                "id" => $user["id"],
-                                "email" => $user["email"],
-                                "firstName" => $user["firstName"]
-                            ];
-                        } else {
-                            // No encontramos un usuario con ese email y password
-                            $result["message"] = "Invalid credentials.";
-                            $result["error"] = true;
-                        }
-                    } else {
-                        // La base de datos no está lista todavía
-                        $result["message"] = "Database has not been setup yet.";
-                        $result["error"] = true;
-                    }
-                } else {
-                    // El password está en blanco
-                    $result["message"] = "Password is required.";
-                    $result["error"] = true;
-                }
-            } else {
-                // El email no tiene formato de tal
-                $result["message"] = "Email is invalid.";
-                $result["error"] = true;
-            }
-        } else {
-            // El email está en blanco
-            $result["message"] = "Email is required.";
-            $result["error"] = true;
-        }
-
-        return $result;
-    }*/
-
-
-
-
-
-    //aqui empieza la funcion que estoy apagando temporalmente
-   public function login($email, $password) {
-        $result = [];
-
-        // Verificamos que el email sea válido
-        if ($this->validation->isValidEmail($email)) {
-            // Verificamos que el password, sin espacios, tenga por lo menos 1 caracter
-            if ($this->validation->isValidString($password)) {
-                // Si lo anterior tuvo éxito, iniciamos el query
-
-                // El query que vamos a ejecutar en la BD
-                $query = "SELECT idUsuario, PrimerNombre, PrimerNombre, TbTipoUsuario_idTipoUsuario FROM tbusuario WHERE email = :email LIMIT 1";
-
-                // Los parámetros de ese query
-                $params = [":email" => $email];
-
-                // El resultado de de ejecutar la sentencia se almacena en la variable `result`
                 $loginResult = $this->storage->query($query, $params);
 
                 LoggingService::logVariable($loginResult, __FILE__, __LINE__);
 
-                // Si la setencia tiene por lo menos una fila, quiere decir que encontramos a nuestro usuario
+                // Si la sentencia tiene por lo menos una fila, el usuario si existe.
                 if (count($loginResult["data"]) > 0) {
-                    // Almacenamos el usuario en la variable `user`
+                    // Almacenar el usuario en una variable
                     $user = $loginResult["data"][0];
 
-                    // Al usar el mecanismo de hasheo nunca dos hashes serán iguales, por lo que la verificación del
-                    // usuario tiene que darse usando esta función.
-                    if (password_verify($password, $user["password"])) {
-                        // Definimos nuestro mensaje de éxito
-                        $result["message"] = "User found.";
+                    // Verifcar el pass del usuario.
+                    LoggingService::logVariable($pass, __FILE__, __LINE__);
+                    if (password_verify($pass, $user["password"])) {
 
-                        // Enviamos de vuelta a quien consumió el servicio datos sobre el usuario solicitado
+                        // Definimos el mensaje de éxito
+                        $result["message"] = "User found.";
+                        $result["canLogin"] = true;
+
+                        // Enviar de regreso los datos solicitados del usuario.
                         $result["user"] = [
-                            "id" => $user["idUsuario"],
-                            "firstName" => $user["PrimerNombre"],
-                            "lastName" => $user["PrimerNombre"],
-                            "userType"=>$user["TbTipoUsuario_idTipoUsuario"]
+                            "userId" => $user["userId"],
+                            "name" => $user["name"],
+                            "lastName" => $user["lastName"],
+                            "username" => $user["username"],
+                            "money" => $user["money"],
+                            "accountType" => $user["accountType"],
+                            "userType"=> $user["tbUserType_idUserType"]
                         ];
                     } else {
-                        $result["message"] = "Invalid password.";
+                        $result["message"] = "Invanlid password.";
                         $result["error"] = true;
+                        $result["canLogin"] = false;
                     }
                 } else {
-                    // No encontramos un usuario con ese email y password
+                    // No encontramos un usuario con ese username y pass
                     $result["message"] = "Invalid credentials.";
                     $result["error"] = true;
+                    $result["canLogin"] = false;
                 }
             } else {
-                // El password está en blanco
+                // El pass está en blanco
                 $result["message"] = "Password is required.";
                 $result["error"] = true;
+                $result["canLogin"] = false;
             }
         } else {
-            // El email está en blanco
-            $result["message"] = "Email is invalid.";
+            // El username está en blanco
+            $result["message"] = "Username is invalid.";
             $result["error"] = true;
+            $result["canLogin"] = false;
         }
 
         return $result;
     } 
 
+
+    //getAllUsers
+    public function getAllUsers(){
+        $result=[];
+        $query= "SELECT idUsuario, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, Email, TbTipoUsuario_idTipoUsuario
+            FROM tbusuario
+            WHERE idUsuario !=1";
+
+        // Query params
+        $params = [];
+
+        $getAllResult = $this->storage->query($query, $params);
+
+        $foundRecords = array_key_exists("meta", $getAllResult) &&
+            $getAllResult["meta"]["count"] > 0;
+
+        if ($foundRecords) {
+            $result["message"] = "users found";
+            $users = $getAllResult["data"];
+
+            foreach ($users as $user) {
+                $result["data"][] = [
+                    "userId" => $user["idUsuario"],
+                    "firstName" => $user["PrimerNombre"],
+                    "secondName" => $user["SegundoNombre"],
+                    "lastName" => $user["PrimerApellido"],
+                    "secondLastName" => $user["SegundoApellido"],
+                    "email" => $user["Email"],
+                    "userType"=>"ut0".$user["TbTipoUsuario_idTipoUsuario"],
+                    "userTypeNumber" => $user["TbTipoUsuario_idTipoUsuario"]
+                ];
+            } 
+        } else {
+            $result["message"] = "users not found";
+            $result["error"] = true;
+        }
+
+        return $result;
+    }//end -getAllUsers-
+
+
+
+
     /**
      * Registra un nuevo usuario en el sistema.
      *
+     * @param string $firstname
+     * @param string $secondname
+     * @param string $firstlastname
+     * @param string $secondlastname
+     * @param int $personalId
      * @param string $email
      * @param string $password
-     * @param string $firstName
-     * @param string $lastName
-     *egister($email, $password, $firstName, $lastName);
+     * @param string $repeatPass
+     * @param int $userType
+
      * @return array
      */
-    public function register($email, $password, $firstName, $lastName) {
-        $result = [];
+    public function registerUser($userId, $userType, $name, $lastName, $username, $money, $accountType, $pass, $repeatPass){
+        $result=[];
 
-        // Verificamos que efectivamente vengan todos los datos
-        if (isset($email, $password, $firstName, $lastName)) {
-            $email = trim($email);
-            $password = trim($password);
-            $firstName = trim($firstName);
-            $lastName = trim($lastName);
+        $userId= trim($userId);//
+        $userType= trim($userType);//
+        $name= trim($name);//
+        $lastName= trim($lastName);//
+        $username= trim($username);//
+        $money= trim($money);
+        $accountType= trim($accountType);
+        $pass= trim($pass);//
+        $repeatPass= trim($repeatPass);//
 
-            // Si nuestro correo es válido
-            if ($this->validation->isValidEmail($email)) {
-                // Si `password` es un string válido
-                if ($this->validation->isValidString($password)) {
-                    // Si `$passwordConfirm` es un string válido
-                    if ($this->validation->isValidString($firstName)) {
-                        // Si `$fullName` es un string válido
-                        if ($this->validation->isValidString($lastName)) {
-                                // Si el email no ha sido usado
-                            if ($this->isEmailAvailable($email)) {
-                                $query = "INSERT INTO users (firstName, lastName, email, password) VALUES (:firstName, :lastName, :email, :password)";
-                                // Enmascaramos la contraseña
-                                $encryptedPassword = $this->getProtectedPassword($password);
+        // Verificar que efectivamente vengan todos los datos requeridos.
+        if(isset($userId, $userType, $name, $lastName, $username, $money, $accountType, $pass, $repeatPass)){ //1
+            //Verificar que el username sea uno disponible
+            if($this->validation->isValidString($username) && $this->isUsernameAvailable($username)){//2
+                //Verificar que el password y la confirmacion coincidan.
+                if($pass == $repeatPass){//3
+                    //verificar que el userId contenga al menos 9 caracteres
+                    if($this->validation->isValidString($userId) && strlen(trim($userId))>=9){//5
+                       //Verificar que el password se string válido y tenga al menos 6 caracteres.
+                        if($this->validation->isValidString($pass) && strlen(trim($pass))>=6){//6
+                            //Vefificar que la confirmacion de contraseña sea string válido.
+                            if($this->validation->isValidString($repeatPass)){//7
+                                //Verificar que el tipo de usuario este y sea un numero entre 1 y 2
+                                if($this->validation->isValidInt($userType) && strlen(trim($userType))==1 && ($userType>=1 && $userType <=2)){//8
+                                    //Verifwcar que el nombre sea valido
+                                    if($this->validation->isValidString($name)){//9
+                                        //verificar que el apellido sea un string válido
+                                        if($this->validation->isValidString($lastName)){//10
+                                            //verificar que money sea string valido
+                                            if($this->validation->isValidString($money)){//11
+                                                //vefiicar que el account type sea string valido
+                                                if($this->validation->isValidString($accountType)){//12
+                                                    $query = "INSERT INTO tbuser (userId, name, lastName, username, password, money, accountType, tbUserType_idUserType) VALUES (:userId, :name, :lastName, :username, :password, :money, :accountType, :userType)";
 
-                                // Los parámetros de ese query
-                                $params = [":firstName" => $firstName, ":lastName" => $lastName, ":email" => $email, ":password" => $encryptedPassword,];
+                                                        // Enmascaramos la contraseña
+                                                    $encryptedPassword = $this->getProtectedPassword($pass);
 
-                                // Lo ejecutamos
-                                $createAccountResult = $this->storage->query($query, $params);
+                                                    // Los parámetros de ese query
+                                                    $params = [
+                                                        ":userId" => $userId,
+                                                        ":name" => $name,
+                                                        ":lastName" => $lastName,
+                                                        ":username" => $username,
+                                                        ":money" => $money,
+                                                        ":accountType" => $accountType,
+                                                        ":password" => $encryptedPassword, 
+                                                        ":userType" => $userType
+                                                    ];
 
-                                LoggingService::logVariable($createAccountResult);
+                                                        // Lo ejecutamos
+                                                    $createAccountResult = $this->storage->query($query, $params);
 
-                                if ($createAccountResult["data"]["count"] == 1) {
-                                    $result["message"] = "success, user created!";
-                                    $result["user"]= $createAccountResult;
-                                } else {
-                                    $result["user"]= $createAccountResult;
+                                                    LoggingService::logVariable($createAccountResult, __FILE__, __LINE__);
+                                                       
+                                                    $isUserCreated= array_key_exists("meta", $createAccountResult) && $createAccountResult["meta"]["count"]==1;
+
+                                                    if($isUserCreated){
+                                                        $result["message"]= "User created";
+                                                        $result["meta"]["id"]= $createAccountResult["meta"]["id"];
+                                                    }else{
+                                                        $result["error"] = true;
+                                                        $result["message"]= "Error, can't create user";
+                                                    }
+                                                }else{//12
+                                                     $result["error"] = true;
+                                                    $result["message"] = "Account type is invalid";
+                                                } 
+                                            }else{//11
+                                                $result["error"] = true;
+                                                $result["message"] = "Money value is invalid";
+                                            }
+                                        }else{//10
+                                            $result["error"] = true;
+                                            $result["message"] = "Lastname is invalid";
+                                        }
+                                    }else{//9
+                                        $result["error"] = true;
+                                        $result["message"] = "Name is invalid";
+                                    }
+                                }else{//8
                                     $result["error"] = true;
-                                    $result["message"] = "Something is up";
+                                    $result["message"] = "User type is invalid";
                                 }
-                            } else {
+                            }else{//7
                                 $result["error"] = true;
-                                $result["message"] = "Email is unavailable";
+                                $result["message"] = "Password confirm is invalid";
                             }
-                        } else {
+                        }else{//6
                             $result["error"] = true;
-                            $result["message"] = "lastName is invalid";
+                            $result["message"] = "Password is invalid";
                         }
-                    } else {
+                    }else{//5
                         $result["error"] = true;
-                        $result["message"] = "firstName is invalid";
+                        $result["message"] = "User Id is invalid";
                     }
-                } else {
+                }else{//3
                     $result["error"] = true;
-                    $result["message"] = "Password is invalid";
+                    $result["message"] = "Passwords don't match";
                 }
-            } else {
+            }else{//2
                 $result["error"] = true;
-                $result["message"] = "Email is invalid";
+                $result["message"] = "Username is unavailable";
             }
-        } else {
+        }else{//1
             $result["error"] = true;
             $result["message"] = "All fields are required";
         }
 
+        LoggingService::logVariable($result, __FILE__, __LINE__);
         return $result;
-    }
 
-    /**
-     * Verifica si un email está disponible para ser utilizado en el sistema.
-     *
-     * @param string $email
-     * @return bool
-     */
-    private function isEmailAvailable($email) {
-        // El query que vamos a ejecutar en la BD
-        $query = "SELECT COUNT(*) AS count FROM usuarios WHERE email = :email";
-
-        // Los parámetros de ese query
-        $params = [":email" => $email];
-
-        // Lo ejecutamos
-        $result = $this->storage->query($query, $params);
-
-        LoggingService::logVariable($result);
-
-        // El resultado esperado de la cuenta es cero
-        return $result["data"][0]["count"] == 0;
-    }
+    } //end -registerUser
 
     /**
      * Enmascara la contraseña brindada para evitar almacenar las contraseñas en texto plano en la base de datos.
@@ -264,19 +277,35 @@ class UserService {
      * @return string
      */
     private function getProtectedPassword($password) {
-        /**
-         * Cuarto intento: usando funciones nativas de PHP para `hashear` contraseñas.
-         * Entrada: password
-         * Salida usando bcrypt: $2y$10$2vCcgaflnKMeUc3D4wo1l.efzpviKiqUKZXSv0esbWdcHXyriyici
-         * Salida usando bcrypt: $2y$10$mI.DvksSYz46dsqC28Ju2.FXD00dhqCtFsgVMCrnRfFprEurg.m2q
-         * https://jonsuh.com/blog/securely-hash-passwords-with-php/
-         * http://stackoverflow.com/questions/18084595/how-to-decrypt-hash-stored-by-bcrypt
-         * Al bcrypt ser un algoritmo de hasheo, no tiene contraparte para revertirlo, además se le agrega una sal
-         * aleatoriamente y finalmente es computacionalmente costoso.
-         */
         $finalPassword = password_hash($password, PASSWORD_BCRYPT);
-
         return $finalPassword;
-    }
+    } //end -getProtectedPassword-
 
-}
+
+    /**
+     * Verifica si un username está disponible para ser utilizado en el sistema.
+     *
+     * @param string $username
+     * @return bool
+     */
+    private function isUsernameAvailable($username) {
+        // El query a ejecutar en la BD
+        $query = "SELECT COUNT(*) AS count FROM tbuser WHERE username= :username";
+
+        // Los parámetros de ese query
+        $params = [":username" => $username];
+
+        $result = $this->storage->query($query, $params);
+
+        LoggingService::logVariable($result);
+
+        // El resultado esperado de la cuenta es cero
+        return $result["data"][0]["count"] == 0;
+
+    }//end -isUsernameAvailable-
+
+
+
+}//end -class-
+
+

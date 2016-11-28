@@ -1,0 +1,12 @@
+http://localhost:8080/MyProjects/moneyTrackerApp2.0/back-end/index.php/user/login
+
+
+$2y$10$4fa04o25UbgBOo7TZbzEVOkdIfuK3dv8a2Lt9aos.nmI1yXTryKba
+
+
+estructura JSON para postman
+{
+	"username": "natymata", 
+	"pass": "111111"
+	
+}

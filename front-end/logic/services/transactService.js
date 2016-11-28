@@ -1,5 +1,5 @@
 angular.module('bankAccount.services')
-.factory('transactService', function(idService, localStorageService) {
+.factory('transactService', function(idService, localStorageService, $q, $http) {
 
 	var addNew= function(transact, userId) {
 		var	response={
