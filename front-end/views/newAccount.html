@@ -1,5 +1,5 @@
 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12">
-	<section class="add-acount gray-border gray-bg">
+	<section class="add-acount gray-border gray-bg posit-rel">
 		<h2 ng-show="newAcc.tId==0">Registar Cuenta</h2>
 		<h2 ng-show="newAcc.tId==1">Editar Cuenta</h2>
 
@@ -62,6 +62,11 @@
 			</form>
 			
 		</div> <!-- addHeader -->
+
+		<div class="addModal post-abs" ng-show= "newAcc.showModal">
+			<h3 class="text-center margin-modal2">{{newAcc.modalInfo}}</h3>
+		</div>
+
 	</section> <!-- main-list -->
 </div> <!-- main-col -->
 

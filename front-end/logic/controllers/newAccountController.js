@@ -1,5 +1,5 @@
 angular.module('bankAccount.controllers')
-.controller("newAccountController", function ($location, userService, $routeParams, $scope, formService) {
+.controller("newAccountController", function ($location, userService, $routeParams, $scope, formService, $timeout) {
 	var newAcc= this;
 
 	newAcc.init= function() {
@@ -8,6 +8,8 @@ angular.module('bankAccount.controllers')
 		newAcc.newAccount= bindTransact(newAcc.tId);
 		newAcc.info="";
 		newAcc.updateInfo="";
+		newAcc.showModal= false;
+		newAcc.modalInfo="";
 	};//end, init function
 
 	var checktId= function(userId) {
@@ -30,15 +32,39 @@ angular.module('bankAccount.controllers')
 	newAcc.validateCreate= function() {
 		newAcc.info="";
 		var newUser= newAcc.newAccount;
-		var result= userService.createNewAccount(newUser);
-		if(!result.error){//user created
-			newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
-			newAcc.info="Usuario creado con éxito";
+		userService.createNewAccount(newUser)
+		.success(function(response){
+			if(response.created){
+				newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
+				newAcc.modalInfo="Usuario creado con éxito";
+				newAcc.showModal= true;
+				console.log(response);
+				modal();
+				formService.clearForm(newAccForm, $scope);
+				newAcc.info="";
+			}else{
+				if(response.message== "Username is unavailable"){
+					newAcc.info= "Nombre de usuario no disponible";
+				}else if(response.message== "Passwords don't match"){
+					newAcc.info= "Contraseñas no coinciden";
+				}else{
+					newAcc.info= "Error, no se ha podido completar la operación";
+				}
+				
+			};
+		})
+		.error(function(response) {
+			newAcc.info= "Error, no se ha podido completar la operación";
+			console.error(response.message);
+		});
+	};
+
+	var modal= function() {
+		$timeout(function(){
+			newAcc.showModal= false;
+			newAcc.modalInfo="";
 			$location.path("/");
-			newAcc.info="";
-		}else{//error, user name already exists or passwords don't match.
-			newAcc.info= result.string;
-		};
+		}, 2000);	
 	};
 
 	//cancel create a new account

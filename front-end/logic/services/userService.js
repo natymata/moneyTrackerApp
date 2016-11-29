@@ -71,7 +71,41 @@ angular.module('bankAccount.services')
 	//returns var ntAppLoggedUser
 	var getCurrentUser= function() {  
 		return ntAppLoggedUser;
-	};
+	};//end, getCurrentUser
+
+	var createNewAccount= function(user) {
+		var newUser={};
+		var url= 'back-end/index.php/user/registerUser';
+		var result;
+
+		newUser= setUserInfo(user);
+		result= $http.post(url, newUser);
+		return result;
+
+	}; //end, createNewAccount
+
+	var setUserInfo= function(user) {
+		var id;
+
+		if(!user.userId){
+			id= idService.setId("user");
+		}else{
+			id= user.userId;
+		};
+
+		var accountInfo= {
+			userId: id,
+			userType: 2,
+			name:user.name,
+			lastName:user.lastName,
+			username:user.username,
+			money:user.money, 
+			accountType:user.accountType,
+			repeatPass: user.repeatPass,
+			pass: user.pass
+		};
+		return accountInfo;
+	};//end, setUserInfo
 
 
 	/*
@@ -121,62 +155,6 @@ angular.module('bankAccount.services')
 		}
 
 	};//end, canUseUsername
-
-
-	var createNewAccount= function(user) {
-		var username= user.username,
-			pass= user.pass;
-			repeatPass= user.repeatPass;
-		var	response={
-				string:"",
-				error:""
-			};
-		var newUser={};
-
-		if(accountExists(username)){
-			response.string="Nombre de usuario ya registrado";
-			response.error= true;
-			return response;
-		}else{
-			if(pass==repeatPass){
-				newUser= setUserInfo(user);
-				saveNewUser(newUser);
-				saveUserPass(newUser.userId, newUser.username, pass);
-				response.string="Usuario registrado con éxito";
-				response.error= false;
-				return response;
-			}else{
-				response.string="Passwords no coinciden";
-				response.error= true;
-				return response;
-			}
-		};
-	
-
-	}; //end, createNewAccount
-
-	var setUserInfo= function(user) {
-		var id;
-
-		if(!user.userId){
-			id= idService.setId("user");
-		}else{
-			id= user.userId;
-		};
-
-		var accountInfo= {
-			userId: id,
-			userType: 2,
-			name:user.name,
-			lastName:user.lastName,
-			username:user.username,
-			money:user.money, 
-			accountType:user.accountType,
-			repeatPass: user.repeatPass,
-			pass: user.pass
-		};
-		return accountInfo;
-	};//end, setUserInfo
 
 	var saveNewUser= function(user) {
 		var allAccounts= getAllUsersAccounts();
