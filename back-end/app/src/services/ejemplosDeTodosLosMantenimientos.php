@@ -201,9 +201,13 @@ class NoticiasService {
 
         if ($this->validation->isValidInt($id)) {
             $id = intval($id);
+            
             $query = "DELETE FROM noticias WHERE id = :id";
+            
             $parametros = [":id" => $id];
+
             $resultadoDelQuery = $this->storage->query($query, $parametros);
+
             $seEliminoLaNoticia = array_key_exists("meta", $resultadoDelQuery) && $resultadoDelQuery["meta"]["count"] == 1;
 
             if ($seEliminoLaNoticia) {

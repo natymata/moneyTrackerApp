@@ -8,7 +8,7 @@
 		
 
 		<div class="newAcc-add">
-			<form name="newAccForm" ng-submit="newAccForm.$valid" novalidate>
+			<form name="newAccForm" ng-submit="newAccForm.$valid && newAcc.checkOper()" novalidate>
 				<div class="form-group display-inline div50">
 					<sub ng-show="newAccForm.name.$invalid && newAccForm.name.$touched">El nombre es requerido</sub>
 					<label>Nombre:</label><input type="text" name="name" ng-model= "newAcc.newAccount.name" required ng-model-options="{debounce:200}" class="form-control">
@@ -57,7 +57,7 @@
 				<a ng-show="newAcc.tId==0" ng-click="newAcc.cancel()" ng-href="#/" class="btn btn-warning btn50 btn-mrg" ng-show="1==1" ><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
 
 				<!-- botones para editar la cuenta -->
-				<button ng-show="newAcc.tId==1" ng-click="newAcc.edit()" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+				<button ng-show="newAcc.tId==1" type="submit" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-edit"></span> Editar</button>
 
 				<button ng-show="newAcc.tId==1" ng-click="newAcc.cancelEdit()" class="btn btn-warning btn50 btn-mrg" ng-show="1==1" ><span class="glyphicon glyphicon-remove"></span>  Cancelar</button>
 			</form>

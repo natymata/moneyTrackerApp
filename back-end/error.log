@@ -1,251 +1,21 @@
 ﻿---- 
-29/11/16 04:07:45 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 192
+30/11/16 01:24:24 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 111
 Array
 (
-    [userId] => usr1480186635766TCSa
+    [userId] => usr1480490664407qFUa
     [userType] => 2
-    [name] => Naty
-    [lastName] => Mata
-    [username] => natymata
-    [money] => euro
-    [accountType] => corriente
-    [isConnected] => 1
-    [pass] => 111111
-    [repeatPass] => 111111
-)
----- 
-29/11/16 04:07:45 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 457
-Array
-(
-    [data] => Array
-        (
-            [0] => Array
-                (
-                    [count] => 0
-                    [0] => 0
-                )
-
-        )
-
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:07:45 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 347
-Array
-(
-    [data] => 
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:07:45 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 399
-Array
-(
-    [message] => User edited
-    [meta] => Array
-        (
-            [id] => 
-        )
-
-)
----- 
-29/11/16 04:11:53 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 192
-Array
-(
-    [userId] => usr1480186635766TCSa
-    [userType] => 2
-    [name] => Naty
-    [lastName] => Mata
-    [username] => natymata
-    [money] => euro
-    [accountType] => corriente
-    [isConnected] => 1
-    [pass] => 111111
-    [repeatPass] => 111111
-)
----- 
-29/11/16 04:11:53 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 456
-Array
-(
-    [data] => Array
-        (
-            [0] => Array
-                (
-                    [count] => 0
-                    [0] => 0
-                )
-
-        )
-
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:11:53 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 347
-Array
-(
-    [data] => 
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:11:53 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 398
-Array
-(
-    [message] => User edited
-)
----- 
-29/11/16 04:16:04 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 192
-Array
-(
-    [userId] => usr1480186635766TCSa
-    [userType] => 2
-    [name] => Naty
-    [lastName] => Mata
-    [username] => natymata
-    [money] => euro
-    [accountType] => corriente
-    [isConnected] => 1
-    [pass] => 111111
-    [repeatPass] => 111111
-)
----- 
-29/11/16 04:16:04 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 456
-Array
-(
-    [data] => Array
-        (
-            [0] => Array
-                (
-                    [count] => 0
-                    [0] => 0
-                )
-
-        )
-
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:16:04 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 347
-Array
-(
-    [data] => 
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:16:04 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 398
-Array
-(
-    [message] => User edited
-)
----- 
-29/11/16 04:17:55 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 192
-Array
-(
-    [userId] => usr1480186635766TCSa
-    [userType] => 2
-    [name] => Naty
-    [lastName] => Mata
-    [username] => natymata
+    [name] => skdñlsakdñ
+    [lastName] => ñskdañldk
+    [username] => skjalksj
     [money] => colon
-    [accountType] => ahorros
-    [isConnected] => 1
-    [pass] => 111111
-    [repeatPass] => 111111
-)
----- 
-29/11/16 04:17:55 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 456
-Array
-(
-    [data] => Array
-        (
-            [0] => Array
-                (
-                    [count] => 0
-                    [0] => 0
-                )
-
-        )
-
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:17:55 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 347
-Array
-(
-    [data] => 
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:17:55 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 398
-Array
-(
-    [message] => User edited
-)
----- 
-29/11/16 04:20:12 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 192
-Array
-(
-    [userId] => usr1480186635766TCSa
-    [userType] => 2
-    [name] => Naty
-    [lastName] => Mata
-    [username] => natymata
-    [money] => euro
     [accountType] => corriente
-    [isConnected] => 1
-    [pass] => 111111
     [repeatPass] => 111111
+    [pass] => 111111
 )
 ---- 
-29/11/16 04:20:12 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 456
+30/11/16 01:24:24 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 484
 Array
 (
     [data] => Array
@@ -265,325 +35,48 @@ Array
 
 )
 ---- 
-29/11/16 04:20:12 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 347
+30/11/16 01:24:24 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 212
 Array
 (
     [data] => 
     [meta] => Array
         (
+            [id] => 0
             [count] => 1
         )
 
 )
 ---- 
-29/11/16 04:20:12 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 398
+30/11/16 01:24:24 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 268
 Array
 (
-    [message] => User edited
+    [message] => User created
+    [meta] => Array
+        (
+            [id] => 0
+        )
+
 )
 ---- 
-29/11/16 04:27:48 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 192
+30/11/16 01:30:43 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 111
 Array
 (
-    [userId] => usr1480186635766TCSa
+    [userId] => usr1480491043534FnGw
     [userType] => 2
-    [name] => Naty
-    [lastName] => Mata
-    [username] => natymata
+    [name] => kjdlaskdaekfls
+    [lastName] => djfslkfjs
+    [username] => juanita
     [money] => colon
-    [accountType] => ahorros
-    [isConnected] => 1
-    [pass] => 111111
-    [repeatPass] => 111111
-)
----- 
-29/11/16 04:27:48 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 456
-Array
-(
-    [data] => Array
-        (
-            [0] => Array
-                (
-                    [count] => 0
-                    [0] => 0
-                )
-
-        )
-
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:27:48 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 347
-Array
-(
-    [data] => 
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:27:48 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 398
-Array
-(
-    [message] => User edited
-)
----- 
-29/11/16 04:29:08 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 192
-Array
-(
-    [userId] => usr1480186635766TCSa
-    [userType] => 2
-    [name] => Naty
-    [lastName] => Mata
-    [username] => natymata
-    [money] => dolar
-    [accountType] => ahorros
-    [isConnected] => 1
-    [pass] => 111111
-    [repeatPass] => 111111
-)
----- 
-29/11/16 04:29:08 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 456
-Array
-(
-    [data] => Array
-        (
-            [0] => Array
-                (
-                    [count] => 0
-                    [0] => 0
-                )
-
-        )
-
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:29:08 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 347
-Array
-(
-    [data] => 
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:29:08 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 398
-Array
-(
-    [message] => User edited
-)
----- 
-29/11/16 04:29:22 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 192
-Array
-(
-    [userId] => usr1480186635766TCSa
-    [userType] => 2
-    [name] => Naty
-    [lastName] => Mata
-    [username] => natymata
-    [money] => dolar
-    [accountType] => ahorros
-    [isConnected] => 1
-    [pass] => 111111
-    [repeatPass] => 111111
-)
----- 
-29/11/16 04:29:22 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 456
-Array
-(
-    [data] => Array
-        (
-            [0] => Array
-                (
-                    [count] => 0
-                    [0] => 0
-                )
-
-        )
-
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:29:22 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 347
-Array
-(
-    [data] => 
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:29:22 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 398
-Array
-(
-    [message] => User edited
-)
----- 
-29/11/16 04:30:41 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
-Array
-(
-    [data] => Array
-        (
-            [0] => Array
-                (
-                    [userId] => usr1480186635766TCSa
-                    [0] => usr1480186635766TCSa
-                    [name] => Naty
-                    [1] => Naty
-                    [lastName] => Mata
-                    [2] => Mata
-                    [username] => natymata
-                    [3] => natymata
-                    [password] => $2y$10$G8ASMAgMg95XdTWDDW7dqe7GS2ltVoOrKkbl5/YM8r3TQatv2d6RC
-                    [4] => $2y$10$G8ASMAgMg95XdTWDDW7dqe7GS2ltVoOrKkbl5/YM8r3TQatv2d6RC
-                    [money] => dolar
-                    [5] => dolar
-                    [accountType] => ahorros
-                    [6] => ahorros
-                    [tbUserType_idUserType] => 2
-                    [7] => 2
-                )
-
-        )
-
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:30:41 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
-111111---- 
-29/11/16 04:31:13 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
-Array
-(
-    [data] => Array
-        (
-            [0] => Array
-                (
-                    [userId] => usr1480186635766TCSa
-                    [0] => usr1480186635766TCSa
-                    [name] => Naty
-                    [1] => Naty
-                    [lastName] => Mata
-                    [2] => Mata
-                    [username] => natymata
-                    [3] => natymata
-                    [password] => $2y$10$G8ASMAgMg95XdTWDDW7dqe7GS2ltVoOrKkbl5/YM8r3TQatv2d6RC
-                    [4] => $2y$10$G8ASMAgMg95XdTWDDW7dqe7GS2ltVoOrKkbl5/YM8r3TQatv2d6RC
-                    [money] => dolar
-                    [5] => dolar
-                    [accountType] => ahorros
-                    [6] => ahorros
-                    [tbUserType_idUserType] => 2
-                    [7] => 2
-                )
-
-        )
-
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:31:13 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
-111111---- 
-29/11/16 04:32:39 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
-Array
-(
-    [data] => Array
-        (
-            [0] => Array
-                (
-                    [userId] => usr1480186635766TCSa
-                    [0] => usr1480186635766TCSa
-                    [name] => Naty
-                    [1] => Naty
-                    [lastName] => Mata
-                    [2] => Mata
-                    [username] => natymata
-                    [3] => natymata
-                    [password] => $2y$10$G8ASMAgMg95XdTWDDW7dqe7GS2ltVoOrKkbl5/YM8r3TQatv2d6RC
-                    [4] => $2y$10$G8ASMAgMg95XdTWDDW7dqe7GS2ltVoOrKkbl5/YM8r3TQatv2d6RC
-                    [money] => dolar
-                    [5] => dolar
-                    [accountType] => ahorros
-                    [6] => ahorros
-                    [tbUserType_idUserType] => 2
-                    [7] => 2
-                )
-
-        )
-
-    [meta] => Array
-        (
-            [count] => 1
-        )
-
-)
----- 
-29/11/16 04:32:39 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
-111111---- 
-29/11/16 04:33:07 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 192
-Array
-(
-    [userId] => usr1480186635766TCSa
-    [userType] => 2
-    [name] => Naty
-    [lastName] => Mata
-    [username] => natymata
-    [money] => euro
     [accountType] => corriente
-    [isConnected] => 1
-    [pass] => 111111
     [repeatPass] => 111111
+    [pass] => 111111
 )
 ---- 
-29/11/16 04:33:07 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 456
+30/11/16 01:30:43 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 484
 Array
 (
     [data] => Array
@@ -603,26 +96,32 @@ Array
 
 )
 ---- 
-29/11/16 04:33:07 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 347
+30/11/16 01:30:44 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 212
 Array
 (
     [data] => 
     [meta] => Array
         (
+            [id] => 0
             [count] => 1
         )
 
 )
 ---- 
-29/11/16 04:33:07 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 398
+30/11/16 01:30:44 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 268
 Array
 (
-    [message] => User edited
+    [message] => User created
+    [meta] => Array
+        (
+            [id] => 0
+        )
+
 )
 ---- 
-29/11/16 22:24:32 
+30/11/16 01:30:51 
 C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
 Array
 (
@@ -630,18 +129,18 @@ Array
         (
             [0] => Array
                 (
-                    [userId] => usr1480186635766TCSa
-                    [0] => usr1480186635766TCSa
-                    [name] => Naty
-                    [1] => Naty
-                    [lastName] => Mata
-                    [2] => Mata
-                    [username] => natymata
-                    [3] => natymata
-                    [password] => $2y$10$h5/nJsy8jXbiPVFYcPYdMehSYKNIK0mIMw8dy4atk46A1IIj8sw7G
-                    [4] => $2y$10$h5/nJsy8jXbiPVFYcPYdMehSYKNIK0mIMw8dy4atk46A1IIj8sw7G
-                    [money] => euro
-                    [5] => euro
+                    [userId] => usr1480491043534FnGw
+                    [0] => usr1480491043534FnGw
+                    [name] => kjdlaskdaekfls
+                    [1] => kjdlaskdaekfls
+                    [lastName] => djfslkfjs
+                    [2] => djfslkfjs
+                    [username] => juanita
+                    [3] => juanita
+                    [password] => $2y$10$wjFUR/w4TghoLPmOQUSGce/EwGLy8X7O/XLcBlddE09ByH64rPrRa
+                    [4] => $2y$10$wjFUR/w4TghoLPmOQUSGce/EwGLy8X7O/XLcBlddE09ByH64rPrRa
+                    [money] => colon
+                    [5] => colon
                     [accountType] => corriente
                     [6] => corriente
                     [tbUserType_idUserType] => 2
@@ -657,18 +156,56 @@ Array
 
 )
 ---- 
-29/11/16 22:24:32 
+30/11/16 01:30:51 
 C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
 111111---- 
-29/11/16 22:24:59 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 192
+30/11/16 01:31:07 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
 Array
 (
-    [userId] => usr1480186635766TCSa
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480491043534FnGw
+                    [0] => usr1480491043534FnGw
+                    [name] => kjdlaskdaekfls
+                    [1] => kjdlaskdaekfls
+                    [lastName] => djfslkfjs
+                    [2] => djfslkfjs
+                    [username] => juanita
+                    [3] => juanita
+                    [password] => $2y$10$wjFUR/w4TghoLPmOQUSGce/EwGLy8X7O/XLcBlddE09ByH64rPrRa
+                    [4] => $2y$10$wjFUR/w4TghoLPmOQUSGce/EwGLy8X7O/XLcBlddE09ByH64rPrRa
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => corriente
+                    [6] => corriente
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+30/11/16 01:31:07 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+30/11/16 01:31:21 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 188
+Array
+(
+    [userId] => usr1480491043534FnGw
     [userType] => 2
-    [name] => Naty
-    [lastName] => Mata
-    [username] => natymata
+    [name] => juana
+    [lastName] => de arco
+    [username] => juanita
     [money] => colon
     [accountType] => corriente
     [isConnected] => 1
@@ -676,8 +213,8 @@ Array
     [repeatPass] => 111111
 )
 ---- 
-29/11/16 22:25:00 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 456
+30/11/16 01:31:21 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 510
 Array
 (
     [data] => Array
@@ -697,7 +234,7 @@ Array
 
 )
 ---- 
-29/11/16 22:25:00 
+30/11/16 01:31:22 
 C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 347
 Array
 (
@@ -709,31 +246,31 @@ Array
 
 )
 ---- 
-29/11/16 22:25:00 
+30/11/16 01:31:22 
 C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 398
 Array
 (
     [message] => User edited
 )
 ---- 
-29/11/16 22:25:29 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 192
+30/11/16 01:31:37 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 188
 Array
 (
-    [userId] => usr1480186635766TCSa
+    [userId] => usr1480491043534FnGw
     [userType] => 2
-    [name] => Naty
-    [lastName] => Mata
-    [username] => natymata
-    [money] => colon
+    [name] => juana
+    [lastName] => de arco
+    [username] => juanita
+    [money] => euro
     [accountType] => ahorros
     [isConnected] => 1
     [pass] => 111111
     [repeatPass] => 111111
 )
 ---- 
-29/11/16 22:25:29 
-C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 456
+30/11/16 01:31:37 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 510
 Array
 (
     [data] => Array
@@ -753,7 +290,7 @@ Array
 
 )
 ---- 
-29/11/16 22:25:29 
+30/11/16 01:31:37 
 C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 347
 Array
 (
@@ -765,9 +302,213 @@ Array
 
 )
 ---- 
-29/11/16 22:25:29 
+30/11/16 01:31:37 
 C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 398
 Array
 (
     [message] => User edited
 )
+---- 
+30/11/16 01:32:12 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 246
+usr1480491043534FnGw---- 
+30/11/16 01:32:12 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 425
+Array
+(
+    [data] => 
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+30/11/16 01:32:12 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 429
+1---- 
+30/11/16 01:32:19 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => 
+    [meta] => Array
+        (
+            [count] => 0
+        )
+
+)
+---- 
+30/11/16 01:34:19 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480490664407qFUa
+                    [0] => usr1480490664407qFUa
+                    [name] => skdñlsakdñ
+                    [1] => skdñlsakdñ
+                    [lastName] => ñskdañldk
+                    [2] => ñskdañldk
+                    [username] => skjalksj
+                    [3] => skjalksj
+                    [password] => $2y$10$t.fAMoF5d4rJj8jywFYXzeGrhEIZMgOQf6r/As0hX3GCfFlw3x4Jq
+                    [4] => $2y$10$t.fAMoF5d4rJj8jywFYXzeGrhEIZMgOQf6r/As0hX3GCfFlw3x4Jq
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => corriente
+                    [6] => corriente
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+30/11/16 01:34:19 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+30/11/16 01:34:26 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 246
+usr1480490664407qFUa---- 
+30/11/16 01:34:26 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 425
+Array
+(
+    [data] => 
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+30/11/16 01:34:26 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 429
+1---- 
+30/11/16 01:36:06 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 111
+Array
+(
+    [userId] => usr1480491366068ZKjE
+    [userType] => 2
+    [name] => skdlñsk
+    [lastName] => ñlsdkak
+    [username] => juana
+    [money] => colon
+    [accountType] => corriente
+    [repeatPass] => 111111
+    [pass] => 111111
+)
+---- 
+30/11/16 01:36:06 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 484
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [count] => 0
+                    [0] => 0
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+30/11/16 01:36:06 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 212
+Array
+(
+    [data] => 
+    [meta] => Array
+        (
+            [id] => 0
+            [count] => 1
+        )
+
+)
+---- 
+30/11/16 01:36:06 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 268
+Array
+(
+    [message] => User created
+    [meta] => Array
+        (
+            [id] => 0
+        )
+
+)
+---- 
+30/11/16 01:36:13 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480491366068ZKjE
+                    [0] => usr1480491366068ZKjE
+                    [name] => skdlñsk
+                    [1] => skdlñsk
+                    [lastName] => ñlsdkak
+                    [2] => ñlsdkak
+                    [username] => juana
+                    [3] => juana
+                    [password] => $2y$10$MdiVUNazW0OtkumhG7ps4u7C5rAb0Rb.v89b9QJNJqScXybTgl62O
+                    [4] => $2y$10$MdiVUNazW0OtkumhG7ps4u7C5rAb0Rb.v89b9QJNJqScXybTgl62O
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => corriente
+                    [6] => corriente
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+30/11/16 01:36:13 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+30/11/16 01:46:49 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\UserController.php: 246
+usr1480491366068ZKjE---- 
+30/11/16 01:46:49 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 425
+Array
+(
+    [data] => 
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+30/11/16 01:46:49 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 429
+1

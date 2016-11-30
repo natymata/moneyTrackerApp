@@ -31,20 +31,26 @@ angular.module('bankAccount.controllers')
 
 
 	profile.deleteAccount= function() {
-		var result= userService.deleteAccount(profile.userId, profile.username);
-		console.log(result);
-
-		if(!result.error){
-			profile.deleteInfo= result.string;
-			profile.deleteModal= true;
-			modal(true);
-		}else{
-			profile.deleteInfo= result.string;
+		userService.deleteAccount(profile.userId)
+		.success(function(response){
+			if(response.deleted){
+				profile.deleteInfo= "Su cuenta de usuario ha sido eliminada";
+				profile.deleteModal= true;
+				modal(true);
+			}else{
+				profile.deleteInfo= "Error, no se ha podido ejecutar la operación";
+				profile.deleteModal= true;
+				modal(false);
+			}
+		})
+		.error(function(response) {
+			profile.deleteInfo= "Error, no se ha podido ejecutar la operación";
 			profile.deleteModal= true;
 			modal(false);
-		};
-	};
+		})
 
+		
+	};
 
 	var modal= function(result) {
 		$timeout(function(){
@@ -52,7 +58,9 @@ angular.module('bankAccount.controllers')
 			if(result){
 				userService.logout();
 				$location.path("/");
-			};
+			}else{
+				profile.confirmModal= false;
+			}
 		}, 2000);	
 	};
 

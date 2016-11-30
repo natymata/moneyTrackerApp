@@ -87,23 +87,32 @@ $app->post(
 );
 
 
+/*user/deleteUser->Eliminar una cuent usuario*/
+$app->delete(
+    '/user/deleteUser/{userId}',
+    function ($request, $response, $args) {
+        /** @var Request $request */
+        /** @var Response $response */
+        $userController = new App\Controllers\UserController();
+        $result = $userController->deleteUser($request, $args);
+        return $response->withJson($result);
+    }
+);
 
 
-
-
-
-/*user/getAllUsers*/
+/*
+//user/getAllUsers
 $app->get(
     '/user/getAllUsers',
     function($request, $response){
-        /** @var Request $request */
-        /** @var Response $response */
+        // @var Request $request
+        // @var Response $response
         $userController= new App\Controllers\UserController();
         $result= $userController->getAllUsers($request);
         return $response->withJson($result);
     }
 );
-
+*/
 
 
 

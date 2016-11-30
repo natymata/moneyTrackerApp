@@ -29,6 +29,14 @@ angular.module('bankAccount.controllers')
 			return {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
 		};
 	};
+
+	newAcc.checkOper= function() {
+		if(newAcc.tId==0){
+			newAcc.validateCreate();
+		}else{
+			newAcc.edit();
+		}
+	};
 	
 	newAcc.validateCreate= function() {
 		newAcc.info="";
@@ -39,7 +47,6 @@ angular.module('bankAccount.controllers')
 				newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
 				newAcc.modalInfo="Usuario creado con éxito";
 				newAcc.showModal= true;
-				console.log(response);
 				modal();
 				formService.clearForm(newAccForm, $scope);
 				newAcc.info="";

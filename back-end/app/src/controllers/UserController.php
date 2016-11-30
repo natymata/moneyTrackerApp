@@ -20,7 +20,7 @@ class UserController {
     }
 
     /**
-     *
+     *User login
      * @param Request $request
      *
      * @return []
@@ -61,10 +61,6 @@ class UserController {
     } //end -login-
 
 
-    public function getAllUsers(){
-        return $this->userService->getAllUsers();
-    }
-
     /**
      * Cierra la sesión del usuario del lado del back-end.
      *
@@ -90,6 +86,7 @@ class UserController {
         return $result;
     } //end -logout-
 
+
     /**
      * Registra un nuevo usuario en el sistema.
      *
@@ -97,7 +94,6 @@ class UserController {
      *
      * @return string []
      */
-
     public function registerUser($request) {
         $result = [];
         $formData = $request->getParsedBody();
@@ -234,11 +230,42 @@ class UserController {
             $result["edited"] = true;
             $result["error"] = false;
         }
-
-
         return $result;
     } //end -editUser-
 
+
+    /**
+    * Delete an user account
+    * @param  $request 
+    * @param  $args    
+    * @return []         
+    */
+    public function deleteUser($request, $args){
+        $result = [];
+        $userId = $args['userId'];
+        LoggingService::logVariable($userId, __FILE__, __LINE__);
+
+        $deleteResult = $this->userService->deleteUser($userId);
+
+        if (array_key_exists("error", $deleteResult)) {
+            $result["error"] = true;
+            $result["message"]= $deleteResult["message"];
+            $result["deleted"] = false;
+        }else{
+            $result["message"] = $deleteResult["message"];
+            $result["error"]= false;
+            $result["deleted"] = true;
+        }
+        return $result;
+    }//end  delete user.
+
+
+
+/*
+    public function getAllUsers(){
+        return $this->userService->getAllUsers();
+    }
+*/
     
 
 

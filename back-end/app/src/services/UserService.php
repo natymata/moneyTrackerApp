@@ -400,6 +400,60 @@ class UserService {
 
     } //end -editUser
 
+
+    /**
+     * Delete user account by id
+     * @param  [string] $userId
+     * @return []   
+     */
+    public function deleteUser($userId){
+        $result = [];
+        $userId= trim($userId);
+
+        //Verificar que el userId este seteado
+        if(isset($userId)){//1
+            //Vefiricar que el userId sea string valido y tenga al menos 9 caracteres
+            if($this->validation->isValidString($userId) && strlen(trim($userId))>=9){//2
+                //query
+                $query= "DELETE FROM tbuser WHERE userId= :userId";
+
+                // Query params
+                $params = [":userId" => $userId];
+
+                $deleteResult = $this->storage->query($query, $params);
+                
+                LoggingService::logVariable($deleteResult, __FILE__, __LINE__);
+                
+                $isUserDeleted= array_key_exists("meta", $deleteResult) && $deleteResult["meta"]["count"]==1;
+                
+                LoggingService::logVariable($isUserDeleted, __FILE__, __LINE__);
+                
+                if ($isUserDeleted) {
+                    $result["message"] = "User account deleted";
+                } else {
+                    $result["error"] = true;
+                    $result["message"] = "Error deleting user account";
+                }
+                
+            }else{//2
+                $result["error"] = true;
+                $result["message"] = "User Id format is invalid";
+            }
+        }else{//1
+            $result["error"] = true;
+            $result["message"] = "User Id es required";
+        }
+
+        return $result;
+    }//end deleteUser
+
+
+
+
+
+
+
+
     /**
      * Enmascara la contraseña brindada para evitar almacenar las contraseñas en texto plano en la base de datos.
      *
