@@ -3,11 +3,12 @@
 		<h2 ng-show="newAcc.tId==0">Registar Cuenta</h2>
 		<h2 ng-show="newAcc.tId==1">Editar Cuenta</h2>
 
-		<h4 ng-show="newAcc.tId==0" class="text-center">{{newAcc.info}}</h4>
-		<h4 ng-show="newAcc.tId==1" class="text-center">{{newAcc.updateInfo}}</h4>
+		<h4 class="text-center" ng-show="newAcc.tId==0">{{newAcc.info}}</h4>
+		<h4 class="text-center" ng-show="newAcc.tId==1">{{newAcc.editInfo}}</h4>
+		
 
 		<div class="newAcc-add">
-			<form name="newAccForm" ng-submit="newAccForm.$valid && newAcc.validateCreate()" novalidate>
+			<form name="newAccForm" ng-submit="newAccForm.$valid" novalidate>
 				<div class="form-group display-inline div50">
 					<sub ng-show="newAccForm.name.$invalid && newAccForm.name.$touched">El nombre es requerido</sub>
 					<label>Nombre:</label><input type="text" name="name" ng-model= "newAcc.newAccount.name" required ng-model-options="{debounce:200}" class="form-control">
@@ -65,6 +66,7 @@
 
 		<div class="addModal post-abs" ng-show= "newAcc.showModal">
 			<h3 class="text-center margin-modal2">{{newAcc.modalInfo}}</h3>
+			<h3 class="text-center margin-modal2">{{newAcc.updateInfo}}</h3>
 		</div>
 
 	</section> <!-- main-list -->

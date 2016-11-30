@@ -107,108 +107,19 @@ angular.module('bankAccount.services')
 		return accountInfo;
 	};//end, setUserInfo
 
+	//Edit an user account
+	var editAccount= function(user) {
+		var url= 'back-end/index.php/user/editUser';
+		var result;
 
-	/*
-	TEMP FUNCTIONS
-	 */
-	
+		result= $http.post(url, user);
+		return result;
+	};//end editAccount
 
-	//returns a specific account identified by username
-	var getUserByUserName= function(username) {
-		var accounts= getAllUsersAccounts().filter(function(user) {
-			return user.username== username;
-		});
-		return accounts[0];
-	};//end, getUserByUserName
-
-	
-	//verify by username if a account exists
-	var accountExists= function(username) {
-		var accounts= getUsersLoginData();
-		if(accounts.length==0){
-			return false;  //ni existe ninguna cuenta previamente
-		}else{
-			var exists= accounts.filter(function(item) {
-				return item.username==username;
-			});
-
-			if(exists.length==0){
-				return false; // la cuenta no existe
-			}else{
-				return true; // la cuenta si existe
-			}
-		};
-	}; //end, accountExists
-
-	var canUseUsername= function(username, userId) {
-		if(accountExists(username)){
-			var accounts= getUsersLoginData().filter(function(item) {
-				return item.userId== userId;
-			});
-			if(accounts[0].username== username){
-				return true;
-			}else{
-				return false;
-			}
-		}else{
-			return true;
-		}
-
-	};//end, canUseUsername
-
-	var saveNewUser= function(user) {
-		var allAccounts= getAllUsersAccounts();
-		allAccounts.push(user);
-		localStorageService.set('ntAllAccounts', allAccounts);
-	};
-
-	//returns all users account info
-	var getAllUsersAccounts= function() {
-		return localStorageService.getOrInit('ntAllAccounts');
-	};
-
-	//saves new users id and password at local storage
-	var saveUserPass= function(id, username, pass) {
-		var allUsers= getUsersLoginData();
-		var newUser= {
-			userId: id,
-			username: username,
-			pass: pass
-		};
-		allUsers.push(newUser);
-		localStorageService.set('ntUserPass', allUsers);
-	}; //end, saveUserPass
-
-	//returns an array containing all users id, username and password
-	var getUsersLoginData= function() {
-		return localStorageService.getOrInit('ntUserPass');
-	};
-
-	
-
-
-	/*
-	var canLogin= function(username, pass) {
-		if(accountExists(username)){ //username si esta registrado
-
-			var account= getUsersLoginData().filter(function(item) {
-				return item.username==username;
-			});
-
-			if(account[0].pass==pass){ //password es correcto
-				return true;
-			}else{
-				return false; //password incorrecto
-			}
-		}else{
-			return false; //username no registrado
-		}
-	};//end, canLoging function
-	 */
 
 	//logout user
 	var logout= function() {
-		var response={
+		var result={
 			msg:"",
 			error:""
 		};
@@ -227,15 +138,114 @@ angular.module('bankAccount.services')
 		$cookies.remove('ntLoggedUser');
 
 		if(isLoggedIn()){
-			response.error= true;
-			response.msg="Error, no se ha podido deslogear el usuario";
-			return response;
+			result.error= true;
+			result.msg="Error, no se ha podido deslogear el usuario";
+			return result;
 		}else{
-			response.error= false;
-			response.msg="Usuario deslogeado con éxito";
-			return response;
+			result.error= false;
+			result.msg="Usuario deslogeado con éxito";
+			backLogout()
+			.success(function(response) {
+				if(response.error){
+					result.back= response.message;
+				}else{
+					result.back= response.message;	
+				}
+			})
+			.error(function(response) {
+				result.back= "No se ha podido realizar la operación";
+			})
+			return result;
 		};
-	};
+	};//end. logout
+
+	var backLogout= function() {
+		var url= 'back-end/index.php/user/logout';
+		var result= $http.get(url);
+		return result;
+	}; //end, backLogout
+
+
+	/*
+	TEMP FUNCTIONS
+	 */
+	
+
+	//returns a specific account identified by username
+	var getUserByUserName= function(username) {
+		var accounts= getAllUsersAccounts().filter(function(user) {
+			return user.username== username;
+		});
+		return accounts[0];
+	};//end, getUserByUserName
+
+	
+	// //verify by username if a account exists
+	// var accountExists= function(username) {
+	// 	var accounts= getUsersLoginData();
+	// 	if(accounts.length==0){
+	// 		return false;  //ni existe ninguna cuenta previamente
+	// 	}else{
+	// 		var exists= accounts.filter(function(item) {
+	// 			return item.username==username;
+	// 		});
+
+	// 		if(exists.length==0){
+	// 			return false; // la cuenta no existe
+	// 		}else{
+	// 			return true; // la cuenta si existe
+	// 		}
+	// 	};
+	// }; //end, accountExists
+
+	// var canUseUsername= function(username, userId) {
+	// 	if(accountExists(username)){
+	// 		var accounts= getUsersLoginData().filter(function(item) {
+	// 			return item.userId== userId;
+	// 		});
+	// 		if(accounts[0].username== username){
+	// 			return true;
+	// 		}else{
+	// 			return false;
+	// 		}
+	// 	}else{
+	// 		return true;
+	// 	}
+
+	// };//end, canUseUsername
+
+	// var saveNewUser= function(user) {
+	// 	var allAccounts= getAllUsersAccounts();
+	// 	allAccounts.push(user);
+	// 	localStorageService.set('ntAllAccounts', allAccounts);
+	// };
+
+	// //returns all users account info
+	// var getAllUsersAccounts= function() {
+	// 	return localStorageService.getOrInit('ntAllAccounts');
+	// };
+
+	// //saves new users id and password at local storage
+	// var saveUserPass= function(id, username, pass) {
+	// 	var allUsers= getUsersLoginData();
+	// 	var newUser= {
+	// 		userId: id,
+	// 		username: username,
+	// 		pass: pass
+	// 	};
+	// 	allUsers.push(newUser);
+	// 	localStorageService.set('ntUserPass', allUsers);
+	// }; //end, saveUserPass
+
+	// //returns an array containing all users id, username and password
+	// var getUsersLoginData= function() {
+	// 	return localStorageService.getOrInit('ntUserPass');
+	// };
+
+	
+
+
+
 
 	var deleteAccount= function(userId, username) {
 		var accounts, accountLogginData;
@@ -264,51 +274,6 @@ angular.module('bankAccount.services')
 		return response;
 	};
 
-	var editAccount= function(user) {
-		var userId= user.userId;
-		var username= user.username;
-		var deleteMsj;
-		var createNewMsj;
-		var response={
-			error:"",
-			string:""
-		};
-
-		if(user.pass==user.repeatPass){
-			if(canUseUsername(username, userId)){
-				deleteMsj= deleteAccount(userId, username);
-				response.deleteRes= deleteMsj.string;
-				if(deleteMsj.error){
-					response.string= "Error, la cuenta no ha sido eliminada";
-					response.error= true;
-					response.deleteRes= deleteMsj.string;
-					return response;
-				}else{
-					createNewMsj= createNewAccount(user);
-					response.createRes= createNewMsj.string;
-					if(createNewMsj.error){
-						response.string= "Error, la cuenta no ha sido editada";
-						response.error= true;
-						response.createRes= createNewMsj.string;
-						return response;	
-					}else{
-						response.string= "Cuenta editada exitosamente";
-						response.error= false;
-						return response;
-					}
-				}
-			}else{
-				response.string= "Error, Nombre de usuario ya registrado, escriba otro";
-				response.error= true;
-				return response;
-			}
-		}else{
-			response.string= "Error, passwords no coinciden";
-			response.error= true;
-			return response;
-		}
-
-	};
 
 //access
 	return{

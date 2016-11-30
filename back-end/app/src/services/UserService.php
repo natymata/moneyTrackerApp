@@ -157,15 +157,15 @@ class UserService {
     public function registerUser($userId, $userType, $name, $lastName, $username, $money, $accountType, $pass, $repeatPass){
         $result=[];
 
-        $userId= trim($userId);//
-        $userType= trim($userType);//
-        $name= trim($name);//
-        $lastName= trim($lastName);//
-        $username= trim($username);//
+        $userId= trim($userId);
+        $userType= trim($userType);
+        $name= trim($name);
+        $lastName= trim($lastName);
+        $username= trim($username);
         $money= trim($money);
         $accountType= trim($accountType);
-        $pass= trim($pass);//
-        $repeatPass= trim($repeatPass);//
+        $pass= trim($pass);
+        $repeatPass= trim($repeatPass);
 
         // Verificar que efectivamente vengan todos los datos requeridos.
         if(isset($userId, $userType, $name, $lastName, $username, $money, $accountType, $pass, $repeatPass)){ //1
@@ -270,6 +270,136 @@ class UserService {
 
     } //end -registerUser
 
+
+
+    /**
+     * Edita una cuenta de usuario
+     *
+     * @param string $firstname
+     * @param string $secondname
+     * @param string $firstlastname
+     * @param string $secondlastname
+     * @param int $personalId
+     * @param string $email
+     * @param string $password
+     * @param string $repeatPass
+
+     * @return array
+     */  
+    public function editUser($userId, $name, $lastName, $username, $money, $accountType, $pass, $repeatPass){
+        $result=[];
+
+        $userId= trim($userId);
+        $name= trim($name);
+        $lastName= trim($lastName);
+        $username= trim($username);
+        $money= trim($money);
+        $accountType= trim($accountType);
+        $pass= trim($pass);
+        $repeatPass= trim($repeatPass);
+
+        // Verificar que efectivamente vengan todos los datos requeridos.
+        if(isset($userId, $name, $lastName, $username, $money, $accountType, $pass, $repeatPass)){ //1
+            //Verificar que el username sea uno disponible
+            if($this->validation->isValidString($username) && $this->isUsernameAvailableEdit($username, $userId)){//2
+                //Verificar que el password y la confirmacion coincidan.
+                if($pass == $repeatPass){//3
+                    //verificar que el userId contenga al menos 9 caracteres
+                    if($this->validation->isValidString($userId) && strlen(trim($userId))>=9){//5
+                       //Verificar que el password se string válido y tenga al menos 6 caracteres.
+                        if($this->validation->isValidString($pass) && strlen(trim($pass))>=6){//6
+                            //Vefificar que la confirmacion de contraseña sea string válido.
+                            if($this->validation->isValidString($repeatPass)){//7
+                                //Verifwcar que el nombre sea valido   
+                                if($this->validation->isValidString($name)){//9
+                                    //verificar que el apellido sea un string válido
+                                    if($this->validation->isValidString($lastName)){//10
+                                        //verificar que money sea string valido
+                                        if($this->validation->isValidString($money)){//11
+                                            //vefiicar que el account type sea string valido
+                                            if($this->validation->isValidString($accountType)){//12
+                                                $query = "UPDATE tbuser SET 
+                                                        name= :name,
+                                                        lastName= :lastName,
+                                                        username= :username,
+                                                        password= :password, 
+                                                        money= :money,
+                                                        accountType= :accountType
+                                                        WHERE userId= :userId";
+
+                                                    // Enmascaramos la contraseña
+                                                $encryptedPassword = $this->getProtectedPassword($pass);
+
+                                                // Los parámetros de ese query
+                                                $params = [
+                                                    ":userId" => $userId,
+                                                    ":name" => $name,
+                                                    ":lastName" => $lastName,
+                                                    ":username" => $username,
+                                                    ":money" => $money,
+                                                    ":accountType" => $accountType,
+                                                    ":password" => $encryptedPassword
+                                                ];
+
+                                                    // Lo ejecutamos
+                                                $editAccountResult = $this->storage->query($query, $params);
+
+                                                LoggingService::logVariable($editAccountResult, __FILE__, __LINE__);
+                                                   
+                                                $isUserEdited= array_key_exists("meta", $editAccountResult) && $editAccountResult["meta"]["count"]==1;
+
+                                                if($isUserEdited){
+                                                    $result["message"]= "User edited";
+                                                }else{
+                                                    $result["error"] = true;
+                                                    $result["message"]= "Error, can't edit user";
+                                                }
+                                            }else{//12
+                                                 $result["error"] = true;
+                                                $result["message"] = "Account type is invalid";
+                                            } 
+                                        }else{//11
+                                            $result["error"] = true;
+                                            $result["message"] = "Money value is invalid";
+                                        }
+                                    }else{//10
+                                        $result["error"] = true;
+                                        $result["message"] = "Lastname is invalid";
+                                    }
+                                }else{//9
+                                    $result["error"] = true;
+                                    $result["message"] = "Name is invalid";
+                                }
+                            }else{//7
+                                $result["error"] = true;
+                                $result["message"] = "Password confirm is invalid";
+                            }
+                        }else{//6
+                            $result["error"] = true;
+                            $result["message"] = "Password is invalid";
+                        }
+                    }else{//5
+                        $result["error"] = true;
+                        $result["message"] = "User Id is invalid";
+                    }
+                }else{//3
+                    $result["error"] = true;
+                    $result["message"] = "Passwords don't match";
+                }
+            }else{//2
+                $result["error"] = true;
+                $result["message"] = "Username is unavailable";
+            }
+        }else{//1
+            $result["error"] = true;
+            $result["message"] = "All fields are required";
+        }
+
+        LoggingService::logVariable($result, __FILE__, __LINE__);
+        return $result;
+
+    } //end -editUser
+
     /**
      * Enmascara la contraseña brindada para evitar almacenar las contraseñas en texto plano en la base de datos.
      *
@@ -297,13 +427,38 @@ class UserService {
 
         $result = $this->storage->query($query, $params);
 
-        LoggingService::logVariable($result);
+        LoggingService::logVariable($result, __FILE__, __LINE__);
 
         // El resultado esperado de la cuenta es cero
         return $result["data"][0]["count"] == 0;
 
     }//end -isUsernameAvailable-
 
+
+    /**
+     * Verifica si un username esta disponible para editar una cuenta, sacando su propio id
+     *
+     * @param string $username
+     * @return bool
+     */
+    private function isUsernameAvailableEdit($username, $userId) {
+        // El query a ejecutar en la BD
+        $query = "SELECT COUNT(*) AS count FROM tbuser WHERE username= :username AND userId != :userId";
+
+        // Los parámetros de ese query
+        $params = [
+            ":username" => $username,
+            ":userId" => $userId
+            ];
+
+        $result = $this->storage->query($query, $params);
+
+        LoggingService::logVariable($result, __FILE__, __LINE__);
+
+        // El resultado esperado de la cuenta es cero
+        return $result["data"][0]["count"] == 0;
+
+    }//end -isUsernameAvailableEdit-
 
 
 }//end -class-

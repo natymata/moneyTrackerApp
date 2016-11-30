@@ -10,7 +10,7 @@ use Slim\Http\Request;
 class UserController {
 
     private $userService;
-    private $nombreCookie = "loggedIn";
+    private $ntLoginCookie = "loggedIn";
 
     /**
      * UserController constructor.
@@ -51,7 +51,7 @@ class UserController {
             /**
              *Crear un cookie en caso de que el usuario haya inicado sesión-
              */
-            setcookie($this->nombreCookie, true, time()+3600);
+            setcookie($this->ntLoginCookie, true, time()+3600);
             $result["user"] = $loginResult["user"];
             $result["message"] = $loginResult["message"]; 
             $result["canLogin"] = $loginResult["canLogin"]; 
@@ -76,10 +76,11 @@ class UserController {
         $result = [];
 
         // Verificamos si el usuario tenía un cookie en primer lugar
-        if (array_key_exists($this->nombreCookie, $_COOKIE)) {
+        if (array_key_exists($this->ntLoginCookie, $_COOKIE)) {
             $result["message"] = "User was logged out";
+            $result["error"] = false;
             // Expirar el cookie en caso de que existiera
-            setcookie($this->nombreCookie, true, time()-10);
+            setcookie($this->ntLoginCookie, true, time()-10);
         } else {
             // Retornar un mensaje de error en caso de que se haya accedido al logout sin tener sesión activa
             $result["error"] = true;
@@ -164,6 +165,79 @@ class UserController {
 
         return $result;
     } //end -registerUser-
+
+
+
+       /**
+     * Edita una cuenta de un usuario.
+     *
+     * @param Request $request
+     *
+     * @return string []
+     */
+
+    public function editUser($request) {
+        $result = [];
+        $formData = $request->getParsedBody();
+
+        $userId= null;
+        $name= null;
+        $lastName= null;
+        $username= null;
+        $money= null;
+        $accountType= null;
+        $pass= null;
+        $repeatPass= null;
+
+        LoggingService::logVariable($formData, __FILE__, __LINE__);
+
+        if (array_key_exists("userId", $formData)) {
+            $userId = $formData["userId"];
+        }
+
+        if (array_key_exists("name", $formData)) {
+            $name = $formData["name"];
+        }
+
+        if (array_key_exists("lastName", $formData)) {
+            $lastName = $formData["lastName"];
+        }
+
+        if (array_key_exists("username", $formData)) {
+            $username = $formData["username"];
+        }
+
+        if (array_key_exists("money", $formData)) {
+            $money = $formData["money"];
+        }
+
+        if (array_key_exists("accountType", $formData)) {
+            $accountType = $formData["accountType"];
+        }
+
+        if (array_key_exists("pass", $formData)) {
+            $pass = $formData["pass"];
+        }
+
+        if (array_key_exists("repeatPass", $formData)) {
+            $repeatPass = $formData["repeatPass"];
+        }
+
+        $editResult = $this->userService->editUser($userId, $name, $lastName, $username, $money, $accountType, $pass, $repeatPass);
+
+        if(array_key_exists("error", $editResult)) {
+            $result["error"] = true;
+            $result["message"] = $editResult["message"];
+            $result["edited"] = false;
+        }else{
+            $result["message"] = $editResult["message"];
+            $result["edited"] = true;
+            $result["error"] = false;
+        }
+
+
+        return $result;
+    } //end -editUser-
 
     
 

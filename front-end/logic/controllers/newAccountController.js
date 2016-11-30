@@ -7,6 +7,7 @@ angular.module('bankAccount.controllers')
 		newAcc.tId= checktId(newAcc.userId);
 		newAcc.newAccount= bindTransact(newAcc.tId);
 		newAcc.info="";
+		newAcc.editInfo= "";
 		newAcc.updateInfo="";
 		newAcc.showModal= false;
 		newAcc.modalInfo="";
@@ -77,20 +78,31 @@ angular.module('bankAccount.controllers')
 	newAcc.edit= function() {
 		var user= newAcc.newAccount;
 		user.userId= newAcc.userId;
-		var result= userService.editAccount(user);
-		if(!result.error){
-			newAcc.updateInfo= result.string;
-			userService.login(user);
-			newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
-			formService.clearForm(newAccForm, $scope);
-			$location.path("profile/" + user.userId);
-			newAcc.updateInfo="";
-		}else{
-			newAcc.updateInfo= result.string;
-		};
+		userService.editAccount(user)
+		.success(function(response) {
+			if(!response.error){
+				userService.login(user);
+				newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
+				formService.clearForm(newAccForm, $scope);
+				newAcc.updateInfo= "Usuario editado con éxito";
+				newAcc.showModal= true;
+				editModal(user.userId);
+			}else{
+				newAcc.editInfo= response.message;
+			};
+		})
+		.error(function(response) {
+			newAcc.editInfo= "Error, no se ha podido completar la operación";
+		});
 	};
 
-
+	var editModal= function(userId) {
+		$timeout(function(){
+			newAcc.showModal= false;
+			newAcc.updateInfo="";
+			$location.path("profile/" + userId);
+		}, 2000);	
+	};
 
 
 	newAcc.cancelEdit= function() {
@@ -98,31 +110,7 @@ angular.module('bankAccount.controllers')
 		$location.path("/profile/" + newAcc.userId);
 	};
 
+
 	newAcc.init();
-
-///////////////////////////////////delete///////////////////////////////////
-/*
-
-
-
-	$scope.edit= function () {
-
-		BDService.deleteAccount($scope.getAccount());
-		BDService.editAccount($scope.getAccount(), $scope.accountId);
-		$scope.newAccount={};
-		$scope.clearForm();
-	};
-
-	$scope.accountId= Number($routeParams.id);
-
-	$scope.getAccount= function () {
-		$scope.contact= BDService.getAll().filter(function (item) {
-			return item.id== $scope.accountId;
-		})
-		return $scope.contact[0];
-	};
-*/
-///////////////////////////////////delete///////////////////////////////////
-
 });
 
