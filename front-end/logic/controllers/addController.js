@@ -17,16 +17,22 @@ angular.module('bankAccount.controllers')
 		add.info="";
 		var newTrnst= add.newTransat;
 		var userId= add.userId;
-		var result= transactService.addNew(newTrnst, userId);
-		if(!result.error){//transaction created
-			add.showModal= true;
-			add.clear($scope.addTransactForm);
-			add.info="Transacción creada con éxito";
-			add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""
+		transactService.addNew(newTrnst, userId)
+		.success(function(response){
+			if(!response.error){
+				add.showModal= true;
+				add.clear($scope.addTransactForm);
+				add.info="Transacción creada con éxito";
+				add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""};
+			}else{
+				console.error(response.message);
+				add.info= "No se ha podido completar la operación";
 			};
-		}else{ //error, couldn't create transaction	
-			add.info= result.string;
-		};
+		})
+		.error(function(response){
+			console.error(response.message);
+			add.info= "No se ha podido completar la operación";
+		});
 	};
 
 	add.edit= function() {

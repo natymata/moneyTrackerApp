@@ -6,6 +6,8 @@
 
 namespace App\Services;
 
+use DateTime;
+
 class TransactionsService {
 
     private $storage;
@@ -20,163 +22,122 @@ class TransactionsService {
     }
 
 
-
-    public function getReservedSeats($zoneId, $siteId, $eventId){
-    	$result=[];
-    	$zoneId= trim($zoneId);
-    	$siteId= trim($siteId); 
-    	$eventId= trim($eventId);
-
-    	//vefiricar que los tres capmpos esten
-		if(isset($zoneId, $siteId, $eventId)){ //1
-			//vefiricar que el id sitio sea numerico
-			if($this->validation->isValidInt($siteId)){//2
-				//verificar que el id del evento se numerico
-				if($this->validation->isValidInt($eventId)){//3
-					//vefiricar que el id de zona sea string valido
-					if($this->validation->isValidString($zoneId)){//4
-						//si todas las validaciones pasan hacemos la consulta
-						
-						$query= "SELECT idAsiento
-							FROM tbbutacasporsitioporevento
-							WHERE idEvento= :eventId
-							AND idSitio= :siteId
-							AND idSeccion= :zoneId";
-
-						$params = [
-				            ":eventId" => $promoterId, 
-				            ":siteId" => $idEvent,
-				            ":zoneId" => $zoneId
-				        ];
-
-				        $reservedSeatsResult = $this->storage->query($query, $params);
-
-			            $foundRecord = array_key_exists("meta", $reservedSeatsResult) &&
-			                $reservedSeatsResult["meta"]["count"] > 0;
-
-			            if ($foundRecord) {
-
-			                $result["message"] = "Records found";
-			                $seatsList = $reservedSeatsResult["data"];
-
-			                foreach ($seatsList as $seat) {
-			                    $result["data"][] = [
-			                        "seatId" => $seat["idAsiento"]
-			                    ];
-			                } 
-			            } else {
-			                $result["message"] = "Records not found";
-			                $result["error"] = true;
-			            }
-					}else{//4
-						$result["error"] = true;
-            			$result["message"] = "Invalid zona id";
-					}
-				}else{//3
-					$result["error"] = true;
-            		$result["message"] = "Invalid event id";
-				}
-			}else{//2
-				$result["error"] = true;
-            	$result["message"] = "Invalid site id";
-			}
-		}else{//1
-			$result["error"] = true;
-            $result["message"] = "Empty required fields";
-		}
-
-
-    	return $result;
-    }//getReservedSeats
-
-
-
-    /*saveTransaction($transactionType, $siteType, $eventId, $siteId, $userId, $sectionId, $seatsList, $seatsAmount , $transactionCode);*/
-    public function saveTransaction($transactionType, $siteType, $eventId, $siteId, $userId, $sectionId, $seatsList, $seatsAmount , $transactionCode){
+    /**
+     * Saves an user transaction
+     * @param $userId    
+     * @param $transactId
+     * @param $date      
+     * @param $amount    
+     * @param $detail    
+     * @param $shop      
+     * @param $type      
+     * @param $typeId    
+     * @return []           
+     */
+    public function saveTransaction($userId, $transactId, $date, $amount, $detail, $shop, $type, $typeId){
     	
     	$result=[];
 
-    	$transactionType= trim($transactionType);  
-        $siteType= trim($siteType); 
-        $eventId= trim($eventId);
-        $siteId=trim($siteId); 
-        $userId=trim($userId); 
-        $sectionId= trim($sectionId); 
-        $seatsList= $seatsList;
-        $seatsAmount= trim($seatsAmoun);
-        $transactionCode= trim($transactionCode); 
-
-        $result["error"] = true;
-        $result["message"] = "is invalid";
+    	$userId= trim($userId);
+        $transactId= trim($transactId);
+        $date= trim($date);
+        $date= $this->getDateTime($date);
+        $amount= trim($amount);
+        $detail= trim($detail);
+        $shop= trim($shop);
+        $type= trim($type);
+        $typeId= trim($typeId);
 
         //verificar que todos los campos esten llenos
-		if(isset($transactionType, $siteType, $eventId, $siteId, $userId, $sectionId, $seatsList, $seatsAmount , $transactionCode)){ //1
-			//Verifacar que el tipo de transaccion sea numero
-			if($this->validation->isValidInt($transactionType)){//2
-				//veriifacar que el site type sea valido
-				if($this->validation->isValidInt($siteType)){//3
-					//vefiricar que el eventId sea numero
-					if($this->validation->isValidInt($eventId)){//4
-						//verificar que el site id sea un numero
-						if($this->validation->isValidInt($siteId)){//5
-							//verificar que el user id sea un numero
-							if($this->validation->isValidInt($userId)){//6
-								//verificar que el section id sea un string valido 
-								if($this->validation->isValidString($sectionId)){//7
-									//verificar que el seatsAmount sea un numero 
-									if($this->validation->isValidInt($seatsAmount)){//8
-										//verificar que transaction code sea string valido
-										if($this->validation->isValidString($transactionCode)){//9
-											//si todas las validaciones son correctas procedemos a guardar la transaccion
-											
-											$result= $this->saveTransaction($transactionCode, $seatsAmount, $transactionType);
-											
-											$idTransaction = $result["meta"];
-                                            $idTransaction= $idTransaction["id"];
+		if(isset($userId, $transactId, $date, $amount, $type, $typeId)){ //1
+			//Verificar que el user id sea válido
+			if($this->validation->isValidString($userId) && strlen(trim($userId))>=9){//2
+				//Verificar que el transact id sea válido
+				if($this->validation->isValidString($transactId) && strlen(trim($transactId))>=9){//3
+					//verificar que la fecha sea una valida
+					if($this->validation->isValidDateTime($date) || $this->validation->isValidDate($date)){//4
+						//verificar que la cantidad tenga el formato valido
+						if($this->validation->isCurrency($amount)){//5
+							//verificar que el type id sea numerico y sea un numero entre 0 y 1
+							if($this->validation->isValidInt($typeId) && strlen(trim($typeId))==1 && ($typeId>=0 && $typeId <=1)){//8
+								//verificar que type code sea string valido
+								if($this->validation->isValidString($type)){//9
+									//generar el query
+									$query= "INSERT INTO tbtransactions (transactId, date, amount, detail, shop, transactType, typeId) VALUES (:transactId, :date, :amount, :detail, :shop, :transactType, :typeId)";
 
-                                            LoggingService::logVariable($idTransaction, __FILE__, __LINE__);
+                                            // Los parámetros de ese query
+                                            $params = [
+                                                ":transactId" => $transactId,
+                                                ":date" => $date,
+                                                ":amount" => $amount,
+                                                ":detail" => $detail,
+                                                ":shop" => $shop,
+                                                ":transactType" => $type,
+                                                ":typeId" => $typeId
+                                            ];
 
-                                            $clientId= $this->getClientId($userId);
+                                            // Lo ejecutamos
+                                            $createTransactResult = $this->storage->query($query, $params);
 
-                                            $resultIndexTransactionxClient= $this->createTransactionClientIndex($idTransaction, $clientId);
+                                            LoggingService::logVariable($createTransactResult, __FILE__, __LINE__);
+                                               
+                                            $isTransactCreated= array_key_exists("meta", $createTransactResult) && $createTransactResult["meta"]["count"]==1;
 
-                                            $result["createTransactionClientIndex"] = $resultIndexTransactionxClient;
+                                            if($isTransactCreated){//a
+                                                $result["message"]= "Transaction created";
+                                                //$result["meta"]["id"]= $createTransactResult["meta"]["id"];
+                                                
+                                                //si la transaccion se creo exitosamente se crea el indice de relaciones
+                                                $query = "INSERT INTO tbtransactxuser (tbUser_userId, tbTransactios_transactd) VALUES (:userId, :transactId)";
 
-                                            $resultIndexTransactionxEvent= $this->createTransactionxEventIndex($idTransaction, $eventId);
+                                                // Los parámetros de ese query
+                                                $params = [
+                                                    ":userId" => $userId,
+                                                    ":transactId" => $transactId
+                                                ];
 
-                                            $result["TransactionxEventIndex"]= $resultIndexTransactionxEvent;
+                                                    // Lo ejecutamos
+                                                $createIndexResult = $this->storage->query($query, $params);
 
-										}else{//9
-											$result["error"] = true;
-        									$result["message"] = "transactionCode is invalid";
-										}
-									}else{//8
-										$result["error"] = true;
-        								$result["message"] = "seats amount is invalid";
-									}
-								}else{//7
+                                                LoggingService::logVariable($createIndexResult, __FILE__, __LINE__);
+                                                   
+                                                $isIndexCreated= array_key_exists("meta", $createIndexResult) && $createIndexResult["meta"]["count"]==1;
+
+                                                if($isIndexCreated){//b
+                                                    $result["indexMessage"]= "Index created";
+                                                }else{//b
+                                                    $result["error"] = true;
+                                                    $result["indexMessage"]= "Error, can't create index";
+                                                }
+                                            }else{//a
+                                                $result["error"] = true;
+                                                $result["message"]= "Error, can't create transaction";
+                                            }
+								}else{//9
 									$result["error"] = true;
-        							$result["message"] = "section id is invalid";
+									$result["message"] = "Type code is invalid";
 								}
-							}else{//6
+							}else{//8
 								$result["error"] = true;
-        						$result["message"] = "user id is invalid";
+								$result["message"] = "Type id is invalid";
 							}
+								
+							
 						}else{//5
 							$result["error"] = true;
         					$result["message"] = "site id is invalid";
 						}
 					}else{//4
 						$result["error"] = true;
-        				$result["message"] = "event id is invalid";
+        				$result["message"] = "Date format is invalid";
 					}
 				}else{//3
 					$result["error"] = true;
-        			$result["message"] = "site type is invalid";
+        			$result["message"] = "Transaction Id format is invalid";
 				}
 			}else{//2
 				$result["error"] = true;
-        		$result["message"] = "transaccion type is invalid";
+        		$result["message"] = "User id format is invalid";
 			}
 		}else{//1
 			$result["error"] = true;
@@ -188,33 +149,10 @@ class TransactionsService {
 
 
 
-    private function saveTransaction($transactionCode, $seatsAmount, $transactionType){
-    	$result=[];
-
-    	$query= "INSERT INTO tbtransaccion
-			(Codigo, CantidadEspacios, TbTipoTransaccion_idTipoTransaccion)
-			VALUES
-			(:transactionCode, :seatsAmount, :transactionType)";
-
-		$params= [
-			":transactionCode" => $transactionCode,
-            ":seatsAmount" => $seatsAmount,
-            ":transactionType" => $transactionType,
-		];
-
-		$saveTransactionResult= $this->storage->query($query, $params);
-
-        $isTransactionCreated= array_key_exists("meta", $saveTransactionResult) && $saveTransactionResult["meta"]["count"]==1;
-
-        if($isTransactionCreated){//17
-            $result["message"]= "Transaction created";
-            $result["meta"]["id"]= $saveTransactionResult["meta"]["id"];
-        }else{
-            $result["error"] = true;
-            $result["message"]= "Error, can't event";
-        }
-        return $result;
-    }//saveTransaction
+    function getDateTime($dateString){
+		$date = new DateTime($dateString);
+		return $date->format('Y-m-d H:i:s');
+	}
 
 
 

@@ -1,5 +1,5 @@
 angular.module('bankAccount.services')
-.factory('userService', function($cookies, localStorageService, idService, $q, $http) {
+.factory('userService', function($cookies, localStorageService, idService, $http) {
 	
 	//saves logged user
 	var ntAppLoggedUser={ userId: "", userType: "", name:"", lastName:"", username:"", money:"", accountType:"", isConnected: false };

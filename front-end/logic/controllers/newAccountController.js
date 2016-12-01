@@ -58,7 +58,6 @@ angular.module('bankAccount.controllers')
 				}else{
 					newAcc.info= "Error, no se ha podido completar la operación";
 				}
-				
 			};
 		})
 		.error(function(response) {

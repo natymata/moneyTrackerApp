@@ -16,11 +16,11 @@ angular.module('bankAccount.controllers')
 				currentUser= response.user;
 				result= userService.login(currentUser);
 				if(!result.error){
+					$location.path("/summary/" + currentUser.userId);
 					formService.clearForm(logInForm, $scope);
 					home.info="Datos correctos, Bienvenido";
 					home.user= {username:"", pass:""};
 					$scope.sigInTrue();
-					$location.path("/summary/" + currentUser.userId);
 					home.info="";
 				}else{
 					home.info="No se ha podido efectuar la operación, intente de nuevo";

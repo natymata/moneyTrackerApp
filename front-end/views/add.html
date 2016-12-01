@@ -11,7 +11,7 @@
 		</div>
 
 		<div class="newTransat-add posit-rel">
-			<p>{{add.info}}</p>
+			<h4 class="text-center error">{{add.info}}</h4>
 			<form name="addTransactForm" ng-submit="addTransactForm.$valid && add.addTransact()" novalidate>
 				<div class="form-group">
 					<sub ng-show="addTransactForm.name.$invalid && addTransactForm.name.$touched">Fecha requerifa</sub>
@@ -19,14 +19,13 @@
 				</div>
 				<div class="form-group">
 					<sub ng-show="addTransactForm.amount.$invalid && addTransactForm.amount.$touched">Monto es requerido</sub>
-					<label>Monto:</label><input type="number" name="amount" ng-model= "add.newTransat.amount" required ng-model-options="{debounce:200}" class="form-control">
+					<label>Monto:</label><input type="number" name="amount" ng-model= "add.newTransat.amount" required ng-model-options="{debounce:200}" class="form-control" placeholder="1000000.00">
 				</div>
 				<div class="form-group">
-					<sub ng-show="addTransactForm.detail.$invalid && addTransactForm.detail.$touched">Detalle es requerido</sub>
-					<label>Detalle:</label><input type="text" name="detail" ng-model= "add.newTransat.detail" required ng-model-options="{debounce:200}" class="form-control">
+					<label>Detalle:</label><input type="text" name="detail" ng-model= "add.newTransat.detail" ng-model-options="{debounce:200}" class="form-control" placeholder="Detalles de la transacción">
 				</div>
 				<div class="form-group">
-					<label>Comercio:</label><input type="text" name="shop" ng-model= "add.newTransat.shop" ng-model-options="{debounce:200}" class="form-control">
+					<label>Comercio:</label><input type="text" name="shop" ng-model= "add.newTransat.shop" ng-model-options="{debounce:200}" class="form-control" placeholder="Comercio o persona relacionada">
 				</div>
 				<div class="form-group">
 					<sub ng-show="addTransactForm.type.$invalid && addTransactForm.type.$touched">Escoja un tipo de transacción</sub>

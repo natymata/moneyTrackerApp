@@ -16,93 +16,56 @@ class TransactionsController{
         $this->transactionsService = new TransactionsService();
     }
 
-    public function getReservedSeats($request){
-    	$result = [];
-        $formData = $request->getParsedBody();
-
-        $zoneId= null; 
-        $siteId= null; 
-        $eventId= null;
-
-        if(array_key_exists("zoneId", $formData)){
-            $zoneId= $formData["zoneId"];
-        }
-
-        if(array_key_exists("siteId", $formData)){
-            $siteId= $formData["siteId"];
-        }
-
-        if(array_key_exists("name", $formData)){
-            $name= $formData["name"];
-        }
-
-        $getReservedResult= $this->transactionsService->getReservedSeats($zoneId, $siteId, $eventId);
-
-        if(array_key_exists("error", $getReservedResult)) {
-            $result["error"] = true;
-            $result["message"] = $getReservedResult["message"];
-            $result["valid"] = false;
-        }else{
-            $result["message"] = $getReservedResult["message"];
-            $result["valid"] = true;
-            $result["data"]= $getReservedResult["data"];
-        }
-        return $result;
-    }//getReservedSeats
-
 
    // saveTransaction($request)
     public function saveTransaction($request){
         $result=[];
         $formData= $request->getParsedBody();
 
-        $transactionType= null; 
-        $siteType= null; 
-        $eventId= null;
-        $siteId= null;
         $userId= null;
-        $sectionId= null; 
-        $seatsList= null;
-        $seatsAmount= null; 
-        $transactionCode= null; 
+        $transactId= null; 
+        $date= null; 
+        $amount= null; 
+        $detail= null; 
+        $shop= null; 
+        $type= null;
+        $typeId= null;
 
-        if(array_key_exists("transactionType", $formData)){
-            $transactionType= $formData["transactionType"];
-        }
-
-        if(array_key_exists("siteType", $formData)){
-            $siteType= $formData["siteType"];
-        }
-
-        if(array_key_exists("eventId", $formData)){
-            $eventId= $formData["eventId"];
-        }
-
-        if(array_key_exists("siteId", $formData)){
-            $siteId= $formData["siteId"];
-        }
+        LoggingService::logVariable($formData, __FILE__, __LINE__);
 
         if(array_key_exists("userId", $formData)){
             $userId= $formData["userId"];
         }
 
-        if(array_key_exists("sectionId", $formData)){
-            $sectionId= $formData["sectionId"];
+        if(array_key_exists("transactId", $formData)){
+            $transactId= $formData["transactId"];
         }
 
-        if(array_key_exists("seatsList", $formData)){
-            $seatsList= $formData["seatsList"];
+        if(array_key_exists("date", $formData)){
+            $date= $formData["date"];
         }
 
-        if(array_key_exists("seatsAmount", $formData)){
-            $seatsAmount= $formData["seatsAmount"];
+        if(array_key_exists("amount", $formData)){
+            $amount= $formData["amount"];
         }
 
-        if(array_key_exists("transactionCode", $formData)){
-            $transactionCode= $formData["transactionCode"];
+        if(array_key_exists("detail", $formData)){
+            $detail= $formData["detail"];
         }
 
-        $registerResult= $this->eventsService->saveTransaction($transactionType, $siteType, $eventId, $siteId, $userId, $sectionId, $seatsList, $seatsAmount , $transactionCode);
+        if(array_key_exists("shop", $formData)){
+            $shop= $formData["shop"];
+        }
+
+        if(array_key_exists("type", $formData)){
+            $type= $formData["type"];
+        }
+
+        if(array_key_exists("typeId", $formData)){
+            $typeId= $formData["typeId"];
+        }
+
+        $registerResult= $this->transactionsService->saveTransaction($userId, $transactId, $date, $amount, $detail, $shop, $type, $typeId);
 
         if(array_key_exists("error", $registerResult)) {
             $result["error"] = true;
@@ -111,6 +74,8 @@ class TransactionsController{
         }else{
             $result["message"] = $registerResult["message"];
             $result["valid"] = true;
+            $result["error"] = false;
+            $result["indexMessage"]= $registerResult["indexMessage"];
         }
 
          return $result;

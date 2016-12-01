@@ -28,11 +28,9 @@ $app = new \Slim\App($contenedor);
 // Definimos nuestras rutas
 
 
-
-
 /*RUTAS DE USUARIO*/
-/*user/login->logear el usuario*/
 
+/*user/login->logear el usuario*/
 $app->post(
     '/user/login',
     function ($request, $response) {
@@ -49,6 +47,7 @@ $app->post(
         return $response->withJson($result);
     }
 );
+
 /*user/logout->deslogear el usuario*/
 $app->get(
     '/user/logout',
@@ -73,7 +72,6 @@ $app->post(
     }
 );
 
-
 /*user/editAccount->editar una cuent usuario*/
 $app->post(
     '/user/editUser',
@@ -86,7 +84,6 @@ $app->post(
     }
 );
 
-
 /*user/deleteUser->Eliminar una cuent usuario*/
 $app->delete(
     '/user/deleteUser/{userId}',
@@ -98,7 +95,6 @@ $app->delete(
         return $response->withJson($result);
     }
 );
-
 
 /*
 //user/getAllUsers
@@ -113,6 +109,49 @@ $app->get(
     }
 );
 */
+
+
+
+/*RUTAS DE TRANSACCIONES*/
+
+//registerTransact
+$app->post(
+    '/transact/saveTransaction',
+    function($request, $response){
+        /** @var Request $request */
+        /** @var Response $response */
+        $transactionsController= new App\Controllers\TransactionsController();
+        $result= $transactionsController->saveTransaction($request);
+        return $response->withJson($result);
+    }
+);
+
+//registerTransact
+// $app->post(
+//     '/transact/registerTransact',
+//     function($request, $response){
+//         /** @var Request $request */
+//         /** @var Response $response */
+//         $eventsController= new App\Controllers\EventsController();
+//         $result= $eventsController->registerEvent($request);
+//         return $response->withJson($result);
+//     }
+// );
+
+//transactions/getReservedSeats 
+$app->post(
+    '/transactions/getReservedSeats',
+    function($request, $response){
+        /** @var Request $request */
+        /** @var Response $response */
+        $transactionsController= new App\Controllers\TransactionsController();
+        $result= $transactionsController->getReservedSeats($request);
+        return $response->withJson($result);
+    }
+);
+
+
+
 
 
 
@@ -142,17 +181,6 @@ $app->get(
 );
 
 
-//registerEvent
-$app->post(
-    '/event/registerEvent',
-    function($request, $response){
-        /** @var Request $request */
-        /** @var Response $response */
-        $eventsController= new App\Controllers\EventsController();
-        $result= $eventsController->registerEvent($request);
-        return $response->withJson($result);
-    }
-);
 
 
 //getEventById
