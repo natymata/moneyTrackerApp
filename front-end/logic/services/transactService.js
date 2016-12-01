@@ -8,7 +8,6 @@ angular.module('bankAccount.services')
 		
 		newTransact= setTransactInfo(transact, userId);
 		result= $http.post(url, newTransact);
-		console.log(result);
 		return result;
 	};//end, transact function
 
@@ -43,22 +42,19 @@ angular.module('bankAccount.services')
 		return transactInfo;
 	};//end. setTransactInfo
 
-	var saveNewTransact= function(transact) {
-		var allTransact= getAllTransact();
-		allTransact.push(transact);
-		localStorageService.set('ntAllTransact', allTransact);
-	};//end saveNewTransact
+	var getTransactByUserId= function(userId) {
+		var url= "back-end/index.php/transact/getTransactByUserId/" + userId;
+		var result= $http.get(url);
+		return result;
+	};// end getTransactByUserId
 
+
+/*temporales*/
 	var getAllTransact= function() {
 		return localStorageService.getOrInit('ntAllTransact');
 	};//end getAllTransact
 
-	var getTransactByUserId= function(userId) {
-		var allTransact= getAllTransact().filter(function(transact) {
-			return transact.userId==userId;
-		});
-		return allTransact;
-	};// end getTransactByUserId
+	
 
 	var getTransactById= function(transactId) {
 		var transaction= getAllTransact().filter(function(transact) {

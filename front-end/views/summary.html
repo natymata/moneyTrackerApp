@@ -2,6 +2,8 @@
 	<section class="accountDetail gray-border">
 		<h2>{{summary.welcome}}</h2>
 
+		<h4 class="error text-center">{{summary.error}}</h4>
+
 		<div class="center-block floatNone">
 			<h4 class="marginbotton40" ng-show="summary.showElements">Estos son sus últimos movimientos en su cuenta {{summary.accountType}}</h4>
 		</div>
@@ -26,11 +28,11 @@
 				<tr ng-repeat="transact in summary.userTransacts | orderBy:transact.date track by $index">
 					<!-- <td class="overfhidden tiny">{{transact.transactId}}</td> -->
 					<td>{{transact.date | date: 'd/MMM/yy'}}</td>
-					<td>{{transact.type}}</td>
+					<td>{{transact.transactType}}</td>
 					<!-- <td>{{transact.shop}}</td> -->
-					<td ng-show="summary.money=='colon'">{{transact.amount | currency: '¢'}}</td>
-					<td ng-show="summary.money=='euro'">{{transact.amount | currency: '€'}}</td>
-					<td ng-show="summary.money=='dolar'">{{transact.amount | currency: '$'}}</td>
+					<td ng-show="summary.money=='colon' || summary.money=='colones'">{{transact.amount | currency: '¢'}}</td>
+					<td ng-show="summary.money=='euro' || summary.money=='euros'">{{transact.amount | currency: '€'}}</td>
+					<td ng-show="summary.money=='dolar' || summary.money=='dolares'">{{transact.amount | currency: '$'}}</td>
 					<td><a href="#/detail/{{transact.transactId}}">Detalles <span class="glyphicon glyphicon-chevron-right"></span></a></td>
 				</tr>
 			</tbody>

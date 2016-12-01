@@ -83,6 +83,19 @@ class TransactionsController{
     }//saveTransaction
 
 
+    /**
+     * Get all transaact by user id
+     * @param  $request
+     * @param  $args
+     * @return []
+     */
+    public function getTransactByUserId($request){
+        $result = [];
+        $userId = $request->getAttribute("userId", null);
+        LoggingService::logVariable($userId, __FILE__, __LINE__);
+
+        return $this->transactionsService->getTransactByUserId($userId);
+    }
 
 
 

@@ -147,103 +147,76 @@ class TransactionsService {
     	return $result;
     }//saveTransaction
 
-
-
     function getDateTime($dateString){
 		$date = new DateTime($dateString);
 		return $date->format('Y-m-d H:i:s');
 	}
 
+    public function getTransactByUserId($userId){
+        $result = [];
+        $userId= trim($userId);
 
+        //Verificar que el userId este seteado
+        if(isset($userId)){//1
+            //Vefiricar que el userId sea string valido y tenga al menos 9 caracteres
+            if($this->validation->isValidString($userId) && strlen(trim($userId))>=9){//2
+                //set the query
+                $query= "SELECT tbuser.userId, tbtransactions.transactId, tbtransactions.date, tbtransactions.amount, tbtransactions.detail, tbtransactions.shop, tbtransactions.transactType, tbtransactions.typeId
+                    FROM tbtransactions
+                    INNER JOIN tbtransactxuser
+                    INNER JOIN tbuser
+                    ON tbtransactions.transactId = tbtransactxuser.tbTransactios_transactd
+                    AND tbtransactxuser.tbUser_userId = tbuser.userId
+                    WHERE tbuser.userId= :userId AND tbuser.Active= 1";
 
-    //getClientId($userId)
-    private function getClientId($userId){
-    	$result=[];
-    	$query="SELECT tbcliente.idCliente
-				FROM tbusuario
-				INNER JOIN tbcliente
-				ON tbusuario.idUsuario = tbcliente.TbUsuario_idUsuario
-				WHERE tbusuario.idUsuario= :id";
+                    // Query params
+                    $params = [":userId" => $userId];
 
-		$params = [
-            ":id" => $userId
-        ];
+                    $getUserTransactResult = $this->storage->query($query, $params);
 
-        $getIdResult= $this->storage->query($query, $params);
+                    $foundRecord = array_key_exists("meta", $getUserTransactResult) &&
+                        $getUserTransactResult["meta"]["count"] > 0;
 
-        $userId = $getIdResult["data"][0];
-        $userId= $userId["idUsuario"];
+                    if ($foundRecord) {
+                        $result["message"] = "User transactions found";
+                        $transactList = $getUserTransactResult["data"];
 
-        return $userId;
-
-    }//getClientId
-
-
-
-    //createTransactionClientIndex($idTransaction, $userId)
-    private function createTransactionClientIndex($idTransaction, $clientId){
-    	$result=[];
-
-    	$query= "INSERT INTO tbtransaccionporcliente
-				(TbCliente_idCliente, TbTransaccion_idTransaccion)
-				VALUES
-				(:clientId, :idTransaction)";
-
-		$params= [
-			":clientId" => $clientId,
-            ":idTransaction" => $idTransaction
-		];
-
-		$createIndexResult= $this->storage->query($query, $params);
-
-        $isIndexCreated= array_key_exists("meta", $createIndexResult) && $createIndexResult["meta"]["count"]==1;
-
-        if($isIndexCreated){//17
-            $result["message"]= "TransactionClientIndex created";
-            $result["meta"]["id"]= $createIndexResult["meta"]["id"];
-        }else{
+                        foreach ($transactList as $transact) {
+                            $result["data"][] = [
+                                "userId" => $transact["userId"],
+                                "transactId" => $transact["transactId"],
+                                "date" => $transact["date"],
+                                "amount" => $transact["amount"],
+                                "detail" => $transact["detail"],
+                                "shop" => $transact["shop"],
+                                "transactType" => $transact["transactType"],
+                                "typeId" => $transact["typeId"]
+                            ];
+                        } 
+                    } else {
+                        $result["message"] = "User transactions not found";
+                        $result["error"] = true;
+                    }
+            }else{//2
+                $result["error"] = true;
+                $result["message"] = "User Id format is invalid";
+            }
+        }else{//1
             $result["error"] = true;
-            $result["message"]= "Error, can't create TransactionClientIndex";
+            $result["message"] = "User Id es required";
         }
+
         return $result;
-    }//createTransactionClientIndex
+    }
 
 
-    //createTransactionxEventIndex($idTransaction, $eventId)
-    private function createTransactionxEventIndex($idTransaction, $eventId){
-    	$result=[];
-
-    	$query= "INSERT INTO tbtransaccionporevento
-				(TbTransaccion_idTransaccion, TbEvento_idEvento)
-				VALUES
-				(:idTransaction, :eventId)";
-
-		$params= [
-			":idTransaction" => $idTransaction,
-            ":eventId" => $eventId
-		];
-
-		$createIndexResult= $this->storage->query($query, $params);
-
-        $isIndexCreated= array_key_exists("meta", $createIndexResult) && $createIndexResult["meta"]["count"]==1;
-
-        if($isIndexCreated){//17
-            $result["message"]= "TransactionxEventIndex created";
-            $result["meta"]["id"]= $createIndexResult["meta"]["id"];
-        }else{
-            $result["error"] = true;
-            $result["message"]= "Error, can't create TransactionxEventIndex";
-        }
-        return $result;
-    }//createTransactionClientIndex
 
 
-    //seatsSiteEventIndex($eventId, $siteId, $sectionId, $seatsList);
-    // private function seatsSiteEventIndex($eventId, $siteId, $sectionId, $seatsList){
-    // 	foreach ($seatsList as $key => $value) {
-    // 		# code...
-    // 	}
-    // }
+
+
+
+
+
 
 
 
