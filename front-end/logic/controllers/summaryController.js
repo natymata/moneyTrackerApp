@@ -17,12 +17,12 @@ angular.module('bankAccount.controllers')
 				summary.showElements= showElements(summary.userTransacts);
 				summary.balance= getBalance(summary.userTransacts);
 			}else{
+				console.error(response.message);
 				summary.error= "No se han encontrado datos del usuario";
 			}
 		})
 		.error(function(response){
-			console.log(response.message);
-			console.log(response);
+			console.error(response.message);
 			summary.error= "No se han encontrado datos del usuario";
 		});
 	};
@@ -32,20 +32,13 @@ angular.module('bankAccount.controllers')
 			var date= transact.date;
 			date= new Date();
 			transact.date= date;
-		});
 
-		angular.forEach(dataArr, function(transact) {
-			transact.amount= Number(transact.amount); 
-		});
-
-		angular.forEach(dataArr, function(transact) {
 			if(transact.typeId=="0"){
 				transact.transactType="Débito";
 			}else{
 				transact.transactType= "Crédito";
 			};
 		});
-
 		return dataArr;
 	};
 

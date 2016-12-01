@@ -139,6 +139,17 @@ $app->get(
     }
 );
 
+//getTransactById, get a transact details by id
+$app->get(
+    '/transact/getTransactById/{transactId}',
+    function($request, $response){
+        /** @var Request $request */
+        /** @var Response $response */
+        $transactionsController= new App\Controllers\TransactionsController();
+        $result= $transactionsController->getTransactById($request);
+        return $response->withJson($result);;
+    }
+);
 
 
 //transactions/getReservedSeats 

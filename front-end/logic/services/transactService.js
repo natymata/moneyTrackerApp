@@ -48,20 +48,17 @@ angular.module('bankAccount.services')
 		return result;
 	};// end getTransactByUserId
 
+	var getTransactById= function(transactId) {
+		var url= "back-end/index.php/transact/getTransactById/" + transactId;
+		var result= $http.get(url);
+		return result;
+	};
+
 
 /*temporales*/
 	var getAllTransact= function() {
 		return localStorageService.getOrInit('ntAllTransact');
 	};//end getAllTransact
-
-	
-
-	var getTransactById= function(transactId) {
-		var transaction= getAllTransact().filter(function(transact) {
-			return transact.transactId == transactId;
-		});
-		return transaction[0];
-	};
 
 	var deleteTransact= function(transactId) {
 		var response={

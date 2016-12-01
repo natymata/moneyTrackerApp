@@ -95,7 +95,16 @@ class TransactionsController{
         LoggingService::logVariable($userId, __FILE__, __LINE__);
 
         return $this->transactionsService->getTransactByUserId($userId);
-    }
+    }//end getTransactByUserId
+
+
+    public function getTransactById($request){
+        $result = [];
+        $transactId = $request->getAttribute("transactId", null);
+        LoggingService::logVariable($transactId, __FILE__, __LINE__);
+
+        return $this->transactionsService->getTransactById($transactId);
+    }//end getTransactById
 
 
 

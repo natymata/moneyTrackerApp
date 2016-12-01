@@ -152,6 +152,11 @@ class TransactionsService {
 		return $date->format('Y-m-d H:i:s');
 	}
 
+    /**
+     * Get all user transactions by user Id
+     * @param  string $userId
+     * @return []  
+     */
     public function getTransactByUserId($userId){
         $result = [];
         $userId= trim($userId);
@@ -161,13 +166,13 @@ class TransactionsService {
             //Vefiricar que el userId sea string valido y tenga al menos 9 caracteres
             if($this->validation->isValidString($userId) && strlen(trim($userId))>=9){//2
                 //set the query
-                $query= "SELECT tbuser.userId, tbtransactions.transactId, tbtransactions.date, tbtransactions.amount, tbtransactions.detail, tbtransactions.shop, tbtransactions.transactType, tbtransactions.typeId
+                $query= "SELECT tbtransactions.transactId, tbtransactions.date, tbtransactions.amount, tbtransactions.shop, tbtransactions.typeId
                     FROM tbtransactions
                     INNER JOIN tbtransactxuser
                     INNER JOIN tbuser
                     ON tbtransactions.transactId = tbtransactxuser.tbTransactios_transactd
                     AND tbtransactxuser.tbUser_userId = tbuser.userId
-                    WHERE tbuser.userId= :userId AND tbuser.Active= 1";
+                    WHERE tbuser.userId= :userId AND tbuser.Active= 1 ORDER BY date desc LIMIT 200";
 
                     // Query params
                     $params = [":userId" => $userId];
@@ -183,13 +188,10 @@ class TransactionsService {
 
                         foreach ($transactList as $transact) {
                             $result["data"][] = [
-                                "userId" => $transact["userId"],
                                 "transactId" => $transact["transactId"],
                                 "date" => $transact["date"],
                                 "amount" => $transact["amount"],
-                                "detail" => $transact["detail"],
                                 "shop" => $transact["shop"],
-                                "transactType" => $transact["transactType"],
                                 "typeId" => $transact["typeId"]
                             ];
                         } 
@@ -205,9 +207,64 @@ class TransactionsService {
             $result["error"] = true;
             $result["message"] = "User Id es required";
         }
-
         return $result;
-    }
+    }//end getTransactByUserId
+
+
+    /**
+     * Get an especific transaction info by transaction id
+     * @param  $transactId
+     * @return []     
+     */
+    public function getTransactById($transactId){
+        $result = [];
+        $transactId= trim($transactId);
+
+        //Verificar que el transactId este seteado
+        if(isset($transactId)){//1
+            //Vefiricar que el transactId sea string valido y tenga al menos 9 caracteres
+            if($this->validation->isValidString($transactId) && strlen(trim($transactId))>=9){//2
+                //set the query
+                $query= "SELECT transactId, date, amount, detail, shop, typeId FROM tbtransactions 
+                WHERE transactId= :transactId AND Active= 1 LIMIT 1";
+
+                    // Query params
+                    $params = [":transactId" => $transactId];
+
+                    $getTransactResult = $this->storage->query($query, $params);
+
+                    $foundRecord = array_key_exists("meta", $getTransactResult) &&
+                        $getTransactResult["meta"]["count"] > 0;
+
+                    if ($foundRecord) {
+                        $result["message"] =  "Transaction found";
+                        $result["found"]= true;
+                        $transactList = $getTransactResult["data"];
+
+                        foreach ($transactList as $transact) {
+                            $result["data"][] = [
+                                "transactId" => $transact["transactId"],
+                                "date" => $transact["date"],
+                                "amount" => $transact["amount"],
+                                "detail" => $transact["detail"],
+                                "shop" => $transact["shop"],
+                                "typeId" => $transact["typeId"]
+                            ];
+                        } 
+                    } else {
+                        $result["message"] = "Transaction not found";
+                        $result["error"] = true;
+                    }
+            }else{//2
+                $result["error"] = true;
+                $result["message"] = "Transaction Id format is invalid";
+            }
+        }else{//1
+            $result["error"] = true;
+            $result["message"] = "Transaction Id es required";
+        }
+        return $result;
+    }//end getTransactByUserId
 
 
 

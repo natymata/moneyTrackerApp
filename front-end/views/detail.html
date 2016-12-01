@@ -6,6 +6,7 @@
 		</div>
 
 		<h4>A continuación el detalle de la transacción realizada el día {{detail.transact.date | date: 'EEE - d/MMM/yy'}}</h4>
+		<h4 class="error text-center">{{detail.error}}</h4>
 
 		<table class="table table-striped tdetail">
 			<tbody>
@@ -15,7 +16,7 @@
 				</tr>
 				<tr>
 					<td>Tipo</td>
-					<td>{{detail.transact.type}}</td>
+					<td>{{detail.transact.transactType}}</td>
 				</tr>
 				<tr>
 					<td>Comercio</td>
