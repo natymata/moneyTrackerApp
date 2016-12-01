@@ -98,6 +98,11 @@ class TransactionsController{
     }//end getTransactByUserId
 
 
+    /**
+     * get a trasact details by it's id
+     * @param  $request 
+     * @return [] 
+     */
     public function getTransactById($request){
         $result = [];
         $transactId = $request->getAttribute("transactId", null);
@@ -106,6 +111,19 @@ class TransactionsController{
         return $this->transactionsService->getTransactById($transactId);
     }//end getTransactById
 
+
+    /**
+     * Delete a transaction
+     * @param  $request 
+     * @return []  
+     */
+    public function deleteTransact($request){
+        $result = [];
+        $transactId = $request->getAttribute("transactId", null);
+        LoggingService::logVariable($transactId, __FILE__, __LINE__);
+
+        return $this->transactionsService->deleteTransact($transactId);
+    }//end deleteTransact
 
 
 

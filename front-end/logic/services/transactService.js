@@ -54,76 +54,22 @@ angular.module('bankAccount.services')
 		return result;
 	};
 
+	var deleteTransact= function(transactId) {
+		var url= "back-end/index.php/transact/deleteTransact/" + transactId;
+		var result= $http.delete(url);
+		return result;
+	};//end , deleteTransact
+
 
 /*temporales*/
 	var getAllTransact= function() {
 		return localStorageService.getOrInit('ntAllTransact');
 	};//end getAllTransact
 
-	var deleteTransact= function(transactId) {
-		var response={
-			error:"",
-			string:""
-		};
-
-		var allTransact= getAllTransact().filter(function(transact) {
-			return transact.transactId!= transactId;
-		});
-
-		localStorageService.set('ntAllTransact', allTransact);
-
-		if(transactExists(transactId)){
-			response.string= "Error, la transacción no ha sido eliminada";
-			response.error= true;
-		}else{
-			response.string= "Transacción eliminada exitosamente";
-			response.error= false;
-		};
-		return response;
-	};//end , deleteTransact
-
-	var transactExists= function(transactId) {
-		var allTransact= getAllTransact();
-		if(allTransact.length==0){
-			return false;  //ni existe ninguna transaccion previamente
-		}else{
-			var exists= allTransact.filter(function(item) {
-				return item.transactId==transactId;
-			});
-
-			if(exists.length==0){
-				return false; // la transaccion no existe
-			}else{
-				return true; // la transaccion si existe
-			}
-		};
-	}; //end, accountExists
+	
 
 	var editTransact= function(transact, userId) {
-		var transactId= transact.transactId;
-		var response={
-			error:"",
-			string:""
-		};
-		var remove;
-		var createNew;
-
-		remove= deleteTransact(transactId);
-		if(remove.error){
-			response.string= "Error, la transacción no ha sido eliminada";
-			response.error= true;
-		}else{
-			createNew= addNew(transact, userId);
-			if(createNew.error){
-				response.string= "Error, la transacción no ha sido editada";
-				response.error= true;
-				return response;
-			}else{
-				response.string= "Transacción editada exitosamente";
-				response.error= false;
-				return response;
-			};
-		};
+		
 	}; //end, editTransact
 
 

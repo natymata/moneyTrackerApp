@@ -48,16 +48,25 @@ angular.module('bankAccount.controllers')
 	};
 
 	detail.deleteTransact= function() {
-		var result= transactService.deleteTransact(detail.transactId);
-		if(!result.error){
-			detail.info= result.string;
-			detail.showModal= true;
-			modal(true);
-		}else{
-			detail.info= result.string;
+		transactService.deleteTransact(detail.transactId)
+		.success(function(response){
+			if(response.deleted){
+				detail.info= "Transacción eliminada con éxito";
+				detail.showModal= true;
+				modal(true);
+			}else{
+				console.error(response.message);
+				detail.info= "No se ha podido completar la operación";
+				detail.showModal= true;
+				modal(false);
+			};
+		})
+		.error(function(response){
+			console.error(response.message);
+			detail.info= "No se ha podido completar la operación";
 			detail.showModal= true;
 			modal(false);
-		}
+		});
 	};
 
 	var modal= function(result) {

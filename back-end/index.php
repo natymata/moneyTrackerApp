@@ -34,9 +34,6 @@ $app = new \Slim\App($contenedor);
 $app->post(
     '/user/login',
     function ($request, $response) {
-        /** @var Request $request */
-        /** @var Response $response */
-
         // Pedimos una instancia del controlador del usuario
         $userController = new App\Controllers\UserController();
 
@@ -96,23 +93,9 @@ $app->delete(
     }
 );
 
-/*
-//user/getAllUsers
-$app->get(
-    '/user/getAllUsers',
-    function($request, $response){
-        // @var Request $request
-        // @var Response $response
-        $userController= new App\Controllers\UserController();
-        $result= $userController->getAllUsers($request);
-        return $response->withJson($result);
-    }
-);
-*/
-
-
-
-/*RUTAS DE TRANSACCIONES*/
+/**
+ * RUTAS DE TRANSACCIONES
+ */
 
 //registerTransact
 $app->post(
@@ -125,7 +108,6 @@ $app->post(
         return $response->withJson($result);
     }
 );
-
 
 //get transacts by userId // get all user transacts
 $app->get(
@@ -151,56 +133,17 @@ $app->get(
     }
 );
 
-
-//transactions/getReservedSeats 
-$app->post(
-    '/transactions/getReservedSeats',
-    function($request, $response){
+//deleteTransact
+$app->delete(
+    '/transact/deleteTransact/{transactId}',
+    function ($request, $response) {
         /** @var Request $request */
         /** @var Response $response */
         $transactionsController= new App\Controllers\TransactionsController();
-        $result= $transactionsController->getReservedSeats($request);
+        $result = $transactionsController->deleteTransact($request);
         return $response->withJson($result);
     }
 );
-
-
-
-
-
-
-
-
-
-//user/getUserById
-$app->get(
-    '/client/getClientById/{id}',
-    function($request, $response){
-        /** @var Request $request */
-        /** @var Response $response */
-        $clientController= new App\Controllers\ClientController();
-        $result= $clientController->getClientById($request);
-        return $response->withJson($result);
-    }
-);
-
-
-
-
-//getEventById
-$app->get(
-    '/events/getEventById/{id}',
-    function($request, $response){
-        /** @var Request $request */
-        /** @var Response $response */
-        $eventsController= new App\Controllers\EventsController();
-        $result= $eventsController->getEventById($request);
-        return $response->withJson($result);
-    }
-);
-
-
-
 
 
 

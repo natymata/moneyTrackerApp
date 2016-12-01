@@ -268,8 +268,45 @@ class TransactionsService {
 
 
 
+    public function deleteTransact($transactId){
+        $result = [];
+        $transactId= trim($transactId);
 
+        //Verificar que el transactId este seteado
+        if(isset($transactId)){//1
+            //Vefiricar que el transactId sea string valido y tenga al menos 9 caracteres
+            if($this->validation->isValidString($transactId) && strlen(trim($transactId))>=9){//2
+                //set the query
+                $query= "DELETE FROM tbtransactions WHERE transactId= :transactId";
 
+                // Query params
+                $params = [":transactId" => $transactId];
+
+                $deleteResult = $this->storage->query($query, $params);
+                
+                LoggingService::logVariable($deleteResult, __FILE__, __LINE__);
+                
+                $isTransactDeleted= array_key_exists("meta", $deleteResult) && $deleteResult["meta"]["count"]==1;
+                
+                if ($isTransactDeleted) {
+                    $result["message"] = "Transaction deleted";
+                    $result["deleted"] = true;
+                } else {
+                    $result["error"] = true;
+                    $result["message"] = "Error deleting transaction";
+                    $result["deleted"] = false;
+                }
+
+            }else{//2
+                $result["error"] = true;
+                $result["message"] = "Transaction Id format is invalid";
+            }
+        }else{//1
+            $result["error"] = true;
+            $result["message"] = "Transaction Id es required";
+        }
+        return $result;
+    }//end deleteTransact
 
 
 
