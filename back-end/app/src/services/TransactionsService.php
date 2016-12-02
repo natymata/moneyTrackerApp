@@ -30,11 +30,11 @@ class TransactionsService {
      * @param $amount    
      * @param $detail    
      * @param $shop      
-     * @param $type      
+     * @param $transactType      
      * @param $typeId    
      * @return []           
      */
-    public function saveTransaction($userId, $transactId, $date, $amount, $detail, $shop, $type, $typeId){
+    public function saveTransaction($userId, $transactId, $date, $amount, $detail, $shop, $transactType, $typeId){
     	
     	$result=[];
 
@@ -45,11 +45,11 @@ class TransactionsService {
         $amount= trim($amount);
         $detail= trim($detail);
         $shop= trim($shop);
-        $type= trim($type);
+        $transactType= trim($transactType);
         $typeId= trim($typeId);
 
         //verificar que todos los campos esten llenos
-		if(isset($userId, $transactId, $date, $amount, $type, $typeId)){ //1
+		if(isset($userId, $transactId, $date, $amount, $transactType, $typeId)){ //1
 			//Verificar que el user id sea válido
 			if($this->validation->isValidString($userId) && strlen(trim($userId))>=9){//2
 				//Verificar que el transact id sea válido
@@ -60,8 +60,8 @@ class TransactionsService {
 						if($this->validation->isCurrency($amount)){//5
 							//verificar que el type id sea numerico y sea un numero entre 0 y 1
 							if($this->validation->isValidInt($typeId) && strlen(trim($typeId))==1 && ($typeId>=0 && $typeId <=1)){//8
-								//verificar que type code sea string valido
-								if($this->validation->isValidString($type)){//9
+								//verificar que transactType code sea string valido
+								if($this->validation->isValidString($transactType)){//9
 									//generar el query
 									$query= "INSERT INTO tbtransactions (transactId, date, amount, detail, shop, transactType, typeId) VALUES (:transactId, :date, :amount, :detail, :shop, :transactType, :typeId)";
 
@@ -72,7 +72,7 @@ class TransactionsService {
                                                 ":amount" => $amount,
                                                 ":detail" => $detail,
                                                 ":shop" => $shop,
-                                                ":transactType" => $type,
+                                                ":transactType" => $transactType,
                                                 ":typeId" => $typeId
                                             ];
 
@@ -115,7 +115,7 @@ class TransactionsService {
                                             }
 								}else{//9
 									$result["error"] = true;
-									$result["message"] = "Type code is invalid";
+									$result["message"] = "Transact type code is invalid";
 								}
 							}else{//8
 								$result["error"] = true;

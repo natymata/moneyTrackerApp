@@ -171,21 +171,6 @@ angular.module('bankAccount.services')
 		var result= $http.delete(url);
 		return result;
 	};
-
-
-	/*
-	TEMP FUNCTIONS
-	 */
-	
-
-	//returns a specific account identified by username
-	var getUserByUserName= function(username) {
-		var accounts= getAllUsersAccounts().filter(function(user) {
-			return user.username== username;
-		});
-		return accounts[0];
-	};//end, getUserByUserName
-
 	
 	
 //access

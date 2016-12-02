@@ -30,7 +30,7 @@
 				<div class="form-group">
 					<sub ng-show="addTransactForm.type.$invalid && addTransactForm.type.$touched">Escoja un tipo de transacción</sub>
 					<label>Tipo:</label>
-					<select name="type" id="sltTypeTrans" ng-model="add.newTransat.type" required ng-model-options="{debounce:200}" class="form-control control50">
+					<select name="type" id="sltTypeTrans" ng-model="add.newTransat.transactType" required ng-model-options="{debounce:200}" class="form-control control50">
 						<option value="">--Seleccione--</option>
 						<option value="Débito">Débito</option>
 						<option value="Crédito">Crédito</option>

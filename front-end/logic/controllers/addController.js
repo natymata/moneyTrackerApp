@@ -6,11 +6,26 @@ angular.module('bankAccount.controllers')
 		add.userId= $routeParams.userId;	
 		add.transactId= $routeParams.transactId;
 		add.tId= checkTid(add.transactId); //0 indicates this movement is being created, 1 means it's being edited.
-		add.newTransat= bindTransact(add.tId, add.transactId);
+		add.newTransat= {};
+		bindTransact(add.tId, add.transactId);
 		add.info="";
 		add.editInfo="";
 		add.showModal= false;
 		add.editModal= false;
+	};
+
+	var bindTransact= function(tId, transactId) {
+		if(tId==1){
+			transactService.getTransactById(transactId)
+			.success(function(response){
+				add.newTransat= transactService.setData(response.data);
+			})
+			.error(function(response){
+				add.info= "No se ha podido completar la operación, intente de nuevo";
+			});
+		}else{
+			add.newTransat= {date: "", amount: "", detail: "", shop: "", transactType: ""};
+		};
 	};
 
 	add.addTransact= function() {
@@ -69,16 +84,6 @@ angular.module('bankAccount.controllers')
 		}else{
 			return 1;
 		}
-	};
-
-	var bindTransact= function(tId, transactId) {
-		if(tId==1){
-			var transact= transactService.getTransactById(transactId);
-			transact.date= new Date(transact.date);
-			return transact;
-		}else{
-			return {date: "", amount: "", detail: "", shop: "", type: ""};
-		};
 	};
 
 	add.clear= function(form) {

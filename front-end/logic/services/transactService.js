@@ -21,9 +21,9 @@ angular.module('bankAccount.services')
 			id= transact.transactId;
 		};
 
-		if(transact.type=="Crédito" || transact.type=="Credito"){
+		if(transact.transactType=="Crédito" || transact.transactType=="Credito"){
 			typeId= 1;
-		}else if(transact.type=="Débito" || transact.type=="Debito"){
+		}else if(transact.transactType=="Débito" || transact.transactType=="Debito"){
 			typeId= 0;
 		}else{
 			typeId= 2; //no se conoce el tipo--asegura error en el back end--
@@ -36,7 +36,7 @@ angular.module('bankAccount.services')
 			amount:transact.amount,
 			detail: transact.detail,
 			shop: transact.shop,
-			type: transact.type,
+			transactType: transact.transactType,
 			typeId:typeId
 		};
 		return transactInfo;
@@ -54,19 +54,37 @@ angular.module('bankAccount.services')
 		return result;
 	};
 
+	var setData= function(dataArr) {
+		angular.forEach(dataArr, function(transact) {
+			var date= transact.date;
+			date= new Date();
+			transact.date= date;
+
+			transact.amount= Number(transact.amount);
+
+			if(transact.typeId== "0"){
+				transact.transactType="Débito";
+			}else{
+				transact.transactType= "Crédito";
+			};
+
+			if(transact.detail == ""){
+				transact.detail = "No registrado";
+			};
+
+			if(transact.shop == ""){
+				transact.shop = "No registrado";
+			};
+		});
+		return dataArr[0];	
+	};
+
 	var deleteTransact= function(transactId) {
 		var url= "back-end/index.php/transact/deleteTransact/" + transactId;
 		var result= $http.delete(url);
 		return result;
 	};//end , deleteTransact
 
-
-/*temporales*/
-	var getAllTransact= function() {
-		return localStorageService.getOrInit('ntAllTransact');
-	};//end getAllTransact
-
-	
 
 	var editTransact= function(transact, userId) {
 		
@@ -81,6 +99,7 @@ angular.module('bankAccount.services')
 		getTransactByUserId: getTransactByUserId,
 		getTransactById:getTransactById,
 		deleteTransact: deleteTransact,
-		editTransact: editTransact
+		editTransact: editTransact,
+		setData:setData
 	};
 });

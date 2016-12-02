@@ -12,7 +12,7 @@ angular.module('bankAccount.controllers')
 		transactService.getTransactById(detail.transactId)
 		.success(function(response){
 			if(response.found){
-				detail.transact= setData(response.data);
+				detail.transact= transactService.setData(response.data);
 			}else{
 				detail.error="No se ha podido encontrar la transacción";
 				console.error(response.message);
@@ -22,29 +22,6 @@ angular.module('bankAccount.controllers')
 			detail.error="No se ha podido encontrar la transacción";
 			console.error(response.message);
 		});
-	};
-
-	var setData= function(dataArr) {
-		angular.forEach(dataArr, function(transact) {
-			var date= transact.date;
-			date= new Date();
-			transact.date= date;
-
-			if(transact.typeId== "0"){
-				transact.transactType="Débito";
-			}else{
-				transact.transactType= "Crédito";
-			};
-
-			if(transact.detail == ""){
-				transact.detail = "No registrado";
-			};
-
-			if(transact.shop == ""){
-				transact.shop = "No registrado";
-			};
-		});
-		return dataArr[0];	
 	};
 
 	detail.deleteTransact= function() {

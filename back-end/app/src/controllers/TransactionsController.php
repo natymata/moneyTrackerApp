@@ -28,7 +28,7 @@ class TransactionsController{
         $amount= null; 
         $detail= null; 
         $shop= null; 
-        $type= null;
+        $transactType= null;
         $typeId= null;
 
         LoggingService::logVariable($formData, __FILE__, __LINE__);
@@ -57,15 +57,15 @@ class TransactionsController{
             $shop= $formData["shop"];
         }
 
-        if(array_key_exists("type", $formData)){
-            $type= $formData["type"];
+        if(array_key_exists("transactType", $formData)){
+            $transactType= $formData["transactType"];
         }
 
         if(array_key_exists("typeId", $formData)){
             $typeId= $formData["typeId"];
         }
 
-        $registerResult= $this->transactionsService->saveTransaction($userId, $transactId, $date, $amount, $detail, $shop, $type, $typeId);
+        $registerResult= $this->transactionsService->saveTransaction($userId, $transactId, $date, $amount, $detail, $shop, $transactType, $typeId);
 
         if(array_key_exists("error", $registerResult)) {
             $result["error"] = true;
