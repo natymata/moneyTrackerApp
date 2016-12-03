@@ -45,6 +45,7 @@ angular.module('bankAccount.services')
 	var getTransactByUserId= function(userId) {
 		var url= "back-end/index.php/transact/getTransactByUserId/" + userId;
 		var result= $http.get(url);
+		console.log(result);
 		return result;
 	};// end getTransactByUserId
 
@@ -55,19 +56,23 @@ angular.module('bankAccount.services')
 	};
 
 	var setData= function(dataArr) {
-		angular.forEach(dataArr, function(transact) {
-			var date= transact.date;
-			date= new Date();
-			transact.date= date;
+		angular.forEach(dataArr, function(transact){
+			// Split timestamp into [ Y, M, D, h, m, s ]
+			var t = transact.date.split(/[- :]/);
+			// Apply each element to the Date function
+			transact.date = new Date(Date.UTC(t[0], t[1]-1, t[2], t[3], t[4], t[5]));
 
+			//Convert amount to valid number
 			transact.amount= Number(transact.amount);
 
+			//set typeId
 			if(transact.typeId== "0"){
 				transact.transactType="Débito";
 			}else{
 				transact.transactType= "Crédito";
 			};
 
+			
 			if(transact.detail == ""){
 				transact.detail = "No registrado";
 			};
