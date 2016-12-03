@@ -19,7 +19,7 @@
 					<!-- <th>Id</th> -->
 					<th>Fecha</th>
 					<th>Tipo</th>
-					<!-- <th>Comercio</th> -->
+					<th>Comercio</th>
 					<th>Monto</th>
 					<th>Acciones</th>
 				</tr>
@@ -29,7 +29,7 @@
 					<!-- <td class="overfhidden tiny">{{transact.transactId}}</td> -->
 					<td>{{transact.date | date: 'd/MMM/yy'}}</td>
 					<td>{{transact.transactType}}</td>
-					<!-- <td>{{transact.shop}}</td> -->
+					<td>{{transact.shop}}</td>
 					<td ng-show="summary.money=='colon' || summary.money=='colones'">{{transact.amount | currency: '¢'}}</td>
 					<td ng-show="summary.money=='euro' || summary.money=='euros'">{{transact.amount | currency: '€'}}</td>
 					<td ng-show="summary.money=='dolar' || summary.money=='dolares'">{{transact.amount | currency: '$'}}</td>

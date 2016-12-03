@@ -126,6 +126,64 @@ class TransactionsController{
     }//end deleteTransact
 
 
+    public function editTransact($request){
+        $result = [];
+        $formData = $request->getParsedBody();
+
+        LoggingService::logVariable($formData, __FILE__, __LINE__);
+
+        $transactId= null; 
+        $date= null; 
+        $amount= null; 
+        $detail= null; 
+        $shop= null; 
+        $transactType= null;
+        $typeId= null;
+
+        if(array_key_exists("transactId", $formData)){
+            $transactId= $formData["transactId"];
+        }
+
+        if(array_key_exists("date", $formData)){
+            $date= $formData["date"];
+        }
+
+        if(array_key_exists("amount", $formData)){
+            $amount= $formData["amount"];
+        }
+
+        if(array_key_exists("detail", $formData)){
+            $detail= $formData["detail"];
+        }
+
+        if(array_key_exists("shop", $formData)){
+            $shop= $formData["shop"];
+        }
+
+        if(array_key_exists("transactType", $formData)){
+            $transactType= $formData["transactType"];
+        }
+
+        if(array_key_exists("typeId", $formData)){
+            $typeId= $formData["typeId"];
+        }
+
+        $editResult= $this->transactionsService->editTransact($transactId, $date, $amount, $detail, $shop, $transactType, $typeId);
+
+        if(array_key_exists("error", $editResult)) {
+            $result["error"] = true;
+            $result["message"] = $editResult["message"];
+            $result["edited"] = false;
+        }else{
+            $result["message"] = $editResult["message"];
+            $result["edited"] = true;
+            $result["error"] = false;
+        }
+
+         return $result;
+    }//end editTransact
+
+
 
 
 

@@ -13,7 +13,7 @@ angular.module('bankAccount.controllers')
 		transactService.getTransactByUserId(summary.userId)
 		.success(function(response){
 			if(!response.error){
-				summary.userTransacts= setDataTypes(response.data);
+				summary.userTransacts= transactService.setData(response.data);
 				summary.showElements= showElements(summary.userTransacts);
 				summary.balance= getBalance(summary.userTransacts);
 			}else{
@@ -26,23 +26,6 @@ angular.module('bankAccount.controllers')
 			summary.error= "No se han encontrado datos del usuario";
 		});
 	};
-
-	var setDataTypes= function(dataArr) {
-	 	angular.forEach(dataArr, function(transact) {
-			var date= transact.date;
-			date= new Date();
-			transact.date= date;
-
-			if(transact.typeId=="0"){
-				transact.transactType="Débito";
-			}else{
-				transact.transactType= "Crédito";
-			};
-		});
-		return dataArr;
-	};
-
-
 
 	var showElements= function(userTransacts) {
 		if(userTransacts.length>0){

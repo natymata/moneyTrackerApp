@@ -13,6 +13,7 @@ angular.module('bankAccount.controllers')
 		.success(function(response){
 			if(response.found){
 				detail.transact= transactService.setData(response.data);
+				detail.transact= detail.transact[0];
 			}else{
 				detail.error="No se ha podido encontrar la transacción";
 				console.error(response.message);

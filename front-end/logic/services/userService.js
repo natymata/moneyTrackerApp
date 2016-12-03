@@ -181,7 +181,6 @@ angular.module('bankAccount.services')
 		getLoggedUser:getLoggedUser, 
 		createNewAccount:createNewAccount,
 		canLogin:canLogin, 
-		getUserByUserName:getUserByUserName,
 		deleteAccount:deleteAccount,
 		editAccount:editAccount,
 		logout:logout

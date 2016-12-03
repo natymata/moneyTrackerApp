@@ -19,6 +19,7 @@ angular.module('bankAccount.controllers')
 			transactService.getTransactById(transactId)
 			.success(function(response){
 				add.newTransat= transactService.setData(response.data);
+				add.newTransat= add.newTransat[0];
 			})
 			.error(function(response){
 				add.info= "No se ha podido completar la operación, intente de nuevo";
@@ -53,20 +54,26 @@ angular.module('bankAccount.controllers')
 	add.edit= function() {
 		add.info="";
 		var transact= add.newTransat;
-		var userId= add.userId;
-		var result= transactService.editTransact(transact, userId);
-		if(!result.error){
-			add.editInfo= "Edición realizada con éxito";
-			add.editModal= true;
-			modal(true);
-			add.clear($scope.addTransactForm);
-			add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""
-			};
-		}else{
+		transact= transactService.setTransactInfo(transact);
+		transactService.editTransact(transact)
+		.success(function(response){
+			if(response.edited){
+				add.editInfo= "Edición realizada con éxito";
+				add.editModal= true;
+				modal(true);
+				add.clear($scope.addTransactForm);
+				add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""};
+			}else{
+				editInfo= "No se ha podido editar el elemento";
+				add.editModal= true;
+				modal(false);
+			}
+		})
+		.error(function(response){
 			editInfo= "No se ha podido editar el elemento";
 			add.editModal= true;
 			modal(false);
-		};
+		});
 	};
 
 	var modal= function(result) {

@@ -125,7 +125,7 @@ class TransactionsService {
 							
 						}else{//5
 							$result["error"] = true;
-        					$result["message"] = "site id is invalid";
+        					$result["message"] = "Amount is invalid";
 						}
 					}else{//4
 						$result["error"] = true;
@@ -309,13 +309,104 @@ class TransactionsService {
     }//end deleteTransact
 
 
+    /**
+     * Edit an user transaction
+     * @param $transactId  
+     * @param $date        
+     * @param $amount      
+     * @param $detail      
+     * @param $shop        
+     * @param $transactType
+     * @param $typeId      
+     * @return []
+     */
+    public function editTransact($transactId, $date, $amount, $detail, $shop, $transactType, $typeId){
+        $result=[];
 
+        $transactId= trim($transactId); 
+        $date= trim($date);
+        $date= $this->getDateTime($date); 
+        $amount= trim($amount); 
+        $detail= trim($detail); 
+        $shop= trim($shop); 
+        $transactType= trim($transactType);
+        $typeId= trim($typeId);
 
+        //verificar que todos los campos esten llenos
+        if(isset($transactId, $date, $amount, $transactType, $typeId)){ //1
+            //Verificar que el transact id sea válido
+            if($this->validation->isValidString($transactId) && strlen(trim($transactId))>=9){//3
+                //verificar que la fecha sea una valida
+                if($this->validation->isValidDateTime($date) || $this->validation->isValidDate($date)){//4
+                    //verificar que la cantidad tenga el formato valido
+                    if($this->validation->isCurrency($amount)){//5
+                        //verificar que el type id sea numerico y sea un numero entre 0 y 1
+                        if($this->validation->isValidInt($typeId) && strlen(trim($typeId))==1 && ($typeId>=0 && $typeId <=1)){//8
+                            //verificar que transactType code sea string valido
+                            if($this->validation->isValidString($transactType)){//9
+                                //generar el query
+                                $query= "UPDATE tbtransactions SET
+                                        date= :date,
+                                        amount= :amount,
+                                        detail= :detail,
+                                        shop= :shop,
+                                        transactType= :transactType,
+                                        typeId= :typeId
+                                        WHERE transactId= :transactId";
 
+                                // Los parámetros de ese query
+                                $params = [
+                                    ":date" => $date,
+                                    ":amount" => $amount,
+                                    ":detail" => $detail,
+                                    ":shop" => $shop,
+                                    ":transactType" => $transactType,
+                                    ":typeId" => $typeId,
+                                    ":transactId" => $transactId
+                                ];
 
+                                $editTransactResult = $this->storage->query($query, $params);
 
+                                LoggingService::logVariable($editTransactResult, __FILE__, __LINE__);
+                                   
+                                $isTransactEdited= array_key_exists("meta", $editTransactResult) && $editTransactResult["meta"]["count"]==1;
 
+                                LoggingService::logVariable($isTransactEdited, __FILE__, __LINE__);
 
+                                if($isTransactEdited){
+                                    $result["message"]= "Transaction edited";
+                                }else{
+                                    $result["error"] = true;
+                                    $result["message"]= "Error, can't edit transaction";
+                                }
+                            }else{//9
+                                $result["error"] = true;
+                                $result["message"] = "Transact type code is invalid";
+                            }
+                        }else{//8
+                            $result["error"] = true;
+                            $result["message"] = "Type id is invalid";
+                        }  
+                    }else{//5
+                        $result["error"] = true;
+                        $result["message"] = "Amount is invalid";
+                    }
+                }else{//4
+                    $result["error"] = true;
+                    $result["message"] = "Date format is invalid";
+                }
+            }else{//3
+                $result["error"] = true;
+                $result["message"] = "Transaction Id format is invalid";
+            }
+        }else{//1
+            $result["error"] = true;
+            $result["message"] = "Empty required fields";
+        }
+
+        return $result;
+
+    }//end editTransact
 
 
 

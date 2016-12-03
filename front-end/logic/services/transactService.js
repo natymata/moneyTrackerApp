@@ -76,7 +76,7 @@ angular.module('bankAccount.services')
 				transact.shop = "No registrado";
 			};
 		});
-		return dataArr[0];	
+		return dataArr;	
 	};
 
 	var deleteTransact= function(transactId) {
@@ -86,8 +86,10 @@ angular.module('bankAccount.services')
 	};//end , deleteTransact
 
 
-	var editTransact= function(transact, userId) {
-		
+	var editTransact= function(transact) {
+		var url= "back-end/index.php/transact/editTransact";
+		var result= $http.post(url, transact);
+		return result;
 	}; //end, editTransact
 
 
@@ -96,6 +98,7 @@ angular.module('bankAccount.services')
 	//access
 	return{
 		addNew: addNew,
+		setTransactInfo:setTransactInfo,
 		getTransactByUserId: getTransactByUserId,
 		getTransactById:getTransactById,
 		deleteTransact: deleteTransact,

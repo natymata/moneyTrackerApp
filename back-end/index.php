@@ -145,6 +145,18 @@ $app->delete(
     }
 );
 
+//editTransact
+$app->post(
+    '/transact/editTransact',
+    function ($request, $response) {
+        /** @var Request $request */
+        /** @var Response $response */
+        $transactionsController= new App\Controllers\TransactionsController();
+        $result = $transactionsController->editTransact($request);
+        return $response->withJson($result);
+    }
+);
+
 
 
 
