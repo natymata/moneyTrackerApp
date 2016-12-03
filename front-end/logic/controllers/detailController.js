@@ -9,6 +9,7 @@ angular.module('bankAccount.controllers')
 		detail.info="";
 		detail.error="";
 		detail.showModal= false;
+		detail.confirmModal= false;
 		transactService.getTransactById(detail.transactId)
 		.success(function(response){
 			if(response.found){
@@ -25,9 +26,14 @@ angular.module('bankAccount.controllers')
 		});
 	};
 
+	detail.delete= function(){
+		detail.confirmModal= true;
+	};
+
 	detail.deleteTransact= function() {
 		transactService.deleteTransact(detail.transactId)
 		.success(function(response){
+			detail.confirmModal= false;
 			if(response.deleted){
 				detail.info= "Transacción eliminada con éxito";
 				detail.showModal= true;
@@ -55,6 +61,15 @@ angular.module('bankAccount.controllers')
 			};
 		}, 2000);	
 	};
+
+	detail.cancelDelete= function(){
+		detail.confirmModal= false;
+	};
+
+
+
+
+
 
 	detail.init();
 	

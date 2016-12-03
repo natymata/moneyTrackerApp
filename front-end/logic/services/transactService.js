@@ -45,7 +45,6 @@ angular.module('bankAccount.services')
 	var getTransactByUserId= function(userId) {
 		var url= "back-end/index.php/transact/getTransactByUserId/" + userId;
 		var result= $http.get(url);
-		console.log(result);
 		return result;
 	};// end getTransactByUserId
 

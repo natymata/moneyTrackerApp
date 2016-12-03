@@ -9,7 +9,12 @@ angular.module('bankAccount.controllers')
 		summary.accountType= userService.getCurrentUser().accountType;
 		summary.money= userService.getCurrentUser().money;
 		summary.welcome= "Bienvenid@" + " " + summary.userName;
+		summary.displayElements= true;
+		getTransactByUserId();
+	};
 
+
+	var getTransactByUserId= function() {
 		transactService.getTransactByUserId(summary.userId)
 		.success(function(response){
 			if(!response.error){
@@ -18,12 +23,12 @@ angular.module('bankAccount.controllers')
 				summary.balance= getBalance(summary.userTransacts);
 			}else{
 				console.error(response.message);
-				summary.error= "No se han encontrado datos del usuario";
 			}
 		})
 		.error(function(response){
+			summary.displayElements= false;
 			console.error(response.message);
-			summary.error= "No se han encontrado datos del usuario";
+			summary.error= "No se han encontrado datos del usuario, intente de nuevo";
 		});
 	};
 

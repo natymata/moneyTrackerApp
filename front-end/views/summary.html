@@ -4,13 +4,15 @@
 
 		<h4 class="error text-center">{{summary.error}}</h4>
 
-		<div class="center-block floatNone">
-			<h4 class="marginbotton40" ng-show="summary.showElements">Estos son sus últimos movimientos en su cuenta {{summary.accountType}}</h4>
-		</div>
-		
-		<div ng-hide="summary.showElements" class="center-block floatNone text-center div-info">
-			<h3>No hay movimientos en su cuenta</h3>
-			<a ng-href="#/add/{{summary.userId}}" class="btn app-btn gradient btn50 btn-mrg">Agregar Movimientos</a>
+		<div ng-show="summary.displayElements">
+			<div class="center-block floatNone">
+				<h4 class="marginbotton40" ng-show="summary.showElements">Estos son sus últimos movimientos en su cuenta {{summary.accountType}}</h4>
+			</div>
+			
+			<div ng-hide="summary.showElements" class="center-block floatNone text-center div-info">
+				<h3>No hay movimientos en su cuenta</h3>
+				<a ng-href="#/add/{{summary.userId}}" class="btn app-btn gradient btn50 btn-mrg">Agregar Movimientos</a>
+			</div>
 		</div>
 
 		<table class="table table-striped" ng-if="summary.showElements">
@@ -38,7 +40,7 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="2 ">Saldo disponible</td>
+					<td colspan="3">Saldo disponible</td>
 					<td colspan="2" ng-show="summary.money=='colon'">{{summary.balance | currency: '¢'}}</td>
 					<td colspan="2" ng-show="summary.money=='euro'">{{summary.balance | currency: '€'}}</td>
 					<td colspan="2" ng-show="summary.money=='dolar'">{{summary.balance | currency: '$'}}</td>

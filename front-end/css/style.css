@@ -195,7 +195,7 @@ sub{
 /*SUMMARY*/
 
 .accountDetail th, .accountDetail td{
-	width: 25%;
+	width: 20%;
 }
 
 .accountDetail td a{

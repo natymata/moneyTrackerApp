@@ -37,11 +37,21 @@
 		<!-- transact-edit/:userId/:transactId -->
 		<a ng-href="#/transact-edit/{{detail.userId}}/{{detail.transactId}}" class="btn app-btn gradient btn50 btn-mrg">Editar <span class="glyphicon glyphicon-edit"></span></a>
 
-		<button ng-click="detail.deleteTransact()" class="btn btn-warning btn50 btn-mrg">Eliminar <span class="glyphicon glyphicon-trash"></span></button>
+		<button ng-click="detail.delete()" class="btn btn-warning btn50 btn-mrg">Eliminar <span class="glyphicon glyphicon-trash"></span></button>
 
 		<div class="addModal post-abs" ng-show="detail.showModal">
 			<h3 class="text-center margin-modal2">{{detail.info}}</h3>
 		</div>
+
+		<div class="addModal post-abs" ng-show= "detail.confirmModal">
+			<div class="width70">
+					<h3 class="text-center margin-modal">Está seguro de que desea eliminar la transacción?</h3>
+					<div class="margin-modal">
+						<button type="button" class="btn app-btn gradient btn50 btn-mrg" ng-click="detail.cancelDelete()">Cancelar</button>
+						<button type="button" class="btn btn-warning btn50 btn-mrg" ng-click="detail.deleteTransact()">Eliminar</button>
+					</div>
+				</div>
+		</div> <!-- modal -->
 
 	</section>
 </div> <!-- main-col -->
