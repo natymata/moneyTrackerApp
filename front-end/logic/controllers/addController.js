@@ -3,6 +3,7 @@ angular.module('bankAccount.controllers')
 	var add= this;
 
 	add.init= function() {
+		$scope.selectedTab(3);
 		add.userId= $routeParams.userId;	
 		add.transactId= $routeParams.transactId;
 		add.tId= checkTid(add.transactId); //0 indicates this movement is being created, 1 means it's being edited.

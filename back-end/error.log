@@ -2185,3 +2185,837 @@ Array
     [message] => User transactions not found
     [error] => 1
 )
+---- 
+03/12/16 02:24:11 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 02:25:41 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+03/12/16 02:25:41 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+03/12/16 02:25:42 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:20:42 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+03/12/16 23:20:42 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+03/12/16 23:20:42 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+03/12/16 23:20:42 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+03/12/16 23:20:42 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:20:59 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:23:17 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:28:54 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:30:09 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:40:16 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:40:37 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:41:00 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+03/12/16 23:41:00 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+03/12/16 23:41:00 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:50:24 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:51:07 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+03/12/16 23:51:07 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+03/12/16 23:51:07 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:52:18 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+03/12/16 23:52:18 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+03/12/16 23:52:18 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:52:54 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+03/12/16 23:59:46 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:00:04 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+04/12/16 00:00:04 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+04/12/16 00:00:04 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:00:10 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:00:30 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+04/12/16 00:00:30 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+04/12/16 00:00:30 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:01:41 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:01:57 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+04/12/16 00:01:57 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+04/12/16 00:01:57 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:04:56 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:05:16 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+04/12/16 00:05:16 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+04/12/16 00:05:17 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:12:01 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+04/12/16 00:12:01 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+04/12/16 00:12:02 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:15:30 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:15:53 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+04/12/16 00:15:53 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+04/12/16 00:15:53 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:15:59 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:16:23 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:24:24 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+04/12/16 00:24:24 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+04/12/16 00:24:25 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:26:01 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:30:01 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+04/12/16 00:30:01 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+04/12/16 00:30:01 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:30:05 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:30:14 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 47
+Array
+(
+    [data] => Array
+        (
+            [0] => Array
+                (
+                    [userId] => usr1480186635766TCSa
+                    [0] => usr1480186635766TCSa
+                    [name] => Naty
+                    [1] => Naty
+                    [lastName] => Mata
+                    [2] => Mata
+                    [username] => natymata
+                    [3] => natymata
+                    [password] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [4] => $2y$10$oVd2Jrkea7FE6llwnBGt.OxFjq1aEmHWEf7AJpZvHMluzKEVUmyL2
+                    [money] => colon
+                    [5] => colon
+                    [accountType] => ahorros
+                    [6] => ahorros
+                    [tbUserType_idUserType] => 2
+                    [7] => 2
+                )
+
+        )
+
+    [meta] => Array
+        (
+            [count] => 1
+        )
+
+)
+---- 
+04/12/16 00:30:14 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\services\UserService.php: 55
+111111---- 
+04/12/16 00:30:15 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)
+---- 
+04/12/16 00:30:18 
+C:\xampp\htdocs\MyProjects\moneyTrackerApp2.0\back-end\app\src\controllers\TransactionsController.php: 98
+Array
+(
+    [message] => User transactions not found
+    [error] => 1
+)

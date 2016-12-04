@@ -3,6 +3,7 @@ angular.module('bankAccount.controllers')
 	var newAcc= this;
 
 	newAcc.init= function() {
+		$scope.selectedTab(5);
 		newAcc.userId= $routeParams.userId;
 		newAcc.tId= checktId(newAcc.userId);
 		newAcc.newAccount= bindTransact(newAcc.tId);

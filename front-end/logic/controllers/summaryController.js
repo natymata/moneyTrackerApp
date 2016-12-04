@@ -1,8 +1,9 @@
 angular.module('bankAccount.controllers') 
-.controller("summaryController", function(userService, $routeParams, transactService) {
+.controller("summaryController", function(userService, $routeParams, transactService, $scope) {
 	var summary= this;
 
 	summary.init= function() {
+		$scope.selectedTab(2);
 		summary.error="";
 		summary.userId= $routeParams.userId;
 		summary.userName= userService.getCurrentUser().name;
@@ -21,9 +22,7 @@ angular.module('bankAccount.controllers')
 				summary.userTransacts= transactService.setData(response.data);
 				summary.showElements= showElements(summary.userTransacts);
 				summary.balance= getBalance(summary.userTransacts);
-			}else{
-				console.error(response.message);
-			}
+			};
 		})
 		.error(function(response){
 			summary.displayElements= false;

@@ -4,8 +4,13 @@ angular.module('bankAccount.controllers')
 
 	appCtrl.init= function() {
 		$scope.isSignedIn= false;
+		$scope.tab=1;
 		isLoggedIn();		
 	};
+
+	$scope.selectedTab= function(number) {
+		$scope.tab= number;
+	}
 
 	var isLoggedIn= function() {
 		var userId, cookieUser;
@@ -27,6 +32,6 @@ angular.module('bankAccount.controllers')
 	$scope.sigInFalse= function() {
 		$scope.isSignedIn= false;
 	};
-	
+
 	appCtrl.init();
 });

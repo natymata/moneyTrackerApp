@@ -346,3 +346,14 @@ p.paddingLeft10{
 .panel-profile{
 	padding-bottom: 0;
 }
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus{
+	color: #fff;
+	background-color: #054491;
+}
+
+.navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>li>a:hover{
+	color: #fff;
+	background-color: #4183bb;
+}
+

@@ -1,8 +1,9 @@
 angular.module('bankAccount.controllers') 
-.controller("detailController", function ($routeParams, userService, transactService, $timeout, $location) {
+.controller("detailController", function ($routeParams, userService, transactService, $timeout, $location, $scope) {
 	var detail= this;
 
 	detail.init= function() {
+		$scope.selectedTab(2);
 		detail.userId= userService.getCurrentUser().userId;
 		detail.transactId= $routeParams.transactId;
 		detail.money= userService.getCurrentUser().money;

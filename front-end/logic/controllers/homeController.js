@@ -3,6 +3,7 @@ angular.module('bankAccount.controllers')
 	var home= this;
 
 	home.init=function() {
+		$scope.selectedTab(1);
 		home.user= {username:"", pass:""};
 		home.info="";
 	}; 

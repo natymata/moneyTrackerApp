@@ -1,8 +1,9 @@
 angular.module('bankAccount.controllers')
-.controller("userProfileController", function ($location, userService, $timeout) {
+.controller("userProfileController", function ($location, userService, $timeout, $scope) {
 	var profile= this;
 
 	profile.init= function() {
+		$scope.selectedTab(4);
 		profile.userId= userService.getCurrentUser().userId;
 		profile.name= userService.getCurrentUser().name +" "+ userService.getCurrentUser().lastName;
 		profile.username= userService.getCurrentUser().username;
