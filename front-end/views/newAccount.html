@@ -29,7 +29,7 @@
 				<div class="form-group display-inline div50">
 					<sub ng-show="newAccForm.repeatPass.$error.required && newAccForm.repeatPass.$touched">Campo requerido</sub>
 					<sub ng-show="newAccForm.repeatPass.$error.passwordVerify && newAccForm.repeatPass.$touched">Las contraseñas no coinciden</sub>
-					<label>Repetir contraseña:</label><input type="password" name="repeatPass" ng-model= "newAcc.newAccount.repeatPass" ng-minlength="6" required class="form-control" data-password-verify="newAcc.newAccount.pass">
+					<label>Repetir contraseña:</label><input type="password" name="repeatPass" ng-model= "newAcc.newAccount.repeatPass" ng-minlength="6" required class="form-control" data-password-verify="newAcc.newAccount.pass" ng-model-options="{debounce:200}">
 				</div> 
 
 				<div class="form-group display-inline div50">

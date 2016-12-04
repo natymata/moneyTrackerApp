@@ -9,7 +9,7 @@ namespace App\Services;
 use DateTime;
 
 /**
-* 
+* format as date a string
 */
 class DateTimeService{
 	

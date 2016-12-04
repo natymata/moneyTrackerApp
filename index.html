@@ -8,6 +8,7 @@
 	<link rel="shortcut icon" href="">
 	<link rel="stylesheet" type="text/css" href="front-end/lib/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="front-end/css/style.css">
+	<script src="front-end/lib/angular.min.js"></script>
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -17,7 +18,7 @@
     <![endif]-->
 
 </head>
-<body ng-app="bankAccount" ng-controller="appController as appCtrl">
+<body ng-app="bankAccount" ng-controller="appController as appCtrl" ng-cloak>
   <div class="container-fluid"> <!-- main-container -->
 	  <div class="row main-row"> <!-- main-row -->
 		<header>
@@ -59,7 +60,6 @@
 	  </div> <!-- main-row -->
   </div> <!-- main-container -->
 
-	<script src="front-end/lib/angular.min.js"></script>
 	<script src="front-end/lib/angular-route.min.js"></script>
 	<script src="front-end/lib/angular-cookies.min.js"></script>
 	<script src="front-end/lib/angular-resource.min.js"></script>

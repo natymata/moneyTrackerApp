@@ -108,8 +108,6 @@ class UserController {
         $pass= null;
         $repeatPass= null;
 
-        LoggingService::logVariable($formData, __FILE__, __LINE__);
-
         if (array_key_exists("userId", $formData)) {
             $userId = $formData["userId"];
         }
@@ -185,8 +183,6 @@ class UserController {
         $pass= null;
         $repeatPass= null;
 
-        LoggingService::logVariable($formData, __FILE__, __LINE__);
-
         if (array_key_exists("userId", $formData)) {
             $userId = $formData["userId"];
         }
@@ -243,7 +239,6 @@ class UserController {
     public function deleteUser($request, $args){
         $result = [];
         $userId = $args['userId'];
-        LoggingService::logVariable($userId, __FILE__, __LINE__);
 
         $deleteResult = $this->userService->deleteUser($userId);
 
@@ -258,14 +253,6 @@ class UserController {
         }
         return $result;
     }//end  delete user.
-
-
-
-/*
-    public function getAllUsers(){
-        return $this->userService->getAllUsers();
-    }
-*/
     
 
 

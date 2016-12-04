@@ -85,7 +85,6 @@ class TransactionsService {
 
                                             if($isTransactCreated){//a
                                                 $result["message"]= "Transaction created";
-                                                //$result["meta"]["id"]= $createTransactResult["meta"]["id"];
                                                 
                                                 //si la transaccion se creo exitosamente se crea el indice de relaciones
                                                 $query = "INSERT INTO tbtransactxuser (tbUser_userId, tbTransactios_transactd) VALUES (:userId, :transactId)";
@@ -121,8 +120,6 @@ class TransactionsService {
 								$result["error"] = true;
 								$result["message"] = "Type id is invalid";
 							}
-								
-							
 						}else{//5
 							$result["error"] = true;
         					$result["message"] = "Amount is invalid";
@@ -228,33 +225,33 @@ class TransactionsService {
                 $query= "SELECT transactId, date, amount, detail, shop, typeId FROM tbtransactions 
                 WHERE transactId= :transactId AND Active= 1 LIMIT 1";
 
-                    // Query params
-                    $params = [":transactId" => $transactId];
+                // Query params
+                $params = [":transactId" => $transactId];
 
-                    $getTransactResult = $this->storage->query($query, $params);
+                $getTransactResult = $this->storage->query($query, $params);
 
-                    $foundRecord = array_key_exists("meta", $getTransactResult) &&
-                        $getTransactResult["meta"]["count"] > 0;
+                $foundRecord = array_key_exists("meta", $getTransactResult) &&
+                    $getTransactResult["meta"]["count"] > 0;
 
-                    if ($foundRecord) {
-                        $result["message"] =  "Transaction found";
-                        $result["found"]= true;
-                        $transactList = $getTransactResult["data"];
+                if ($foundRecord) {
+                    $result["message"] =  "Transaction found";
+                    $result["found"]= true;
+                    $transactList = $getTransactResult["data"];
 
-                        foreach ($transactList as $transact) {
-                            $result["data"][] = [
-                                "transactId" => $transact["transactId"],
-                                "date" => $transact["date"],
-                                "amount" => $transact["amount"],
-                                "detail" => $transact["detail"],
-                                "shop" => $transact["shop"],
-                                "typeId" => $transact["typeId"]
-                            ];
-                        } 
-                    } else {
-                        $result["message"] = "Transaction not found";
-                        $result["error"] = true;
-                    }
+                    foreach ($transactList as $transact) {
+                        $result["data"][] = [
+                            "transactId" => $transact["transactId"],
+                            "date" => $transact["date"],
+                            "amount" => $transact["amount"],
+                            "detail" => $transact["detail"],
+                            "shop" => $transact["shop"],
+                            "typeId" => $transact["typeId"]
+                        ];
+                    } 
+                }else{
+                    $result["message"] = "Transaction not found";
+                    $result["error"] = true;
+                }
             }else{//2
                 $result["error"] = true;
                 $result["message"] = "Transaction Id format is invalid";
@@ -370,8 +367,6 @@ class TransactionsService {
                                 LoggingService::logVariable($editTransactResult, __FILE__, __LINE__);
                                    
                                 $isTransactEdited= array_key_exists("meta", $editTransactResult) && $editTransactResult["meta"]["count"]==1;
-
-                                LoggingService::logVariable($isTransactEdited, __FILE__, __LINE__);
 
                                 if($isTransactEdited){
                                     $result["message"]= "Transaction edited";

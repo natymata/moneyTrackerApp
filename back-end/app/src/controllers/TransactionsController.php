@@ -31,8 +31,6 @@ class TransactionsController{
         $transactType= null;
         $typeId= null;
 
-        LoggingService::logVariable($formData, __FILE__, __LINE__);
-
         if(array_key_exists("userId", $formData)){
             $userId= $formData["userId"];
         }
@@ -93,9 +91,7 @@ class TransactionsController{
         $result = [];
         $userId = $request->getAttribute("userId", null);
         
- 
         $result= $this->transactionsService->getTransactByUserId($userId);
-        LoggingService::logVariable($result, __FILE__, __LINE__);
         return $result;
     }//end getTransactByUserId
 
@@ -108,7 +104,6 @@ class TransactionsController{
     public function getTransactById($request){
         $result = [];
         $transactId = $request->getAttribute("transactId", null);
-        LoggingService::logVariable($transactId, __FILE__, __LINE__);
 
         return $this->transactionsService->getTransactById($transactId);
     }//end getTransactById
@@ -122,7 +117,6 @@ class TransactionsController{
     public function deleteTransact($request){
         $result = [];
         $transactId = $request->getAttribute("transactId", null);
-        LoggingService::logVariable($transactId, __FILE__, __LINE__);
 
         return $this->transactionsService->deleteTransact($transactId);
     }//end deleteTransact
@@ -131,8 +125,6 @@ class TransactionsController{
     public function editTransact($request){
         $result = [];
         $formData = $request->getParsedBody();
-
-        LoggingService::logVariable($formData, __FILE__, __LINE__);
 
         $transactId= null; 
         $date= null; 
@@ -184,11 +176,6 @@ class TransactionsController{
 
          return $result;
     }//end editTransact
-
-
-
-
-
 
 
    
