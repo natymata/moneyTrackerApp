@@ -1,6 +1,8 @@
 # moneyTrackerApp
-angular and php app to track money.
-Tech: HTML5, CSS3, AngularJS, Bootstrap3, PHP, mySQL.
+App to track money.
+Tech: 
+	Front-end: HTML5, CSS3, AngularJS, Bootstrap3.
+	Back-end: PHP, mySQL.
 
 El branch "completeLocalStorage" contiene la aplicacion con la persistencia en el localStorage. -Ejemplo de la utilizaión del localStorage-
 

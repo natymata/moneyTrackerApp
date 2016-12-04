@@ -12,9 +12,9 @@ angular.module('bankAccount.services')
 		}else{
 			return false;
 		};
-	};
+	};//end
 
-	//verify user data, when trying to log in
+	//verify user credentials, when trying to log in
 	var canLogin= function(username, pass) {
 		var user= {"username": username, "pass": pass};
 		var url= 'back-end/index.php/user/login';
@@ -73,6 +73,7 @@ angular.module('bankAccount.services')
 		return ntAppLoggedUser;
 	};//end, getCurrentUser
 
+	//creates a new user account
 	var createNewAccount= function(user) {
 		var newUser={};
 		var url= 'back-end/index.php/user/registerUser';
@@ -81,9 +82,9 @@ angular.module('bankAccount.services')
 		newUser= setUserInfo(user);
 		result= $http.post(url, newUser);
 		return result;
-
 	}; //end, createNewAccount
 
+	//create the new user object to be sent to database. sets all vars
 	var setUserInfo= function(user) {
 		var id;
 
@@ -117,7 +118,7 @@ angular.module('bankAccount.services')
 	};//end editAccount
 
 
-	//logout user
+	//logout user. front-end side
 	var logout= function() {
 		var result={
 			msg:"",
@@ -159,18 +160,19 @@ angular.module('bankAccount.services')
 		};
 	};//end. logout
 
+	//back end log out
 	var backLogout= function() {
 		var url= 'back-end/index.php/user/logout';
 		var result= $http.get(url);
 		return result;
 	}; //end, backLogout
 
-
+	//delete an user account
 	var deleteAccount= function(userId) {
 		var url= "back-end/index.php/user/deleteUser/" + userId;
 		var result= $http.delete(url);
 		return result;
-	};
+	};//end
 	
 	
 //access
@@ -178,7 +180,7 @@ angular.module('bankAccount.services')
 		getCurrentUser:getCurrentUser, 
 		isLoggedIn:isLoggedIn, 
 		login:login,  
-		getLoggedUser:getLoggedUser, 
+		getLoggedUser:getLoggedUser,
 		createNewAccount:createNewAccount,
 		canLogin:canLogin, 
 		deleteAccount:deleteAccount,

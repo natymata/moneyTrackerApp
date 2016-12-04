@@ -2,19 +2,28 @@ angular.module('bankAccount.controllers')
 .controller("addController", function ($location, $routeParams, transactService, $scope, $timeout) {
 	var add= this;
 
+	/*
+	init values
+	 */
 	add.init= function() {
-		$scope.selectedTab(3);
-		add.userId= $routeParams.userId;	
+		$scope.selectedTab(3); //set active class
+		add.userId= $routeParams.userId; 
 		add.transactId= $routeParams.transactId;
 		add.tId= checkTid(add.transactId); //0 indicates this movement is being created, 1 means it's being edited.
 		add.newTransat= {};
-		bindTransact(add.tId, add.transactId);
-		add.info="";
+		bindTransact(add.tId, add.transactId); //init values to add.newTransact
+		add.info=""; 
 		add.editInfo="";
 		add.showModal= false;
 		add.editModal= false;
-	};
+	};//end init
 
+	/**
+	 * init values to newTransact var.
+	 * @param  tId
+	 * @param  transactId
+	 * @return {}
+	 */
 	var bindTransact= function(tId, transactId) {
 		if(tId==1){
 			transactService.getTransactById(transactId)
@@ -30,6 +39,9 @@ angular.module('bankAccount.controllers')
 		};
 	};
 
+	/**
+	 * addTransact, register a new trasaction
+	 */
 	add.addTransact= function() {
 		add.info="";
 		var newTrnst= add.newTransat;
@@ -50,8 +62,11 @@ angular.module('bankAccount.controllers')
 			console.error(response.message);
 			add.info= "No se ha podido completar la operación";
 		});
-	};
+	};//end addTransact
 
+	/**
+	 * Edit an user trasaction
+	 */
 	add.edit= function() {
 		add.info="";
 		var transact= add.newTransat;
@@ -65,7 +80,7 @@ angular.module('bankAccount.controllers')
 				add.clear($scope.addTransactForm);
 				add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""};
 			}else{
-				editInfo= "No se ha podido editar el elemento";
+				add.editInfo= "El elemento no ha sido editado";
 				add.editModal= true;
 				modal(false);
 			}
@@ -75,8 +90,11 @@ angular.module('bankAccount.controllers')
 			add.editModal= true;
 			modal(false);
 		});
-	};
+	};//end edit
 
+	/**
+	 * hide modal after timeout
+	 */
 	var modal= function(result) {
 		$timeout(function(){
 			add.editModal= false;
@@ -84,31 +102,39 @@ angular.module('bankAccount.controllers')
 				$location.path("detail/" + add.transactId);
 			};
 		}, 2000);	
-	};
+	};//end modal
 
+	/**
+	 * Check if there's a setted transact id.
+	 * if 0 indicates this movement is being created, 1 means it's being edited.
+	 * @return boolean
+	 */
 	var checkTid= function(transactId) {
 		if(transactId==undefined){
 			return 0;
 		}else{
 			return 1;
 		}
-	};
+	};//end checkTid
 
+	//clear form
 	add.clear= function(form) {
     	form.$setPristine();
     	form.$setUntouched();
 	}; //end function
 
+	//add more transactions
 	add.addMore= function() {
 		add.showModal= false;
 		add.info="";
-	};
+	};//end addMore
 	
+	//back to summary view
 	add.back= function() {
 		add.showModal= false;
 		$location.path("/summary/" + add.userId);
 		add.info="";
-	};
+	};//end back
 
 	add.init();
 

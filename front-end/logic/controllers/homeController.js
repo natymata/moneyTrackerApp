@@ -2,12 +2,14 @@ angular.module('bankAccount.controllers')
 .controller("homeController", function ($location, userService, $scope, formService) {
 	var home= this;
 
+	//init values
 	home.init=function() {
-		$scope.selectedTab(1);
+		$scope.selectedTab(1); //set active tab
 		home.user= {username:"", pass:""};
 		home.info="";
-	}; 
+	}; //end
 
+	//check if the login credentials are valid, and logs in the user
 	home.canLogIn= function() {
 		var currentUser={};
 		var result;
@@ -36,7 +38,7 @@ angular.module('bankAccount.controllers')
 			home.info= "Error, no se ha podido completar la operación";
 			console.error(response.message);
 		});		
-	};
+	};//end can log in
 
 	home.init();
 

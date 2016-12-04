@@ -18,7 +18,6 @@
 		<table class="table table-striped" ng-if="summary.showElements">
 			<thead>
 				<tr>
-					<!-- <th>Id</th> -->
 					<th>Fecha</th>
 					<th>Tipo</th>
 					<th>Comercio</th>
@@ -28,7 +27,6 @@
 			</thead>
 			<tbody>	
 				<tr ng-repeat="transact in summary.userTransacts | orderBy:transact.date track by $index">
-					<!-- <td class="overfhidden tiny">{{transact.transactId}}</td> -->
 					<td>{{transact.date | date: 'd/MMM/yy'}}</td>
 					<td>{{transact.transactType}}</td>
 					<td>{{transact.shop}}</td>

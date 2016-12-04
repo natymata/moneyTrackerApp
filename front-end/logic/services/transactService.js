@@ -1,6 +1,7 @@
 angular.module('bankAccount.services')
 .factory('transactService', function(idService, localStorageService, $http) {
 
+	//Register a new transaction into the database
 	var addNew= function(transact, userId) {
 		var newTransact={};
 		var url= 'back-end/index.php/transact/saveTransaction';
@@ -11,6 +12,7 @@ angular.module('bankAccount.services')
 		return result;
 	};//end, transact function
 
+	//create the new transact object to be sent to database
 	var setTransactInfo= function(transact, userId) {
 		var id;
 		var typeId=0;
@@ -42,18 +44,21 @@ angular.module('bankAccount.services')
 		return transactInfo;
 	};//end. setTransactInfo
 
+	//get all user transactions by user id.
 	var getTransactByUserId= function(userId) {
 		var url= "back-end/index.php/transact/getTransactByUserId/" + userId;
 		var result= $http.get(url);
 		return result;
 	};// end getTransactByUserId
 
+	//get a transaction info by it's id
 	var getTransactById= function(transactId) {
 		var url= "back-end/index.php/transact/getTransactById/" + transactId;
 		var result= $http.get(url);
 		return result;
-	};
+	};//end
 
+	//set data types and info to the object vars returned as strings from database, to be used by angular and displayed to the user
 	var setData= function(dataArr) {
 		angular.forEach(dataArr, function(transact){
 			// Split timestamp into [ Y, M, D, h, m, s ]
@@ -81,8 +86,9 @@ angular.module('bankAccount.services')
 			};
 		});
 		return dataArr;	
-	};
+	};//end setData
 
+	//delete a tranasaction by id
 	var deleteTransact= function(transactId) {
 		var url= "back-end/index.php/transact/deleteTransact/" + transactId;
 		var result= $http.delete(url);
@@ -90,13 +96,12 @@ angular.module('bankAccount.services')
 	};//end , deleteTransact
 
 
+	//edit a transaction by id
 	var editTransact= function(transact) {
 		var url= "back-end/index.php/transact/editTransact";
 		var result= $http.post(url, transact);
 		return result;
 	}; //end, editTransact
-
-
 
 
 	//access

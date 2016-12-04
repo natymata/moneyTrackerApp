@@ -1,6 +1,7 @@
 angular.module('bankAccount.services')
 .factory('idService', function($cookies, localStorageService) {
 
+//sets an id to a new user o transaction
 var setId= function(type) {
 		var date, time, length, charset, val;
 

@@ -37,13 +37,15 @@
 					</select>
 				</div>
 				
+<!-- ng-disabled="formNewEventType.$invalid" -->
+
 				<!-- botones de la vista crear -->
-				<button type="submit" class="btn app-btn gradient btn50 btn-mrg" ng-show="add.tId==0"><span class="glyphicon glyphicon-ok"></span> Crear</button>
+				<button type="submit" ng-disabled="addTransactForm.$invalid" class="btn app-btn gradient btn50 btn-mrg" ng-show="add.tId==0"><span class="glyphicon glyphicon-ok"></span> Crear</button>
 				
 				<a ng-href="#/summary/{{add.userId}}" ng-show="add.tId==0" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
 		
 				<!-- botones de la vista editar -->
-				<button type="button" class="btn app-btn gradient btn50 btn-mrg" ng-show="add.tId==1" ng-click="add.edit()"><span class="glyphicon glyphicon-ok"></span> Actualizar</button>
+				<button type="button" ng-disabled="addTransactForm.$invalid" class="btn app-btn gradient btn50 btn-mrg" ng-show="add.tId==1" ng-click="add.edit()"><span class="glyphicon glyphicon-ok"></span> Actualizar</button>
 
 				<a ng-href="#/detail/{{add.transactId}}" ng-show="add.tId==1" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
 			</form>
