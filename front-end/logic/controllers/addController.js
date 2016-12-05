@@ -6,6 +6,7 @@ angular.module('bankAccount.controllers')
 	init values
 	 */
 	add.init= function() {
+		add.isLoading= true;
 		$scope.selectedTab(3); //set active class
 		add.userId= $routeParams.userId; 
 		add.transactId= $routeParams.transactId;
@@ -30,11 +31,14 @@ angular.module('bankAccount.controllers')
 			.success(function(response){
 				add.newTransat= transactService.setData(response.data);
 				add.newTransat= add.newTransat[0];
+				add.isLoading= false;
 			})
 			.error(function(response){
+				add.isLoading= false;
 				add.info= "No se ha podido completar la operación, intente de nuevo";
 			});
 		}else{
+			add.isLoading= false;
 			add.newTransat= {date: "", amount: "", detail: "", shop: "", transactType: ""};
 		};
 	};

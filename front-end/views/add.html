@@ -1,7 +1,12 @@
-<div class="col-lg-10 col-md-9 col-sm-12 center-block floatNone">
-	<section class="add-trans gray-border">
+<div class="col-lg-10 col-md-9 col-sm-12 center-block floatNone posit-rel">
+	
+	<div class="loadModal post-abs" ng-if="add.isLoading">
+		<div class="text-center verticalCenter"><p>Loading...</p><img src="front-end/img/loader/loader5.gif" width="50" height="50"></div>
+	</div>
 
-	<div class="detail-header cf">
+	<section class="add-trans gray-border" ng-if="!add.isLoading">
+
+		<div class="detail-header cf">
 			<h2 ng-show="add.tId==0" class="float"><a ng-href="#/summary/{{add.userId}}"><span class="glyphicon glyphicon-chevron-left"></span></a></h2>
 		
 			<h2 ng-show="add.tId==1" class="float"><a ng-href="#/detail/{{add.transactId}}"><span class="glyphicon glyphicon-chevron-left"></span></a></h2>

@@ -1,5 +1,11 @@
-<div class="center-block col-md-12 col-lg-12 floatNone" ng-cloak>
-	<section class="accountDetail gray-border">
+<div class="center-block col-md-12 col-lg-12 floatNone posit-rel">
+
+	<div class="loadModal post-abs" ng-if="summary.isLoading">
+		<div class="text-center verticalCenter"><p>Loading...</p><img src="front-end/img/loader/loader5.gif" width="50" height="50"></div>
+	</div>
+
+	<section class="accountDetail gray-border" ng-if="!summary.isLoading">
+
 		<h2>{{summary.welcome}}</h2>
 
 		<h4 class="error text-center">{{summary.error}}</h4>
