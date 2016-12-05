@@ -4,6 +4,7 @@ angular.module('bankAccount.controllers')
 
 	summary.init= function() {
 		$scope.selectedTab(2);
+		summary.isLoading= true;
 		summary.error="";
 		summary.userId= $routeParams.userId;
 		summary.userName= userService.getCurrentUser().name;
@@ -22,9 +23,13 @@ angular.module('bankAccount.controllers')
 				summary.userTransacts= transactService.setData(response.data);
 				summary.showElements= showElements(summary.userTransacts);
 				summary.balance= getBalance(summary.userTransacts);
+				summary.isLoading= false;
+			}else{
+				summary.isLoading= false;
 			};
 		})
 		.error(function(response){
+			summary.isLoading= false;
 			summary.displayElements= false;
 			console.error(response.message);
 			summary.error= "No se han encontrado datos del usuario, intente de nuevo";

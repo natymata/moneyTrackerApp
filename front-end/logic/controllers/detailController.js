@@ -5,6 +5,7 @@ angular.module('bankAccount.controllers')
 	//init values
 	detail.init= function() {
 		$scope.selectedTab(2); //set active class
+		detail.isLoading= true;
 		detail.userId= userService.getCurrentUser().userId;
 		detail.transactId= $routeParams.transactId;
 		detail.money= userService.getCurrentUser().money;
@@ -22,13 +23,16 @@ angular.module('bankAccount.controllers')
 			if(response.found){
 				detail.transact= transactService.setData(response.data);
 				detail.transact= detail.transact[0];
+				detail.isLoading= false;
 			}else{
+				detail.isLoading= false;
 				detail.error="No se ha podido encontrar la transacción";
 				console.error(response.message);
 			};
 		})
 		.error(function(response){
-			detail.error="No se ha podido encontrar la transacción";
+			detail.isLoading= false;
+			detail.error="Error, No se ha podido encontrar la transacción";
 			console.error(response.message);
 		});
 	};//end getTransact
