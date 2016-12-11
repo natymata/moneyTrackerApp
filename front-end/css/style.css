@@ -35,7 +35,7 @@ body{
 }
 
 h1{
-	font-size: 2em;
+	font-size: 1.9em;
 }
 
 label{
@@ -66,7 +66,7 @@ label{
 	background: -webkit-linear-gradient(top,  #003f8d 0%,#003f8d 25%,#9be1fb 100%); /* Chrome10-25,Safari5.1-6 */
 	background: linear-gradient(to bottom,  #003f8d 0%,#003f8d 25%,#9be1fb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003f8d', endColorstr='#9be1fb',GradientType=0 ); /* IE6-9 */
-	height: 90px;
+	height: 70px;
 	width: 15px;
 	margin-top: 5px;
 }
@@ -82,7 +82,7 @@ label{
 .logo1{
 	font-family: Masque;
 	color:#0C4791;
-	margin: 40px 0 0 15px;
+	margin: 35px 0 0 15px;
 }
 
 .logo2{
@@ -116,7 +116,6 @@ label{
 	background-color: #003F8D;
 	border: 1px solid #003577;
 }
-
 
 .logIn input{
 	display: block;
@@ -366,4 +365,16 @@ p.paddingLeft10{
 	color: #fff;
 	background-color: #4183bb;
 }
+
+.select{
+    width: 100%;
+    height: 28px;
+    padding: 4px 8px;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 6px;
+}
+
 

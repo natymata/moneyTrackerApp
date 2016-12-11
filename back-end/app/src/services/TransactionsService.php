@@ -169,7 +169,7 @@ class TransactionsService {
                     INNER JOIN tbuser
                     ON tbtransactions.transactId = tbtransactxuser.tbTransactios_transactd
                     AND tbtransactxuser.tbUser_userId = tbuser.userId
-                    WHERE tbuser.userId= :userId AND tbuser.Active= 1 ORDER BY date desc LIMIT 200";
+                    WHERE tbuser.userId= :userId AND tbuser.Active= 1 ORDER BY date desc LIMIT 500";
 
                     // Query params
                     $params = [":userId" => $userId];

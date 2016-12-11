@@ -20,7 +20,7 @@ angular.module('bankAccount.controllers')
 				result= userService.login(currentUser);
 				if(!result.error){
 					$location.path("/summary/" + currentUser.userId);
-					formService.clearForm(logInForm, $scope);
+					formService.clearForm($scope.logInForm);
 					home.info="Datos correctos, Bienvenido";
 					home.user= {username:"", pass:""};
 					$scope.sigInTrue();

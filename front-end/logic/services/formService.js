@@ -2,10 +2,12 @@ angular.module('bankAccount.services')
 .service('formService', function() {
 
 	//clear a form
-	var clearForm= function (formName, $scope) {
-		if ($scope.formName) {
-	            $scope.formName.$setPristine();
-	            $scope.formName.$setUntouched();
+	var clearForm= function (formName) {
+		if (formName) {
+            formName.$setPristine();
+            formName.$setUntouched();
+	    }else{
+	    	alert("form doesn't exists");
 	    }
 	}; 
 

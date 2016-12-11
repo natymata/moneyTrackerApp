@@ -17,7 +17,7 @@
 
 		<div class="newTransat-add posit-rel">
 			<h4 class="text-center error">{{add.info}}</h4>
-			<form name="addTransactForm" ng-submit="addTransactForm.$valid && add.addTransact()" novalidate>
+			<form name="addTransactForm" ng-submit="addTransactForm.$valid && add.checkOper(); addTransactForm.$setPristine(); addTransactForm.$setUntouched()" novalidate>
 				<div class="form-group">
 					<sub ng-show="addTransactForm.name.$invalid && addTransactForm.name.$touched">Fecha requerifa</sub>
 					<label>Fecha:</label><input type="date" name="date" ng-model= "add.newTransat.date" required ng-model-options="{ updateOn:'blur'}" class="form-control">
@@ -48,7 +48,7 @@
 				<a ng-href="#/summary/{{add.userId}}" ng-show="add.tId==0" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
 		
 				<!-- botones de la vista editar -->
-				<button type="button" ng-disabled="addTransactForm.$invalid" class="btn app-btn gradient btn50 btn-mrg" ng-show="add.tId==1" ng-click="add.edit()"><span class="glyphicon glyphicon-ok"></span> Actualizar</button>
+				<button type="submit" ng-disabled="addTransactForm.$invalid" class="btn app-btn gradient btn50 btn-mrg" ng-show="add.tId==1"><span class="glyphicon glyphicon-ok"></span> Actualizar</button>
 
 				<a ng-href="#/detail/{{add.transactId}}" ng-show="add.tId==1" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
 			</form>

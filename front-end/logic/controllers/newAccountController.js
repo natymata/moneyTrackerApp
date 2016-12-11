@@ -1,5 +1,5 @@
 angular.module('bankAccount.controllers')
-.controller("newAccountController", function ($location, userService, $routeParams, $scope, formService, $timeout) {
+.controller("newAccountController", function ($location, userService, $routeParams, $scope, $timeout) {
 	var newAcc= this;
 
 	//init values
@@ -35,7 +35,6 @@ angular.module('bankAccount.controllers')
 		if(tId==1){
 			return userService.getCurrentUser();
 		}else{
-			formService.clearForm(newAccForm, $scope);
 			return {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
 		};
 	};//end bindTransact
@@ -60,7 +59,6 @@ angular.module('bankAccount.controllers')
 				newAcc.modalInfo="Usuario creado con éxito";
 				newAcc.showModal= true;
 				modal();
-				formService.clearForm(newAccForm, $scope);
 				newAcc.info="";
 			}else{
 				if(response.message== "Username is unavailable"){
@@ -77,6 +75,7 @@ angular.module('bankAccount.controllers')
 			console.error(response.message);
 		});
 	};//end validateCreate.
+
 
 	//hides the modal
 	var modal= function() {
@@ -103,7 +102,6 @@ angular.module('bankAccount.controllers')
 			if(!response.error){
 				userService.login(user);
 				newAcc.newAccount= {userId: "", userType: "", name:"", lastName:"", username:"", pass:"", repeatPass:"", money:"", accountType:""};
-				formService.clearForm(newAccForm, $scope);
 				newAcc.updateInfo= "Usuario editado con éxito";
 				newAcc.showModal= true;
 				editModal(user.userId);
@@ -134,7 +132,6 @@ angular.module('bankAccount.controllers')
 
 	//cancel edit user account
 	newAcc.cancelEdit= function() {
-		formService.clearForm(newAccForm, $scope);
 		$location.path("/profile/" + newAcc.userId);
 	};//end
 
