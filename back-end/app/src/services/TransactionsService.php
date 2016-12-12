@@ -28,13 +28,12 @@ class TransactionsService {
      * @param $transactId
      * @param $date      
      * @param $amount    
-     * @param $detail    
-     * @param $shop      
+     * @param $detail        
      * @param $transactType      
      * @param $typeId    
      * @return []           
      */
-    public function saveTransaction($userId, $transactId, $date, $amount, $detail, $shop, $transactType, $typeId){
+    public function saveTransaction($userId, $transactId, $date, $amount, $detail, $transactType, $typeId){
     	
     	$result=[];
 
@@ -44,12 +43,11 @@ class TransactionsService {
         $date= $this->getDateTime($date);
         $amount= trim($amount);
         $detail= trim($detail);
-        $shop= trim($shop);
         $transactType= trim($transactType);
         $typeId= trim($typeId);
 
         //verificar que todos los campos esten llenos
-		if(isset($userId, $transactId, $date, $amount, $transactType, $typeId)){ //1
+		if(isset($userId, $transactId, $date, $amount, $detail, $transactType, $typeId)){ //1
 			//Verificar que el user id sea válido
 			if($this->validation->isValidString($userId) && strlen(trim($userId))>=9){//2
 				//Verificar que el transact id sea válido
@@ -62,56 +60,61 @@ class TransactionsService {
 							if($this->validation->isValidInt($typeId) && strlen(trim($typeId))==1 && ($typeId>=0 && $typeId <=1)){//8
 								//verificar que transactType code sea string valido
 								if($this->validation->isValidString($transactType)){//9
-									//generar el query
-									$query= "INSERT INTO tbtransactions (transactId, date, amount, detail, shop, transactType, typeId) VALUES (:transactId, :date, :amount, :detail, :shop, :transactType, :typeId)";
+                                    //verificar que el detail sea un string válido
+                                    if($this->validation->isValidString($detail)){//10
+    									//generar el query
+    									$query= "INSERT INTO tbtransactions (transactId, date, amount, detail, transactType, typeId) VALUES (:transactId, :date, :amount, :detail, :transactType, :typeId)";
+
+                                        // Los parámetros de ese query
+                                        $params = [
+                                            ":transactId" => $transactId,
+                                            ":date" => $date,
+                                            ":amount" => $amount,
+                                            ":detail" => $detail,
+                                            ":transactType" => $transactType,
+                                            ":typeId" => $typeId
+                                        ];
+
+                                        // Lo ejecutamos
+                                        $createTransactResult = $this->storage->query($query, $params);
+
+                                        LoggingService::logVariable($createTransactResult, __FILE__, __LINE__);
+                                           
+                                        $isTransactCreated= array_key_exists("meta", $createTransactResult) && $createTransactResult["meta"]["count"]==1;
+
+                                        if($isTransactCreated){//a
+                                            $result["message"]= "Transaction created";
+                                            
+                                            //si la transaccion se creo exitosamente se crea el indice de relaciones
+                                            $query = "INSERT INTO tbtransactxuser (tbUser_userId, tbTransactios_transactd) VALUES (:userId, :transactId)";
 
                                             // Los parámetros de ese query
                                             $params = [
-                                                ":transactId" => $transactId,
-                                                ":date" => $date,
-                                                ":amount" => $amount,
-                                                ":detail" => $detail,
-                                                ":shop" => $shop,
-                                                ":transactType" => $transactType,
-                                                ":typeId" => $typeId
+                                                ":userId" => $userId,
+                                                ":transactId" => $transactId
                                             ];
 
                                             // Lo ejecutamos
-                                            $createTransactResult = $this->storage->query($query, $params);
+                                            $createIndexResult = $this->storage->query($query, $params);
 
-                                            LoggingService::logVariable($createTransactResult, __FILE__, __LINE__);
+                                            LoggingService::logVariable($createIndexResult, __FILE__, __LINE__);
                                                
-                                            $isTransactCreated= array_key_exists("meta", $createTransactResult) && $createTransactResult["meta"]["count"]==1;
+                                            $isIndexCreated= array_key_exists("meta", $createIndexResult) && $createIndexResult["meta"]["count"]==1;
 
-                                            if($isTransactCreated){//a
-                                                $result["message"]= "Transaction created";
-                                                
-                                                //si la transaccion se creo exitosamente se crea el indice de relaciones
-                                                $query = "INSERT INTO tbtransactxuser (tbUser_userId, tbTransactios_transactd) VALUES (:userId, :transactId)";
-
-                                                // Los parámetros de ese query
-                                                $params = [
-                                                    ":userId" => $userId,
-                                                    ":transactId" => $transactId
-                                                ];
-
-                                                    // Lo ejecutamos
-                                                $createIndexResult = $this->storage->query($query, $params);
-
-                                                LoggingService::logVariable($createIndexResult, __FILE__, __LINE__);
-                                                   
-                                                $isIndexCreated= array_key_exists("meta", $createIndexResult) && $createIndexResult["meta"]["count"]==1;
-
-                                                if($isIndexCreated){//b
-                                                    $result["indexMessage"]= "Index created";
-                                                }else{//b
-                                                    $result["error"] = true;
-                                                    $result["indexMessage"]= "Error, can't create index";
-                                                }
-                                            }else{//a
+                                            if($isIndexCreated){//b
+                                                $result["indexMessage"]= "Index created";
+                                            }else{//b
                                                 $result["error"] = true;
-                                                $result["message"]= "Error, can't create transaction";
+                                                $result["indexMessage"]= "Error, can't create index";
                                             }
+                                        }else{//a
+                                            $result["error"] = true;
+                                            $result["message"]= "Error, can't create transaction";
+                                        }
+                                    }else{//10
+                                        $result["error"] = true;
+                                        $result["message"] = "Detail is invalid";
+                                    }
 								}else{//9
 									$result["error"] = true;
 									$result["message"] = "Transact type code is invalid";
@@ -163,13 +166,13 @@ class TransactionsService {
             //Vefiricar que el userId sea string valido y tenga al menos 9 caracteres
             if($this->validation->isValidString($userId) && strlen(trim($userId))>=9){//2
                 //set the query
-                $query= "SELECT tbtransactions.transactId, tbtransactions.date, tbtransactions.amount, tbtransactions.shop, tbtransactions.typeId
+                $query= "SELECT tbtransactions.transactId, tbtransactions.date, tbtransactions.amount, tbtransactions.detail, tbtransactions.typeId
                     FROM tbtransactions
                     INNER JOIN tbtransactxuser
                     INNER JOIN tbuser
                     ON tbtransactions.transactId = tbtransactxuser.tbTransactios_transactd
                     AND tbtransactxuser.tbUser_userId = tbuser.userId
-                    WHERE tbuser.userId= :userId AND tbuser.Active= 1 ORDER BY date desc LIMIT 200";
+                    WHERE tbuser.userId= :userId AND tbuser.Active= 1 ORDER BY date desc LIMIT 500";
 
                     // Query params
                     $params = [":userId" => $userId];
@@ -188,7 +191,7 @@ class TransactionsService {
                                 "transactId" => $transact["transactId"],
                                 "date" => $transact["date"],
                                 "amount" => $transact["amount"],
-                                "shop" => $transact["shop"],
+                                "detail" => $transact["detail"],
                                 "typeId" => $transact["typeId"]
                             ];
                         } 
@@ -222,7 +225,7 @@ class TransactionsService {
             //Vefiricar que el transactId sea string valido y tenga al menos 9 caracteres
             if($this->validation->isValidString($transactId) && strlen(trim($transactId))>=9){//2
                 //set the query
-                $query= "SELECT transactId, date, amount, detail, shop, typeId FROM tbtransactions 
+                $query= "SELECT transactId, date, amount, detail, typeId FROM tbtransactions 
                 WHERE transactId= :transactId AND Active= 1 LIMIT 1";
 
                 // Query params
@@ -244,7 +247,6 @@ class TransactionsService {
                             "date" => $transact["date"],
                             "amount" => $transact["amount"],
                             "detail" => $transact["detail"],
-                            "shop" => $transact["shop"],
                             "typeId" => $transact["typeId"]
                         ];
                     } 
@@ -281,8 +283,6 @@ class TransactionsService {
 
                 $deleteResult = $this->storage->query($query, $params);
                 
-                LoggingService::logVariable($deleteResult, __FILE__, __LINE__);
-                
                 $isTransactDeleted= array_key_exists("meta", $deleteResult) && $deleteResult["meta"]["count"]==1;
                 
                 if ($isTransactDeleted) {
@@ -312,12 +312,11 @@ class TransactionsService {
      * @param $date        
      * @param $amount      
      * @param $detail      
-     * @param $shop        
      * @param $transactType
      * @param $typeId      
      * @return []
      */
-    public function editTransact($transactId, $date, $amount, $detail, $shop, $transactType, $typeId){
+    public function editTransact($transactId, $date, $amount, $detail, $transactType, $typeId){
         $result=[];
 
         $transactId= trim($transactId); 
@@ -325,12 +324,11 @@ class TransactionsService {
         $date= $this->getDateTime($date); 
         $amount= trim($amount); 
         $detail= trim($detail); 
-        $shop= trim($shop); 
         $transactType= trim($transactType);
         $typeId= trim($typeId);
 
         //verificar que todos los campos esten llenos
-        if(isset($transactId, $date, $amount, $transactType, $typeId)){ //1
+        if(isset($transactId, $date, $amount, $detail, $transactType, $typeId)){ //1
             //Verificar que el transact id sea válido
             if($this->validation->isValidString($transactId) && strlen(trim($transactId))>=9){//3
                 //verificar que la fecha sea una valida
@@ -341,38 +339,40 @@ class TransactionsService {
                         if($this->validation->isValidInt($typeId) && strlen(trim($typeId))==1 && ($typeId>=0 && $typeId <=1)){//8
                             //verificar que transactType code sea string valido
                             if($this->validation->isValidString($transactType)){//9
-                                //generar el query
-                                $query= "UPDATE tbtransactions SET
-                                        date= :date,
-                                        amount= :amount,
-                                        detail= :detail,
-                                        shop= :shop,
-                                        transactType= :transactType,
-                                        typeId= :typeId
-                                        WHERE transactId= :transactId";
+                                //verificar que el detail sea string valido
+                                if($this->validation->isValidString($detail)){//10
+                                    //generar el query
+                                    $query= "UPDATE tbtransactions SET
+                                            date= :date,
+                                            amount= :amount,
+                                            detail= :detail,
+                                            transactType= :transactType,
+                                            typeId= :typeId
+                                            WHERE transactId= :transactId";
 
-                                // Los parámetros de ese query
-                                $params = [
-                                    ":date" => $date,
-                                    ":amount" => $amount,
-                                    ":detail" => $detail,
-                                    ":shop" => $shop,
-                                    ":transactType" => $transactType,
-                                    ":typeId" => $typeId,
-                                    ":transactId" => $transactId
-                                ];
+                                    // Los parámetros de ese query
+                                    $params = [
+                                        ":date" => $date,
+                                        ":amount" => $amount,
+                                        ":detail" => $detail,
+                                        ":transactType" => $transactType,
+                                        ":typeId" => $typeId,
+                                        ":transactId" => $transactId
+                                    ];
 
-                                $editTransactResult = $this->storage->query($query, $params);
+                                    $editTransactResult = $this->storage->query($query, $params);
+                                       
+                                    $isTransactEdited= array_key_exists("meta", $editTransactResult) && $editTransactResult["meta"]["count"]==1;
 
-                                LoggingService::logVariable($editTransactResult, __FILE__, __LINE__);
-                                   
-                                $isTransactEdited= array_key_exists("meta", $editTransactResult) && $editTransactResult["meta"]["count"]==1;
-
-                                if($isTransactEdited){
-                                    $result["message"]= "Transaction edited";
-                                }else{
+                                    if($isTransactEdited){
+                                        $result["message"]= "Transaction edited";
+                                    }else{
+                                        $result["error"] = true;
+                                        $result["message"]= "Error, can't edit transaction";
+                                    }
+                                }else{//10
                                     $result["error"] = true;
-                                    $result["message"]= "Error, can't edit transaction";
+                                    $result["message"] = "Detail is invalid";
                                 }
                             }else{//9
                                 $result["error"] = true;
@@ -405,8 +405,5 @@ class TransactionsService {
 
 
 
-
-
-
-
 }//end -class-
+

@@ -39,9 +39,18 @@ angular.module('bankAccount.controllers')
 			});
 		}else{
 			add.isLoading= false;
-			add.newTransat= {date: "", amount: "", detail: "", shop: "", transactType: ""};
+			add.newTransat= {date: "", amount: "", detail: "", transactType: ""};
 		};
 	};
+
+	//start the correct operation after form submit.
+	add.checkOper= function() {
+		if(add.tId==0){
+			add.addTransact();
+		}else{
+			add.edit();
+		}
+	}//end
 
 	/**
 	 * addTransact, register a new trasaction
@@ -54,11 +63,10 @@ angular.module('bankAccount.controllers')
 		.success(function(response){
 			if(!response.error){
 				add.showModal= true;
-				add.clear($scope.addTransactForm);
 				add.info="Transacción creada con éxito";
-				add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""};
+				add.newTransat={date: "", amount: "", detail: "", type: ""};
 			}else{
-				console.error(response.message);
+				console.error(response);
 				add.info= "No se ha podido completar la operación";
 			};
 		})
@@ -81,8 +89,7 @@ angular.module('bankAccount.controllers')
 				add.editInfo= "Edición realizada con éxito";
 				add.editModal= true;
 				modal(true);
-				add.clear($scope.addTransactForm);
-				add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""};
+				add.newTransat={date: "", amount: "", detail: "", type: ""};
 			}else{
 				add.editInfo= "El elemento no ha sido editado";
 				add.editModal= true;
@@ -120,12 +127,6 @@ angular.module('bankAccount.controllers')
 			return 1;
 		}
 	};//end checkTid
-
-	//clear form
-	add.clear= function(form) {
-    	form.$setPristine();
-    	form.$setUntouched();
-	}; //end function
 
 	//add more transactions
 	add.addMore= function() {

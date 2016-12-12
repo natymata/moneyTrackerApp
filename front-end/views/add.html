@@ -17,20 +17,18 @@
 
 		<div class="newTransat-add posit-rel">
 			<h4 class="text-center error">{{add.info}}</h4>
-			<form name="addTransactForm" ng-submit="addTransactForm.$valid && add.addTransact()" novalidate>
+			<form name="addTransactForm" ng-submit="addTransactForm.$valid && add.checkOper(); addTransactForm.$setPristine(); addTransactForm.$setUntouched()" novalidate>
 				<div class="form-group">
-					<sub ng-show="addTransactForm.name.$invalid && addTransactForm.name.$touched">Fecha requerifa</sub>
-					<label>Fecha:</label><input type="date" name="date" ng-model= "add.newTransat.date" required ng-model-options="{ updateOn:'blur'}" class="form-control">
+					<sub ng-show="addTransactForm.date.$invalid && addTransactForm.date.$touched">Fecha requerida</sub>
+					<label>Fecha:</label><input type="date" name="date" ng-model= "add.newTransat.date" ng-model-options="{ updateOn:'blur'}" class="form-control" required>
 				</div>
 				<div class="form-group">
 					<sub ng-show="addTransactForm.amount.$invalid && addTransactForm.amount.$touched">Monto es requerido</sub>
 					<label>Monto:</label><input type="number" name="amount" ng-model= "add.newTransat.amount" required ng-model-options="{debounce:200}" class="form-control" placeholder="1000000.00">
 				</div>
 				<div class="form-group">
-					<label>Detalle:</label><input type="text" name="detail" ng-model= "add.newTransat.detail" ng-model-options="{debounce:200}" class="form-control" placeholder="Detalles de la transacción">
-				</div>
-				<div class="form-group">
-					<label>Comercio:</label><input type="text" name="shop" ng-model= "add.newTransat.shop" ng-model-options="{debounce:200}" class="form-control" placeholder="Comercio o persona relacionada">
+					<sub ng-show="addTransactForm.detail.$invalid && addTransactForm.detail.$touched">Descripción es requerida</sub>
+					<label>Descripción:</label><input type="text" name="detail" ng-model= "add.newTransat.detail" required ng-model-options="{debounce:200}" class="form-control" placeholder="Detalles de la transacción">
 				</div>
 				<div class="form-group">
 					<sub ng-show="addTransactForm.type.$invalid && addTransactForm.type.$touched">Escoja un tipo de transacción</sub>
@@ -41,24 +39,36 @@
 						<option value="Crédito">Crédito</option>
 					</select>
 				</div>
-
-				<!-- botones de la vista crear -->
-				<button type="submit" ng-disabled="addTransactForm.$invalid" class="btn app-btn gradient btn50 btn-mrg" ng-show="add.tId==0"><span class="glyphicon glyphicon-ok"></span> Crear</button>
 				
-				<a ng-href="#/summary/{{add.userId}}" ng-show="add.tId==0" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
-		
+				<!-- botones de la vista crear -->
+				<div class="row">
+					<div class="col-sm-6 col-xs-12 form-group">
+						<button type="submit" ng-disabled="addTransactForm.$invalid" class="btn app-btn gradient btn50 btn-mrg" ng-show="add.tId==0"><span class="glyphicon glyphicon-ok"></span> Crear</button>
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+					<div class="col-sm-6 col-xs-12 form-group">
+						<a ng-href="#/summary/{{add.userId}}" ng-show="add.tId==0" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+				</div><!-- row -->
+				
 				<!-- botones de la vista editar -->
-				<button type="button" ng-disabled="addTransactForm.$invalid" class="btn app-btn gradient btn50 btn-mrg" ng-show="add.tId==1" ng-click="add.edit()"><span class="glyphicon glyphicon-ok"></span> Actualizar</button>
+				<div class="row">
+					<div class="col-sm-6 col-xs-12 form-group">
+						<button type="submit" ng-disabled="addTransactForm.$invalid" class="btn app-btn gradient btn50 btn-mrg" ng-show="add.tId==1"><span class="glyphicon glyphicon-ok"></span> Actualizar</button>
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+					<div class="col-sm-6 col-xs-12 form-group">
+						<a ng-href="#/detail/{{add.transactId}}" ng-show="add.tId==1" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+				</div><!-- row -->
 
-				<a ng-href="#/detail/{{add.transactId}}" ng-show="add.tId==1" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
+		
 			</form>
 			
 			<div class="addModal post-abs" ng-show="add.showModal">
 				<div class="width70">
 					<h3 class="text-center margin-modal">Transacción creada con éxito</h3>
 					<div class="margin-modal">
-						<button type="button" class="btn app-btn gradient btn50 btn-mrg" ng-click="add.addMore()">Seguir agregando</button>
-						<button type="button" class="btn btn-warning btn50 btn-mrg" ng-click="add.back()">Volver</button>
+						<button type="button" class="btn app-btn gradient btn50 btn-mrg form-group" ng-click="add.addMore()">Seguir agregando</button>
+						<button type="button" class="btn btn-warning btn50 btn-mrg form-group" ng-click="add.back()">Volver</button>
 					</div>
 				</div>
 			</div><!-- addModal post-abs -->

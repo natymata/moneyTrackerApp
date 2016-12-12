@@ -24,16 +24,16 @@
 			</div>
 		</div><!-- panel panel-default -->
 		
-		<button ng-click="profile.edit()" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+		<button ng-click="profile.edit()" class="btn app-btn gradient btn50 btn-mrg form-group"><span class="glyphicon glyphicon-edit"></span> Editar</button>
 
-		<button ng-click="profile.delete()" class="btn btn-warning btn50 btn-mrg"><span class="glyphicon glyphicon-trash"></span>  Eliminar cuenta</button>
+		<button ng-click="profile.delete()" class="btn btn-warning btn50 btn-mrg form-group"><span class="glyphicon glyphicon-trash"></span>  Eliminar cuenta</button>
 
 		<div class="addModal post-abs" ng-show= "profile.confirmModal">
 			<div class="width70">
 					<h3 class="text-center margin-modal">Está seguro de que desea eliminar la cuenta?</h3>
 					<div class="margin-modal">
-						<button type="button" class="btn app-btn gradient btn50 btn-mrg" ng-click="profile.cancelDelete()">Cancelar</button>
-						<button type="button" class="btn btn-warning btn50 btn-mrg" ng-click="profile.deleteAccount()">Eliminar</button>
+						<button type="button" class="btn app-btn gradient btn50 btn-mrg form-group" ng-click="profile.cancelDelete()">Cancelar</button>
+						<button type="button" class="btn btn-warning btn50 btn-mrg form-group" ng-click="profile.deleteAccount()">Eliminar</button>
 					</div>
 				</div>
 		</div> <!-- modal -->

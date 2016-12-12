@@ -27,7 +27,6 @@ class TransactionsController{
         $date= null; 
         $amount= null; 
         $detail= null; 
-        $shop= null; 
         $transactType= null;
         $typeId= null;
 
@@ -51,10 +50,6 @@ class TransactionsController{
             $detail= $formData["detail"];
         }
 
-        if(array_key_exists("shop", $formData)){
-            $shop= $formData["shop"];
-        }
-
         if(array_key_exists("transactType", $formData)){
             $transactType= $formData["transactType"];
         }
@@ -63,11 +58,12 @@ class TransactionsController{
             $typeId= $formData["typeId"];
         }
 
-        $registerResult= $this->transactionsService->saveTransaction($userId, $transactId, $date, $amount, $detail, $shop, $transactType, $typeId);
+        $registerResult= $this->transactionsService->saveTransaction($userId, $transactId, $date, $amount, $detail, $transactType, $typeId);
 
         if(array_key_exists("error", $registerResult)) {
             $result["error"] = true;
             $result["message"] = $registerResult["message"];
+            $result["indexMessage"]= $registerResult["indexMessage"];
             $result["valid"] = false;
         }else{
             $result["message"] = $registerResult["message"];
@@ -130,7 +126,6 @@ class TransactionsController{
         $date= null; 
         $amount= null; 
         $detail= null; 
-        $shop= null; 
         $transactType= null;
         $typeId= null;
 
@@ -150,10 +145,6 @@ class TransactionsController{
             $detail= $formData["detail"];
         }
 
-        if(array_key_exists("shop", $formData)){
-            $shop= $formData["shop"];
-        }
-
         if(array_key_exists("transactType", $formData)){
             $transactType= $formData["transactType"];
         }
@@ -162,7 +153,7 @@ class TransactionsController{
             $typeId= $formData["typeId"];
         }
 
-        $editResult= $this->transactionsService->editTransact($transactId, $date, $amount, $detail, $shop, $transactType, $typeId);
+        $editResult= $this->transactionsService->editTransact($transactId, $date, $amount, $detail, $transactType, $typeId);
 
         if(array_key_exists("error", $editResult)) {
             $result["error"] = true;

@@ -37,7 +37,6 @@ angular.module('bankAccount.services')
 			date: transact.date,
 			amount:transact.amount,
 			detail: transact.detail,
-			shop: transact.shop,
 			transactType: transact.transactType,
 			typeId:typeId
 		};
@@ -74,15 +73,6 @@ angular.module('bankAccount.services')
 				transact.transactType="Débito";
 			}else{
 				transact.transactType= "Crédito";
-			};
-
-			
-			if(transact.detail == ""){
-				transact.detail = "No registrado";
-			};
-
-			if(transact.shop == ""){
-				transact.shop = "No registrado";
 			};
 		});
 		return dataArr;	

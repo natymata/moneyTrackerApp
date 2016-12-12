@@ -4,53 +4,76 @@
 		<div class="text-center verticalCenter"><p>Loading...</p><img src="front-end/img/loader/loader5.gif" width="50" height="50"></div>
 	</div>
 
-	<section class="accountDetail gray-border" ng-if="!summary.isLoading">
+	<!-- <section class="accountDetail gray-border" ng-if="!summary.isLoading"> -->
+	<div class="row" ng-if="!summary.isLoading">
+		<div class="col-sm-10 col-sm-offset-1 col-xs-12 padding10">
 
-		<h2>{{summary.welcome}}</h2>
+			<h2>{{summary.welcome}}</h2>
 
-		<h4 class="error text-center">{{summary.error}}</h4>
+			<h4 class="error text-center">{{summary.error}}</h4>
 
-		<div ng-show="summary.displayElements">
-			<div class="center-block floatNone">
-				<h4 class="marginbotton40" ng-show="summary.showElements">Estos son sus últimos movimientos en su cuenta {{summary.accountType}}</h4>
+			<div ng-show="summary.displayElements">
+				<div class="center-block floatNone">
+					<div class="row">
+						<div class="col-sm-8">
+							<h4 class="marginbotton40" ng-show="summary.showElements" ng-if="summary.ahorros">Estos son sus últimos movimientos en su cuenta de Ahorros</h4>
+							<h4 class="marginbotton40" ng-show="summary.showElements" ng-if="summary.corriente">Estos son sus últimos movimientos en su cuenta Corriente</h4>
+						</div>
+						<!-- <div class="col-sm-4">
+							<div class="pull-right">
+								<select name="quantity" id="quantity" class="select" ng-init="10" ng-model="summary.quantity" ng-show="summary.showElements" >
+				        			<option value="">Cantidad a mostrar</option>
+				        			<option value="10">10 movimientos</option>
+				        			<option value="50">50 movimientos</option>
+				        			<option value="100">100 movimientos</option>
+				        			<option value="200">200 movimientos</option>
+				        			<option value="500">500 movimientos</option>
+				        		</select>
+				        	</div>
+						</div> -->
+					</div>	
+				</div>
+				
+				<div ng-hide="summary.showElements" class="center-block floatNone text-center div-info">
+					<h3>No hay movimientos en su cuenta</h3>
+					<a ng-href="#/add/{{summary.userId}}" class="btn app-btn gradient btn50 btn-mrg">Agregar Movimientos</a>
+				</div>
 			</div>
+
 			
-			<div ng-hide="summary.showElements" class="center-block floatNone text-center div-info">
-				<h3>No hay movimientos en su cuenta</h3>
-				<a ng-href="#/add/{{summary.userId}}" class="btn app-btn gradient btn50 btn-mrg">Agregar Movimientos</a>
+			<div class="table-responsive tbSummary">
+				<table class="table table-striped" ng-if="summary.showElements">
+					<thead>
+						<tr>
+							<th>Fecha</th>
+							<th>Tipo</th>
+							<th class="celldesc">Descripción</th>
+							<th>Monto</th>
+							<th class="cellplus">Más</th>
+						</tr>
+					</thead>
+					<tbody>	
+						<tr ng-repeat="transact in summary.userTransacts | orderBy:transact.date | limitTo: summary.quantity track by $index">
+							<td>{{transact.date | date: 'd/MM/yy'}}</td>
+							<td>{{transact.transactType}}</td>
+							<td class="celldesc">{{transact.detail}}</td>
+							<td ng-show="summary.money=='colon' || summary.money=='colones'">{{transact.amount | currency: '¢'}}</td>
+							<td ng-show="summary.money=='euro' || summary.money=='euros'">{{transact.amount | currency: '€'}}</td>
+							<td ng-show="summary.money=='dolar' || summary.money=='dolares'">{{transact.amount | currency: '$'}}</td>
+							<td class="cellplus"><a href="#/detail/{{transact.transactId}}"> <span class="glyphicon glyphicon-chevron-right"></span></a></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3">Saldo disponible</td>
+							<td ng-show="summary.money=='colon'">{{summary.balance | currency: '¢'}}</td>
+							<td ng-show="summary.money=='euro'">{{summary.balance | currency: '€'}}</td>
+							<td ng-show="summary.money=='dolar'">{{summary.balance | currency: '$'}}</td>
+							<td class="text-center"><a href ng-click= "summary.toAdd()"><span class="glyphicon glyphicon-plus"></span></a></td>
+						</tr>	
+					</tfoot>
+				</table>
 			</div>
 		</div>
-
-		<table class="table table-striped" ng-if="summary.showElements">
-			<thead>
-				<tr>
-					<th>Fecha</th>
-					<th>Tipo</th>
-					<th>Comercio</th>
-					<th>Monto</th>
-					<th>Acciones</th>
-				</tr>
-			</thead>
-			<tbody>	
-				<tr ng-repeat="transact in summary.userTransacts | orderBy:transact.date track by $index">
-					<td>{{transact.date | date: 'd/MMM/yy'}}</td>
-					<td>{{transact.transactType}}</td>
-					<td>{{transact.shop}}</td>
-					<td ng-show="summary.money=='colon' || summary.money=='colones'">{{transact.amount | currency: '¢'}}</td>
-					<td ng-show="summary.money=='euro' || summary.money=='euros'">{{transact.amount | currency: '€'}}</td>
-					<td ng-show="summary.money=='dolar' || summary.money=='dolares'">{{transact.amount | currency: '$'}}</td>
-					<td><a href="#/detail/{{transact.transactId}}">Detalles <span class="glyphicon glyphicon-chevron-right"></span></a></td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td colspan="3">Saldo disponible</td>
-					<td colspan="2" ng-show="summary.money=='colon'">{{summary.balance | currency: '¢'}}</td>
-					<td colspan="2" ng-show="summary.money=='euro'">{{summary.balance | currency: '€'}}</td>
-					<td colspan="2" ng-show="summary.money=='dolar'">{{summary.balance | currency: '$'}}</td>
-				</tr>	
-			</tfoot>
-		</table>
-
-	</section>
+	</div> <!-- row -->
 </div> <!-- main-col -->

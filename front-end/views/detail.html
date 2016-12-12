@@ -6,50 +6,76 @@
 		</div>
 	</div>
 
-	<section class="transDetail gray-border posit-rel" ng-if="!detail.isLoading">
+	<section class="transDetail gray-border posit-rel padding10" ng-if="!detail.isLoading">
 		<div class="detail-header cf">
 			<h2 class="float"><a ng-href="#/summary/{{detail.userId}}"><span class="glyphicon glyphicon-chevron-left"></span></a></h2>
-			<h2 class="float detail-h2">Detalle de la transacción</h2>
+		
+			<h2>Detalle de la transacción</h2>
 		</div>
 
 		<h4 class="error text-center">{{detail.error}}</h4>
 
 		<div ng-if= "!detail.error">
 			<h4>A continuación el detalle de la transacción realizada el día {{detail.transact.date | date: 'EEE - d/MMM/yy'}}</h4>
+		
+		<div class="row">	
+			<div class="col-sm-8 col-sm-offset-2">
+
+					<table class="table table-striped">
+						<tbody>
+							<tr>
+								<td>Id</td>
+								<td class="overfhidden tiny">{{detail.transact.transactId}}</td>
+							</tr>
+							<tr>
+								<td>Tipo</td>
+								<td>{{detail.transact.transactType}}</td>
+							</tr>
+							<tr>
+								<td>Comercio</td>
+								<td>{{detail.transact.shop}}</td>
+							</tr>
+							<tr>
+								<td>Detalle</td>
+								<td>{{detail.transact.detail}}</td>
+							</tr>
+							<tr>
+								<td>Monto</td>
+								<td ng-show="detail.money=='colon'">{{detail.transact.amount | currency: '¢'}}</td>
+								<td ng-show="detail.money=='euro'">{{detail.transact.amount | currency: '€'}}</td>
+								<td ng-show="detail.money=='dolar'">{{detail.transact.amount | currency: '$'}}</td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<tr>
+								<td colspan="2">
+									<div class="row">
+										<div class="col-sm-6 col-xs-12 form-group padding5">
+											<a ng-href="#/transact-edit/{{detail.userId}}/{{detail.transactId}}" class="btn app-btn gradient btn-mrg btn50">Editar <span class="glyphicon glyphicon-edit"></span></a>
+										</div><!-- col-sm-6 col-xs-12 form-group -->
+										<div class="col-sm-6 col-xs-12 form-group padding5">
+											<button ng-click="detail.delete()" class="btn btn-warning btn-mrg btn50">Eliminar <span class="glyphicon glyphicon-trash"></span></button>
+										</div><!-- col-sm-6 col-xs-12 -->
+									</div><!-- row -->
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+
+			</div> <!-- col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 -->
+		</div>	<!-- row -->
 			
 
-			<table class="table table-striped tdetail">
-				<tbody>
-					<tr>
-						<td>Id</td>
-						<td class="overfhidden tiny">{{detail.transact.transactId}}</td>
-					</tr>
-					<tr>
-						<td>Tipo</td>
-						<td>{{detail.transact.transactType}}</td>
-					</tr>
-					<tr>
-						<td>Comercio</td>
-						<td>{{detail.transact.shop}}</td>
-					</tr>
-					<tr>
-						<td>Detalle</td>
-						<td>{{detail.transact.detail}}</td>
-					</tr>
-					<tr>
-						<td>Monto</td>
-						<td ng-show="detail.money=='colon'">{{detail.transact.amount | currency: '¢'}}</td>
-						<td ng-show="detail.money=='euro'">{{detail.transact.amount | currency: '€'}}</td>
-						<td ng-show="detail.money=='dolar'">{{detail.transact.amount | currency: '$'}}</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="row">
+				<div class="col-sm-6 col-xs-12 form-group">
+					<!-- <a ng-href="#/transact-edit/{{detail.userId}}/{{detail.transactId}}" class="btn app-btn gradient btn-mrg">Editar <span class="glyphicon glyphicon-edit"></span></a> -->
+				</div><!-- col-sm-6 col-xs-12 form-group -->
+				<div class="col-sm-6 col-xs-12 form-group">
+					<!-- <button ng-click="detail.delete()" class="btn btn-warning btn-mrg">Eliminar <span class="glyphicon glyphicon-trash"></span></button> -->
+				</div><!-- col-sm-6 col-xs-12 form-group -->
+			</div><!-- row -->
 
-			<a ng-href="#/transact-edit/{{detail.userId}}/{{detail.transactId}}" class="btn app-btn gradient btn50 btn-mrg">Editar <span class="glyphicon glyphicon-edit"></span></a>
-
-			<button ng-click="detail.delete()" class="btn btn-warning btn50 btn-mrg">Eliminar <span class="glyphicon glyphicon-trash"></span></button>
-
-		</div> 
+		</div> <!-- detail.error -->
 		
 		<!-- modales -->
 		<div class="addModal post-abs" ng-show="detail.showModal">
@@ -60,8 +86,8 @@
 			<div class="width70">
 					<h3 class="text-center margin-modal">Está seguro de que desea eliminar la transacción?</h3>
 					<div class="margin-modal">
-						<button type="button" class="btn app-btn gradient btn50 btn-mrg" ng-click="detail.cancelDelete()">Cancelar</button>
-						<button type="button" class="btn btn-warning btn50 btn-mrg" ng-click="detail.deleteTransact()">Eliminar</button>
+						<button type="button" class="btn app-btn gradient btn50 btn-mrg form-group" ng-click="detail.cancelDelete()">Cancelar</button>
+						<button type="button" class="btn btn-warning btn50 btn-mrg form-group" ng-click="detail.deleteTransact()">Eliminar</button>
 					</div>
 				</div>
 		</div> <!-- modal -->

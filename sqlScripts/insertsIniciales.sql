@@ -25,15 +25,15 @@ VALUES
 
 /*INSERTS TABLE TRANSACTION */
 INSERT INTO tbtransactions 
-(transactId, date, amount, detail, shop, transactType, typeId) 
+(transactId, date, amount, detail, transactType, typeId) 
 VALUES 
-('trs1480561796912NqrZ', '2016-11-10 06:00:00', '5000', 'Compras', 'natyshop', 'Debito', 0);
+('trs1480561796912NqrZ', '2016-11-10 06:00:00', '5000', 'Compras en natyshop', 'Debito', 0);
 
 
 INSERT INTO tbtransactions 
-(transactId, date, amount, detail, shop, transactType, typeId) 
+(transactId, date, amount, detail, transactType, typeId) 
 VALUES 
-('trs1480561828649nXcj', '2016-11-10 06:00:00', '200000', 'Salario', 'IsaG', 'Credito', 1);
+('trs1480561828649nXcj', '2016-11-10 06:00:00', '200000', 'Salario IsaG', 'Credito', 1);
 
 /*INSERTS TABLE TRANSACTXUSER*/
 
