@@ -44,15 +44,12 @@ class UserService {
 
                 $loginResult = $this->storage->query($query, $params);
 
-                LoggingService::logVariable($loginResult, __FILE__, __LINE__);
-
                 // Si la sentencia tiene por lo menos una fila, el usuario si existe.
                 if (count($loginResult["data"]) > 0) {
                     // Almacenar el usuario en una variable
                     $user = $loginResult["data"][0];
 
                     // Verifcar el pass del usuario.
-                    LoggingService::logVariable($pass, __FILE__, __LINE__);
                     if (password_verify($pass, $user["password"])) {
 
                         // Definimos el mensaje de éxito
@@ -372,31 +369,27 @@ class UserService {
         if(isset($userId)){//1
             //Vefiricar que el userId sea string valido y tenga al menos 9 caracteres
             if($this->validation->isValidString($userId) && strlen(trim($userId))>=9){//2
-                //query
-                $query= "START TRANSACTION;
-                        DELETE tbtransactxuser, tbtransactions
+                //query --delete user transactions--
+                $query= "DELETE tbtransactxuser, tbtransactions
                         FROM tbuser
                         INNER JOIN tbtransactxuser
                         INNER JOIN tbtransactions
                         ON tbuser.userId = tbtransactxuser.tbUser_userId
                         AND tbtransactxuser.tbTransactios_transactd= tbtransactions.transactId
-                        WHERE tbuser.userId= :userId;
-
-                        DELETE FROM tbuser
-                        WHERE userId= :userId;
-
-                        COMMIT";
+                        WHERE tbuser.userId= :userId;";
 
                 // Query params
                 $params = [":userId" => $userId];
-
                 $deleteResult = $this->storage->query($query, $params);
                 
+                //Delete user account
+                $query= "DELETE FROM tbuser
+                        WHERE userId= :userId";
+
+                $deleteResult = $this->storage->query($query, $params);
                 LoggingService::logVariable($deleteResult, __FILE__, __LINE__);
                 
                 $isUserDeleted= array_key_exists("meta", $deleteResult) && $deleteResult["meta"]["count"]==1;
-                
-                LoggingService::logVariable($isUserDeleted, __FILE__, __LINE__);
                 
                 if ($isUserDeleted) {
                     $result["message"] = "User account deleted";
@@ -450,8 +443,6 @@ class UserService {
         $params = [":username" => $username];
 
         $result = $this->storage->query($query, $params);
-
-        LoggingService::logVariable($result, __FILE__, __LINE__);
 
         // El resultado esperado de la cuenta es cero
         return $result["data"][0]["count"] == 0;

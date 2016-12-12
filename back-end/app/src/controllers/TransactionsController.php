@@ -22,8 +22,6 @@ class TransactionsController{
         $result=[];
         $formData= $request->getParsedBody();
 
-         LoggingService::logVariable($formData, __FILE__, __LINE__);
-
         $userId= null;
         $transactId= null; 
         $date= null; 
@@ -65,6 +63,7 @@ class TransactionsController{
         if(array_key_exists("error", $registerResult)) {
             $result["error"] = true;
             $result["message"] = $registerResult["message"];
+            $result["indexMessage"]= $registerResult["indexMessage"];
             $result["valid"] = false;
         }else{
             $result["message"] = $registerResult["message"];
