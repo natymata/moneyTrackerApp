@@ -6,8 +6,6 @@ angular.module('bankAccount.services')
 		if (formName) {
             formName.$setPristine();
             formName.$setUntouched();
-	    }else{
-	    	alert("form doesn't exists");
 	    }
 	}; 
 

@@ -373,7 +373,19 @@ class UserService {
             //Vefiricar que el userId sea string valido y tenga al menos 9 caracteres
             if($this->validation->isValidString($userId) && strlen(trim($userId))>=9){//2
                 //query
-                $query= "DELETE FROM tbuser WHERE userId= :userId";
+                $query= "START TRANSACTION;
+                        DELETE tbtransactxuser, tbtransactions
+                        FROM tbuser
+                        INNER JOIN tbtransactxuser
+                        INNER JOIN tbtransactions
+                        ON tbuser.userId = tbtransactxuser.tbUser_userId
+                        AND tbtransactxuser.tbTransactios_transactd= tbtransactions.transactId
+                        WHERE tbuser.userId= :userId;
+
+                        DELETE FROM tbuser
+                        WHERE userId= :userId;
+
+                        COMMIT";
 
                 // Query params
                 $params = [":userId" => $userId];

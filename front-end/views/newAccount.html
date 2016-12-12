@@ -9,60 +9,80 @@
 
 		<div class="newAcc-add">
 			<form name="newAccForm" ng-submit="newAccForm.$valid && newAcc.checkOper()" novalidate>
-				<div class="form-group display-inline div50">
-					<sub ng-show="newAccForm.name.$invalid && newAccForm.name.$touched">El nombre es requerido</sub>
-					<label>Nombre:</label><input type="text" name="name" ng-model= "newAcc.newAccount.name" required ng-model-options="{debounce:200}" class="form-control">
-				</div>
-				<div class="form-group display-inline div50">
-					<sub ng-show="newAccForm.lastName.$invalid && newAccForm.lastName.$touched">El apellido es requerido</sub>
-					<label>Apellido:</label><input type="text" name="lastName" ng-model= "newAcc.newAccount.lastName" required ng-model-options="{debounce:200}" class="form-control">
-				</div>
-				<div class="form-group">
-					<sub ng-show="newAccForm.username.$invalid && newAccForm.username.$touched">El usuario es requerido</sub>
-					<label>Nombre de usuario:</label><input type="text" name="username" ng-model="newAcc.newAccount.username" required ng-model-options="{debounce:200}" class="form-control" placeholder="nickname">
-				</div>
-				<div class="form-group display-inline div50">
-					<sub ng-show="newAccForm.pass.$error.required && newAccForm.pass.$touched">Contraseña requerida</sub>
-					<sub ng-show="newAccForm.pass.$error.minlength && newAccForm.pass.$touched">Mínimo 6 caracteres</sub>
-					<label for="password">Contraseña:</label><input type="password" id="password" name="pass" ng-model= "newAcc.newAccount.pass" ng-minlength="6" required placeholder="Minimo 6 caracteres" class="form-control">
-				</div>
-				<div class="form-group display-inline div50">
-					<sub ng-show="newAccForm.repeatPass.$error.required && newAccForm.repeatPass.$touched">Campo requerido</sub>
-					<sub ng-show="newAccForm.repeatPass.$error.passwordVerify && newAccForm.repeatPass.$touched">Las contraseñas no coinciden</sub>
-					<label>Repetir contraseña:</label><input type="password" name="repeatPass" ng-model= "newAcc.newAccount.repeatPass" ng-minlength="6" required class="form-control" data-password-verify="newAcc.newAccount.pass" ng-model-options="{debounce:200}">
-				</div> 
+				<div class="row">
+					<div class="col-sm-6 col-xs-12 form-group">
+						<sub ng-show="newAccForm.name.$invalid && newAccForm.name.$touched">El nombre es requerido</sub>
+						<label>Nombre:</label><input type="text" name="name" ng-model= "newAcc.newAccount.name" required ng-model-options="{debounce:200}" class="form-control">
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+					<div class="col-sm-6 col-xs-12 form-group">	
+						<sub ng-show="newAccForm.lastName.$invalid && newAccForm.lastName.$touched">El apellido es requerido</sub>
+						<label>Apellidos:</label><input type="text" name="lastName" ng-model= "newAcc.newAccount.lastName" required ng-model-options="{debounce:200}" class="form-control">
+					</div> <!-- col-sm-6 col-xs-12 form-group -->
+				</div><!-- row -->
 
-				<div class="form-group display-inline div50">
-					<sub ng-show="newAccForm.money.$invalid && newAccForm.money.$touched">Escoja un tipo de moneda</sub>
-					<label>Moneda:</label>
-					<select name="money" id="sltMoney" ng-model="newAcc.newAccount.money" required class="form-control control50">
-						<option value="">--Seleccione--</option>
-						<option value="colon">Colones</option>
-						<option value="dolar">Dólares</option>
-						<option value="euro">Euros</option>
-					</select>
-				</div>
-				<div class="form-group display-inline div50">
-					<sub ng-show="newAccForm.type.$invalid && newAccForm.type.$touched">Escoja un tipo de cuenta</sub>
-					<label>Tipo:</label>
-					<select name="accountType" id="sltType" ng-model="newAcc.newAccount.accountType" required class="form-control control50">
-						<option value="">--Seleccione--</option>
-						<option value="corriente">Corriente</option>
-						<option value="ahorros">Ahorros</option>
-					</select>
-				</div>
+				<div class="row">
+					<div class="col-xs-12 form-group">
+						<sub ng-show="newAccForm.username.$invalid && newAccForm.username.$touched">El usuario es requerido</sub>
+						<label>Nombre de usuario:</label><input type="text" name="username" ng-model="newAcc.newAccount.username" required ng-model-options="{debounce:200}" class="form-control" placeholder="nickname">
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+				</div><!-- row -->
+
+				<div class="row">
+					<div class="col-sm-6 col-xs-12 form-group">
+						<sub ng-show="newAccForm.pass.$error.required && newAccForm.pass.$touched">Contraseña requerida</sub>
+						<sub ng-show="newAccForm.pass.$error.minlength && newAccForm.pass.$touched">Mínimo 6 caracteres</sub>
+						<label for="password">Contraseña:</label><input type="password" id="password" name="pass" ng-model= "newAcc.newAccount.pass" ng-minlength="6" required placeholder="Minimo 6 caracteres" class="form-control">
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+					<div class="col-sm-6 col-xs-12 form-group">
+						<sub ng-show="newAccForm.repeatPass.$error.required && newAccForm.repeatPass.$touched">Campo requerido</sub>
+						<sub ng-show="newAccForm.repeatPass.$error.passwordVerify && newAccForm.repeatPass.$touched">Las contraseñas no coinciden</sub>
+						<label>Repetir contraseña:</label><input type="password" name="repeatPass" ng-model= "newAcc.newAccount.repeatPass" ng-minlength="6" required class="form-control" data-password-verify="newAcc.newAccount.pass" ng-model-options="{debounce:200}">
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+				</div><!-- row -->
 				
-				<!-- botones para crear la cuenta -->
-				<button ng-disabled="newAccForm.$invalid" ng-show="newAcc.tId==0" type="submit" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-ok"></span> Crear</button>
+				<div class="row">
+					<div class="col-sm-6 col-xs-12 form-group">
+						<sub ng-show="newAccForm.money.$invalid && newAccForm.money.$touched">Escoja un tipo de moneda</sub>
+						<label>Moneda:</label>
+						<select name="money" id="sltMoney" ng-model="newAcc.newAccount.money" required class="form-control control50">
+							<option value="">--Seleccione--</option>
+							<option value="colon">Colones</option>
+							<option value="dolar">Dólares</option>
+							<option value="euro">Euros</option>
+						</select>
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+					<div class="col-sm-6 col-xs-12 form-group">
+						<sub ng-show="newAccForm.type.$invalid && newAccForm.type.$touched">Escoja un tipo de cuenta</sub>
+						<label>Tipo:</label>
+						<select name="accountType" id="sltType" ng-model="newAcc.newAccount.accountType" required class="form-control control50">
+							<option value="">--Seleccione--</option>
+							<option value="corriente">Corriente</option>
+							<option value="ahorros">Ahorros</option>
+						</select>
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+				</div><!-- row -->
 
-				<a ng-show="newAcc.tId==0" ng-click="newAcc.cancel()" ng-href="#/" class="btn btn-warning btn50 btn-mrg" ng-show="1==1" ><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
+				<!-- botones para crear la cuenta -->
+				<div class="row">
+					<div class="col-sm-6 col-xs-12 form-group">
+						<button ng-disabled="newAccForm.$invalid" ng-show="newAcc.tId==0" type="submit" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-ok"></span> Crear</button>
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+					<div class="col-sm-6 col-xs-12 form-group">
+						<a ng-show="newAcc.tId==0" ng-click="newAcc.cancel()" ng-href="#/" class="btn btn-warning btn50 btn-mrg" ng-show="1==1" ><span class="glyphicon glyphicon-remove"></span>  Cancelar</a>
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+				</div><!-- row -->
 
 				<!-- botones para editar la cuenta -->
-				<button ng-disabled="newAccForm.$invalid" ng-show="newAcc.tId==1" type="submit" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+				<div class="row">
+					<div class="col-sm-6 col-xs-12 form-group">
+						<button ng-disabled="newAccForm.$invalid" ng-show="newAcc.tId==1" type="submit" class="btn app-btn gradient btn50 btn-mrg"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+					<div class="col-sm-6 col-xs-12 form-group">
+						<button ng-show="newAcc.tId==1" ng-click="newAcc.cancelEdit()" class="btn btn-warning btn50 btn-mrg" ng-show="1==1" ><span class="glyphicon glyphicon-remove"></span>  Cancelar</button>
+					</div><!-- col-sm-6 col-xs-12 form-group -->
+				</div><!-- row -->
 
-				<button ng-show="newAcc.tId==1" ng-click="newAcc.cancelEdit()" class="btn btn-warning btn50 btn-mrg" ng-show="1==1" ><span class="glyphicon glyphicon-remove"></span>  Cancelar</button>
 			</form>
-			
 		</div> <!-- addHeader -->
 
 		<div class="addModal post-abs" ng-show= "newAcc.showModal">

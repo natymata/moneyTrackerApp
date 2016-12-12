@@ -39,7 +39,7 @@ angular.module('bankAccount.controllers')
 			});
 		}else{
 			add.isLoading= false;
-			add.newTransat= {date: "", amount: "", detail: "", shop: "", transactType: ""};
+			add.newTransat= {date: "", amount: "", detail: "", transactType: ""};
 		};
 	};
 
@@ -64,9 +64,9 @@ angular.module('bankAccount.controllers')
 			if(!response.error){
 				add.showModal= true;
 				add.info="Transacción creada con éxito";
-				add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""};
+				add.newTransat={date: "", amount: "", detail: "", type: ""};
 			}else{
-				console.error(response.message);
+				console.error(response);
 				add.info= "No se ha podido completar la operación";
 			};
 		})
@@ -89,7 +89,7 @@ angular.module('bankAccount.controllers')
 				add.editInfo= "Edición realizada con éxito";
 				add.editModal= true;
 				modal(true);
-				add.newTransat={date: "", amount: "", detail: "", shop: "", type: ""};
+				add.newTransat={date: "", amount: "", detail: "", type: ""};
 			}else{
 				add.editInfo= "El elemento no ha sido editado";
 				add.editModal= true;
